@@ -8,7 +8,7 @@ description: Author and edit apprenti.dev curriculum content correctly — tasks
 apprenti.dev is a Git-native, offline-first apprenticeship app. A "curriculum" is not
 a database — it's a folder of JSON (structure) and Markdown (narrative) files in a Git
 repository, read directly by the app. This skill helps you create and edit those files
-correctly. It is **not** for editing the Flutter app itself, and it never touches
+correctly. It is **not** for editing the app itself, and it never touches
 personal apprentice/mentor data.
 
 Load `reference/curriculum-json-shapes.md` before writing or editing any `task.json`,

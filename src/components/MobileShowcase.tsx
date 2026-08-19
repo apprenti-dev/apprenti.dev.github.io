@@ -113,7 +113,7 @@ export function MobileShowcase() {
                         className="text-lg text-muted-foreground max-w-2xl mx-auto"
                     >
                         apprenti.dev runs on Android, iOS, Windows, macOS, and Linux — one
-                        Flutter codebase, offline-first by design.
+                        shared codebase, offline-first by design.
                     </motion.p>
                 </div>
 

@@ -27,7 +27,7 @@ const useCases = [
         icon: PenTool,
         title: "For Content Creators",
         description:
-            "apprenti creator is a companion VS Code extension for building and maintaining curricula — a visual path canvas, entity editors with live markdown preview, a locale board for translations, and a competency matrix, all writing the exact same files the Flutter app reads. It's the studio for designing the path, not a second runtime.",
+            "apprenti creator is a companion VS Code extension for building and maintaining curricula — a visual path canvas, entity editors with live markdown preview, a locale board for translations, and a competency matrix, all writing the exact same files the app reads. It's the studio for designing the path, not a second runtime.",
         example: "Path canvas → Entity editor → Validate → Commit",
         gradient: "from-apprenti-peach to-apprenti-magenta",
     },

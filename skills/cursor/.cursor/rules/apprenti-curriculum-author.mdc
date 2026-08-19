@@ -18,7 +18,7 @@ alwaysApply: false
 apprenti.dev is a Git-native, offline-first apprenticeship app. A "curriculum" is a
 folder of JSON (structure) and Markdown (narrative) files in a Git repository, read
 directly by the app — not a database. This rule governs how to create and edit those
-files. It is not about editing the Flutter app itself, and it never touches personal
+files. It is not about editing the app itself, and it never touches personal
 apprentice/mentor data.
 
 ## Hard boundaries — never violate these

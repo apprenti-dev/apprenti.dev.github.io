@@ -29,7 +29,7 @@ const faqs = [
   },
   {
     question: "What platforms does it run on?",
-    answer: "Android, iOS, Windows, macOS, and Linux, from one Flutter codebase.",
+    answer: "Android, iOS, Windows, macOS, and Linux, from one shared codebase.",
   },
   {
     question: "Is there a marketplace of curricula, or can I write my own?",

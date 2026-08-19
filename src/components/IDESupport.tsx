@@ -57,7 +57,7 @@ export function PlatformSupport() {
                         transition={{ duration: 0.5, delay: 0.1 }}
                         className="text-lg text-muted-foreground max-w-2xl mx-auto"
                     >
-                        One Flutter codebase, Material 3, running everywhere you work.
+                        One shared codebase, running everywhere you work.
                     </motion.p>
                 </div>
 

@@ -4,7 +4,7 @@ This repository is (or contains) an **apprenti.dev curriculum**: a Git-native,
 offline-first apprenticeship path made of JSON (structure) and Markdown (narrative)
 files, read directly by the apprenti.dev app — not a database. These instructions
 govern how to create and edit curriculum content correctly. They are not about
-editing the apprenti.dev Flutter app itself, and they never apply to personal
+editing the apprenti.dev app itself, and they never apply to personal
 apprentice/mentor data.
 
 ## Hard boundaries — never violate these

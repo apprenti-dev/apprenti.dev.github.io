@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { GraduationCap, Sparkles, Compass, Hammer, Upload, TrendingUp, ChevronLeft, ChevronRight } from "lucide-react";
+import { GraduationCap, Sparkles, Bot, Compass, Hammer, Upload, TrendingUp, ChevronLeft, ChevronRight } from "lucide-react";
 import { Lightbox } from "@/components/Lightbox";
 import { PLATFORMS, PLATFORM_BADGE_CLASS } from "@/lib/store-badges";
 
@@ -191,6 +191,26 @@ export function Hero() {
                   </div>
                 );
               })}
+            </motion.div>
+
+            {/* AI assistance */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.31 }}
+              className="flex flex-col items-center lg:items-start gap-3 w-full pt-4"
+            >
+              <span className="text-xs text-muted-foreground/50 uppercase tracking-widest font-semibold">
+                AI assistance
+              </span>
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2">
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-apprenti-magenta/30 bg-apprenti-magenta/10 px-3 py-1 text-xs font-medium text-apprenti-magenta">
+                  <Bot className="h-3 w-3" />
+                  Explain · Hint · Quiz
+                </span>
+                <span className={PLATFORM_BADGE_CLASS}>Local models</span>
+                <span className={PLATFORM_BADGE_CLASS}>or your choice of cloud</span>
+              </div>
             </motion.div>
 
             {/* Supported platforms */}

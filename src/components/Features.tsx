@@ -33,9 +33,9 @@ const features = [
   },
   {
     icon: Cpu,
-    title: "Bring your own AI provider",
+    title: "Local models or cloud — your choice",
     description:
-      "The same educational capability runs on a fully local GGUF model or on OpenAI, Mistral, Anthropic, or OpenRouter — your choice, decoupled from the assistant itself.",
+      "The same explain, hint, and quiz capability runs on a fully local GGUF model or on OpenAI, Mistral, Anthropic, or OpenRouter — decoupled from the assistant itself, and always labeled so you know which one just answered.",
     gradient: "from-apprenti-peach to-apprenti-magenta",
   },
   {

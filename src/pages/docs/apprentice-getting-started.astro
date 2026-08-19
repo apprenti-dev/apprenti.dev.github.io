@@ -1,0 +1,145 @@
+---
+import DocsLayout from "../../layouts/docs.astro";
+---
+
+<DocsLayout title="Getting started — apprenti.dev Docs">
+    <div class="space-y-8">
+        <div>
+            <h1 class="text-3xl md:text-4xl font-bold">Getting started</h1>
+        </div>
+
+        <div class="prose dark:prose-invert max-w-none space-y-8">
+            <section>
+                <p class="text-muted-foreground leading-relaxed">
+                    apprenti.dev is not a learning platform with an account
+                    and a server behind it. Your apprenticeship lives in a
+                    Git repository. The app reads that repository, lets you
+                    work on it — often with no network at all — and writes
+                    your progress back to Git when you're ready. There is no
+                    application backend, so there is nothing to sign up for
+                    beyond a place to put a repository.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    What you need
+                </h2>
+                <ul class="space-y-1 text-muted-foreground mt-2">
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>A curriculum
+                        repository: either a GitHub/GitLab URL to clone, or a
+                        folder already on your device.
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>If the
+                        repository is private, or you plan to push your own
+                        work, a <strong>personal access token</strong> for
+                        that provider.
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Open a curriculum
+                </h2>
+                <ol class="space-y-3 text-muted-foreground mt-2 list-decimal pl-5">
+                    <li>Open <strong>More</strong>.</li>
+                    <li>
+                        Choose one:
+                        <ul class="space-y-1 text-muted-foreground mt-2">
+                            <li class="flex items-start gap-2">
+                                <span class="text-link mt-1">•</span
+                                ><strong>Open local repository</strong> —
+                                pick a folder on this device that contains
+                                <code>curriculum.json</code>.
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-link mt-1">•</span
+                                ><strong>Clone repository</strong> — paste a
+                                GitHub or GitLab HTTPS URL (<code
+                                    >https://github.com/owner/repo.git</code
+                                >). Public repositories clone without a
+                                token; private repositories need one.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        If prompted, paste a <strong
+                            >personal access token (optional)</strong
+                        >. It is stored in this device's secure storage
+                        (Keychain / Keystore / platform equivalent) — never
+                        in Git, never in the local database.
+                    </li>
+                    <li>
+                        The app validates the repository, builds a local
+                        projection, and the <strong>Path</strong> becomes
+                        browsable.
+                    </li>
+                </ol>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Offline-first means offline-first
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Once a repository is open, everything works without a
+                    network connection: browsing the path, reading
+                    instructions, writing reflections and notes, logging
+                    work, and preparing a submission. The app keeps a fast
+                    local copy (for search, browsing, and AI indexing) that
+                    it can always rebuild from the Git repository — that
+                    copy is a convenience, not the record of truth.
+                </p>
+                <p class="text-muted-foreground leading-relaxed mt-4">
+                    When you're back online, sync is explicit: the app
+                    fetches, reconciles anything upstream changed, commits
+                    what you've done, and pushes. Nothing you write is
+                    silently lost or silently sent anywhere.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Personal folders in your fork
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Your apprentice records — profile, task state,
+                    reflections, evidence, notes, work log, submissions —
+                    live only under <code>learners/&lt;your-id&gt;/</code> in
+                    the repository. Curriculum content (tasks, resources,
+                    competencies) lives everywhere else and is shared. The
+                    app never publishes a fork on your behalf and never
+                    strips personal data automatically. If you ever copy or
+                    make a repository public yourself, remove <code
+                        >learners/</code
+                    > (and <code>mentors/</code>) first — and remember that
+                    Git history can still contain old copies of those files
+                    unless you start fresh.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">Next</h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Once a repository is open, continue with <a
+                        href="/docs/apprentice-working-through-your-path"
+                        class="text-link hover:underline"
+                        >Working through your path</a
+                    >.
+                </p>
+            </section>
+        </div>
+
+        <div class="mt-8 flex gap-4">
+            <a href="/docs" class="text-sm text-link hover:underline"
+                >← All Docs</a
+            >
+            <a href="/" class="text-sm text-muted-foreground hover:underline"
+                >Back to apprenti.dev</a
+            >
+        </div>
+    </div>
+</DocsLayout>

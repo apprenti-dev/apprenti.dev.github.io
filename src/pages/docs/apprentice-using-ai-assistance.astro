@@ -1,0 +1,140 @@
+---
+import DocsLayout from "../../layouts/docs.astro";
+---
+
+<DocsLayout title="Using AI assistance — apprenti.dev Docs">
+    <div class="space-y-8">
+        <div>
+            <h1 class="text-3xl md:text-4xl font-bold">
+                Using AI assistance
+            </h1>
+        </div>
+
+        <div class="prose dark:prose-invert max-w-none space-y-8">
+            <section>
+                <p class="text-muted-foreground leading-relaxed">
+                    AI in apprenti.dev is assistive, never authoritative. It
+                    can explain, hint, and quiz. It cannot approve your
+                    work, and on most tasks it cannot hand you the finished
+                    solution.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Two different places, two different jobs
+                </h2>
+                <ul class="space-y-2 text-muted-foreground mt-2">
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span><strong
+                            >AI tab</strong
+                        > — a chat grounded in your <em
+                            >whole active curriculum</em
+                        >, not just today's task. Ask about the path,
+                        another task, a competency, or how two terms fit
+                        together. You can optionally tap <strong
+                            >Ask about {"{title}"}</strong
+                        > to bring the current task into the conversation,
+                        but the tab is never locked to it.
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span><strong
+                            >Task detail → AI assistance</strong
+                        > — task-specific roles: <strong>Explain</strong>,
+                        <strong>Hint</strong>, <strong>Quiz</strong>, <strong
+                            >Coach</strong
+                        >. What's available here is controlled by that
+                        task's AI policy; anything not allowed shows as
+                        disabled rather than being hidden, so you know it
+                        was a deliberate choice, not a bug.
+                    </li>
+                </ul>
+                <p class="text-muted-foreground leading-relaxed mt-4">
+                    <strong>More → AI</strong> is where you configure a
+                    provider — it is not the assistant itself.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    The guided stance
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    When you're chatting without pinning a task, the AI tab
+                    stays in a <strong>guided</strong> stance: it will
+                    explain and hint, but it will not produce a full
+                    assignment solution, even if you ask directly. A task's
+                    own solution-generation setting only comes into play
+                    once you've explicitly scoped the conversation to that
+                    task — and even then, most tasks keep it off, with a
+                    mentor able to override for that apprentice if
+                    appropriate.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Local or Cloud — always labeled
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Every reply is tagged <strong>Local</strong> or <strong
+                        >Cloud · {"{provider}"}</strong
+                    >, matching whichever actually ran. AI can run against a
+                    local model (GGUF, downloaded from a hosted catalog or
+                    imported from this device — never fetched from
+                    GitHub/GitLab or committed to a curriculum repository),
+                    or OpenAI, Mistral, Anthropic, or OpenRouter.
+                </p>
+                <p class="text-muted-foreground leading-relaxed mt-4">
+                    You choose the routing policy in <strong
+                        >More → AI</strong
+                    >: <strong>Local only</strong>, <strong
+                        >Prefer local</strong
+                    >, <strong>Manual</strong>, <strong>Prefer cloud</strong
+                    >, or <strong>Cloud only</strong>. If no cloud key is
+                    configured, cloud simply stays off — there is no hidden
+                    fallback.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">Privacy</h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Nothing about apprenti.dev's AI leaves this device
+                    unless you've configured a cloud provider and you're
+                    not in <strong>Local only</strong> mode. Only the active
+                    task's context (and anything you've written into it) is
+                    included when you invoke an assistant — not your whole
+                    history, not other tasks, not other apprentices' work.
+                    API keys and tokens never touch Git, the local
+                    database, or logs.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Keeping an answer
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Any assistant reply — or a selection from it — can be
+                    saved with <strong>Save as note</strong> onto the
+                    current task or any other task in the curriculum. That
+                    note becomes an ordinary Git-backed file you can edit
+                    afterward; it is not a locked transcript. The chat
+                    conversation itself stays local to this device and is
+                    not something you commit — saving a note is the
+                    deliberate act that makes an answer durable.
+                </p>
+            </section>
+        </div>
+
+        <div class="mt-8 flex gap-4">
+            <a href="/docs" class="text-sm text-link hover:underline"
+                >← All Docs</a
+            >
+            <a href="/" class="text-sm text-muted-foreground hover:underline"
+                >Back to apprenti.dev</a
+            >
+        </div>
+    </div>
+</DocsLayout>

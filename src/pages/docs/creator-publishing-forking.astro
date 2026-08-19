@@ -1,0 +1,149 @@
+---
+import DocsLayout from "../../layouts/docs.astro";
+---
+
+<DocsLayout title="Publishing & forking a curriculum — apprenti.dev Docs">
+    <div class="space-y-8">
+        <div>
+            <h1 class="text-3xl md:text-4xl font-bold">
+                Publishing &amp; forking a curriculum
+            </h1>
+        </div>
+
+        <div class="prose dark:prose-invert max-w-none space-y-8">
+            <section>
+                <p class="text-muted-foreground leading-relaxed">
+                    There is no apprenti.dev backend, no catalog to publish
+                    to, and no login. A curriculum exists because a Git
+                    repository exists, and it spreads the same way any Git
+                    repository spreads: forking, cloning, and pushing.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Upstream and origin
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    The canonical curriculum lives in one repository (for
+                    the reference curriculum,
+                    <code>apprenti-dev/software-engineering-base</code>). A
+                    mentor typically works from a fork that pairs with one
+                    apprentice — <code>origin</code> is that fork,
+                    <code>upstream</code> is the canonical repository it
+                    came from.
+                </p>
+                <p class="text-muted-foreground leading-relaxed">
+                    The app can fetch <code>upstream</code>, show what
+                    changed, and merge those curriculum updates into the
+                    fork — without touching anything under
+                    <code>learners/</code> or <code>mentors/</code>.
+                    Ownership stays cleanly split:
+                    <code
+                        >curriculum.json, curriculum/**, resources/**,
+                        competencies/**, schemas/**</code
+                    > → curator/upstream-owned, safe to pull in.
+                    <code
+                        >learners/&lt;id&gt;/**, mentors/&lt;id&gt;/**</code
+                    > → pair-owned overlay, never touched by an upstream
+                    merge.
+                </p>
+                <p class="text-muted-foreground leading-relaxed">
+                    Because of that split, pulling in a curriculum update
+                    never risks overwriting a reflection, a submission, or a
+                    review — a same-file conflict (two edits to the
+                    identical task, for instance) always surfaces for a
+                    human to resolve; it is never silently overwritten in
+                    either direction.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Sharing a curriculum you've authored or forked
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    There is no "publish" button, by design — the app never
+                    publishes or sanitizes a fork automatically. Sharing a
+                    derivative curriculum (as a new base for other mentors,
+                    say) is a deliberate, human Git operation:
+                </p>
+                <ul class="space-y-1 text-muted-foreground mt-2">
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>Copy the
+                        shareable trees: <code>curriculum.json</code>,
+                        <code>curriculum/</code>, <code>resources/</code>,
+                        <code>competencies/</code>, <code>schemas/</code>,
+                        curriculum <code>docs/</code>.
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>Do
+                        <strong>not</strong> copy <code>learners/</code> or
+                        <code>mentors/</code> — those hold a specific pair's
+                        personal records, not curriculum.
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>Push to a new
+                        repository (or a new branch/fork) intended to be the
+                        next canonical or shared base.
+                    </li>
+                </ul>
+                <p class="text-muted-foreground leading-relaxed">
+                    Deleting <code>learners/</code> and
+                    <code>mentors/</code> from the working tree is the
+                    minimum. If those folders were ever committed, Git
+                    history retains them until you start a genuinely new
+                    repository or rewrite history — the app cannot do this
+                    for you, and won't attempt to guess when it's safe.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Where apprenti creator fits
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Creator writes and validates the curriculum files; it
+                    deliberately leaves Git itself — remotes, commits,
+                    diffs, pull requests — to VS Code's or Cursor's own
+                    source-control tooling, the same interface a curator
+                    already uses for everything else in the repository. It
+                    may suggest a commit message (<code
+                        >curriculum: add …</code
+                    >); it never runs <code>git push</code> on your behalf,
+                    and it refuses to write to
+                    <code>learners/</code>/<code>mentors/</code> even if
+                    asked.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    For a brand-new curriculum
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Creator can scaffold either a single-curriculum
+                    repository (root <code>curriculum.json</code>) or add a
+                    new curriculum into an existing multi-curriculum
+                    repository (<code>curricula/&lt;slug&gt;/</code>,
+                    appended to <code>curricula.json</code>). Either way, a
+                    new curriculum starts with its own empty term and
+                    reuses the shared root
+                    <code>resources/</code>/<code>competencies/</code>
+                    libraries rather than copying them — the library is
+                    meant to be shared across every curriculum in that
+                    working copy, not duplicated per curriculum.
+                </p>
+            </section>
+        </div>
+
+        <div class="mt-8 flex gap-4">
+            <a href="/docs" class="text-sm text-link hover:underline"
+                >← All Docs</a
+            >
+            <a href="/" class="text-sm text-muted-foreground hover:underline"
+                >Back to apprenti.dev</a
+            >
+        </div>
+    </div>
+</DocsLayout>

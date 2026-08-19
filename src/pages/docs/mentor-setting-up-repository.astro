@@ -1,0 +1,120 @@
+---
+import DocsLayout from "../../layouts/docs.astro";
+---
+
+<DocsLayout title="Setting up a curriculum repository — apprenti.dev Docs">
+    <div class="space-y-8">
+        <div>
+            <h1 class="text-3xl md:text-4xl font-bold">
+                Setting up a curriculum repository
+            </h1>
+        </div>
+
+        <div class="prose dark:prose-invert max-w-none space-y-8">
+            <section>
+                <p class="text-muted-foreground leading-relaxed">
+                    As a mentor you're usually working with a
+                    <strong>fork</strong> — your own copy of a curriculum,
+                    paired with the apprentice you're mentoring.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Cloning and remotes
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Use <strong>Clone repository</strong> from
+                    <strong>More</strong> with a GitHub or GitLab HTTPS URL,
+                    the same way an apprentice does. If you'll be pushing
+                    reviews, you need a personal access token with
+                    <strong>read and write</strong> access to repository
+                    contents (plus metadata read) — nothing broader. Issues,
+                    Pull Requests, Actions, and Administration scopes are
+                    unnecessary and should not be granted.
+                </p>
+                <p class="text-muted-foreground leading-relaxed mt-4">
+                    A fork typically tracks two remotes: <code
+                        >origin</code
+                    > — your (and your apprentice's) working copy, and
+                    <code>upstream</code> — the canonical curriculum you
+                    forked from.
+                </p>
+                <p class="text-muted-foreground leading-relaxed mt-4">
+                    You can fetch upstream, preview what changed, and merge
+                    those curriculum updates into your fork without losing
+                    anything your apprentice has already written — the app
+                    treats curriculum files and personal overlay files as
+                    separately owned, so an upstream curriculum update never
+                    clobbers a reflection or a submission.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    What stays private in a fork
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Only two folders ever hold personal data:
+                </p>
+                <ul class="space-y-1 text-muted-foreground mt-2">
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span><code
+                            >learners/&lt;id&gt;/</code
+                        > — belongs to the apprentice — profile, task state, reflection,
+                        evidence, notes, work log, submissions
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span><code
+                            >mentors/&lt;id&gt;/</code
+                        > — belongs to the mentor — reviews, and eventually mentor
+                        notes
+                    </li>
+                </ul>
+                <p class="text-muted-foreground leading-relaxed mt-4">
+                    Everything else — <code>curriculum.json</code>,
+                    <code>curriculum/</code>, <code>resources/</code>,
+                    <code>competencies/</code>, <code>schemas/</code>,
+                    curriculum <code>docs/</code> — is shareable curriculum
+                    content, not personal data.
+                </p>
+                <p class="text-muted-foreground leading-relaxed mt-4">
+                    The app never publishes a fork for you, and it never
+                    strips these folders automatically. If you or your
+                    apprentice ever intend to share this repository more
+                    widely — as a public example, say — remove
+                    <code>learners/</code> and <code>mentors/</code> from the
+                    working tree first. Deleting them is only the minimum:
+                    Git history can still contain earlier copies until you
+                    start a fresh repository or rewrite history yourself.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Ownership boundaries, in short
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    <code
+                        >curriculum.json, curriculum/**, resources/**, competencies/**,
+                        schemas/**</code
+                    > → curator/upstream-owned, shareable.
+                    <code>learners/&lt;id&gt;/**</code> → apprentice overlay,
+                    never a base. <code>mentors/&lt;id&gt;/**</code> → mentor
+                    overlay, never a base. The app is designed to never
+                    silently overwrite either side during a sync — conflicts
+                    always surface for a human decision.
+                </p>
+            </section>
+        </div>
+
+        <div class="mt-8 flex gap-4">
+            <a href="/docs" class="text-sm text-link hover:underline"
+                >← All Docs</a
+            >
+            <a href="/" class="text-sm text-muted-foreground hover:underline"
+                >Back to apprenti.dev</a
+            >
+        </div>
+    </div>
+</DocsLayout>

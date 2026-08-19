@@ -1,0 +1,155 @@
+---
+import DocsLayout from "../../layouts/docs.astro";
+---
+
+<DocsLayout title="Locale overlays — apprenti.dev Docs">
+    <div class="space-y-8">
+        <div>
+            <h1 class="text-3xl md:text-4xl font-bold">Locale overlays</h1>
+        </div>
+
+        <div class="prose dark:prose-invert max-w-none space-y-8">
+            <section>
+                <p class="text-muted-foreground leading-relaxed">
+                    A curriculum can ship in more than one written language
+                    without maintaining separate copies of the whole content
+                    tree. English (or whichever language the curriculum was
+                    authored in) stays canonical; every other language is a
+                    sibling <strong>overlay</strong>.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">The pattern</h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    For any canonical file <code>{"{stem}.{ext}"}</code>, an
+                    overlay for locale <code>tr</code> is
+                    <code>{"{stem}.tr.{ext}"}</code>, sitting right next to
+                    it:
+                </p>
+                <pre><code>curriculum.json
+curriculum.tr.json
+curriculum/year-1/term-1/term.json
+curriculum/year-1/term-1/term.tr.json
+curriculum/.../y1t1-002/task.json
+curriculum/.../y1t1-002/task.tr.json
+curriculum/.../y1t1-002/instructions.md
+curriculum/.../y1t1-002/instructions.tr.md</code></pre>
+                <p class="text-muted-foreground leading-relaxed">
+                    Never copy <code>curriculum/</code> into parallel
+                    <code>en/</code> and <code>tr/</code> trees, and never
+                    rename the canonical file to <code>*.en.*</code> — both
+                    break the overlay model and duplicate every task id.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Declaring which locales exist
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    On the manifest:
+                </p>
+                <pre><code class="language-json">{`{
+  "sourceLocale": "en",
+  "contentLocales": ["en", "tr"]
+}`}</code></pre>
+                <p class="text-muted-foreground leading-relaxed">
+                    Both are optional — no <code>sourceLocale</code> means
+                    English; no <code>contentLocales</code> means "use
+                    overlays if present." This is separate from
+                    <code>languages</code>, which lists
+                    <strong>programming</strong> languages the curriculum
+                    teaches (Python, C, …) and must never be reused for
+                    human locales.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    What can and cannot be overlaid
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Overlay files are sparse — only the translatable fields
+                    need to be present. Titles, objectives, "why this
+                    matters," evidence text, and acceptance criteria are
+                    typical overlay content.
+                </p>
+                <p class="text-muted-foreground leading-relaxed">
+                    Never overlay: <code>id</code>,
+                    <code>schemaVersion</code>, <code>term</code>,
+                    <code>module</code>, <code>estimatedHours</code>,
+                    competency/resource <strong>ids</strong>,
+                    <code>aiPolicy</code>, <code>instructionsFile</code>,
+                    <code>statusModel</code>, or any folder path. These are
+                    identity and structure, not prose — apprenti creator's
+                    translator-facing fields disable them outright, and
+                    validation rejects an overlay that tries to write one
+                    anyway.
+                </p>
+                <p class="text-muted-foreground leading-relaxed">
+                    An overlay whose <code>id</code> doesn't match the
+                    canonical file's <code>id</code> is simply ignored by
+                    the app — Creator flags this as an error rather than
+                    letting a mismatched file silently do nothing.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">Fallback</h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    At read time: an overlay field that's present and
+                    non-empty wins; otherwise the canonical value is used. A
+                    missing overlay file is not an error — a repository
+                    with no translations at all behaves exactly as it
+                    always has.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Authoring overlays in apprenti creator
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    The <strong>locale board</strong> gives a coverage view
+                    — one column per configured locale, one row per
+                    manifest/term/task — colored green (complete), amber
+                    (missing, which is legal), or red (an id mismatch or an
+                    empty required key, which is not). The task editor's
+                    locale column lets a translator work source and
+                    translation side by side, field by field, with identity
+                    fields locked out.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    A note on voice
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    When writing translations, keep Git terminology (<code
+                        >commit</code
+                    >, <code>branch</code>, <code>merge</code>,
+                    <code>clone</code>, <code>pull</code>,
+                    <code>push</code>, <code>fork</code>,
+                    <code>working tree</code>) in English regardless of
+                    target language — apprentices are expected to know
+                    these terms in their canonical form. Keep task ids,
+                    commands, code fences, and file names untouched. Empty
+                    overlay values are not acceptable placeholders; leave a
+                    field out of the overlay entirely rather than writing an
+                    empty string.
+                </p>
+            </section>
+        </div>
+
+        <div class="mt-8 flex gap-4">
+            <a href="/docs" class="text-sm text-link hover:underline"
+                >← All Docs</a
+            >
+            <a href="/" class="text-sm text-muted-foreground hover:underline"
+                >Back to apprenti.dev</a
+            >
+        </div>
+    </div>
+</DocsLayout>

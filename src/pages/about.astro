@@ -1,0 +1,110 @@
+---
+import Layout from '../layouts/main.astro';
+import landscape from "@/img/brand/landscape_illustration.png";
+---
+
+<Layout title="About — apprenti.dev">
+	<section class="py-20 md:py-32">
+		<div class="container mx-auto px-4">
+			<div class="max-w-4xl mx-auto">
+				<div class="text-center space-y-4 mb-12">
+					<h1 class="text-4xl md:text-6xl font-bold">
+						The idea behind{" "}
+						<span class="bg-gradient-to-r from-apprenti-violet to-apprenti-magenta bg-clip-text text-transparent">
+							apprenti.dev
+						</span>
+					</h1>
+					<p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+						A free, Git-native way to learn by doing — and get real feedback
+						from someone who's done it before.
+					</p>
+				</div>
+
+				<div class="mb-16 rounded-2xl overflow-hidden border border-border/50">
+					<img
+						src={landscape.src}
+						width={landscape.width}
+						height={landscape.height}
+						alt=""
+						class="w-full h-auto object-cover"
+					/>
+				</div>
+
+				<!-- Story Section -->
+				<div class="prose prose-lg dark:prose-invert mx-auto max-w-none space-y-6 [&>p]:text-muted-foreground [&>h2]:text-foreground">
+					<p>
+						Most learning tools optimize for completion: finish the course,
+						pass the quiz, collect the badge. apprenti.dev starts from a
+						different belief — that mastery comes from doing real work and
+						getting real feedback from someone who's done it before. That's
+						the whole shape of the product: apprentices build evidence,
+						mentors review it, and competency is something earned from
+						approved work, not something self-reported.
+					</p>
+
+					<blockquote class="not-prose my-10 border-l-2 border-apprenti-violet pl-6 py-1">
+						<p class="text-xl md:text-2xl font-medium text-foreground leading-snug">
+							Progress is evidence you produced, reviewed by a person you
+							know.
+						</p>
+					</blockquote>
+
+					<h2>Git-native, on purpose</h2>
+					<p>
+						We built it Git-native on purpose. Your curriculum, your
+						reflections, your submissions, your mentor's reviews — all of it
+						lives as ordinary files in a repository you control, not rows in
+						someone else's database. There's no application backend to go
+						down, get acquired, or change its mind about your data. If you
+						don't like where the project is going, you fork it and keep
+						going.
+					</p>
+
+					<h2>AI has a role — a bounded one</h2>
+					<p>
+						AI has a real but bounded role here. It can explain a concept,
+						offer a hint, quiz you, or coach a reflection — every task defines
+						exactly what it's allowed to do. It never has the final word: a
+						human mentor reviews and approves the work. We built the
+						Git-and-SQLite foundation first and added AI only once that loop
+						was solid, on purpose.
+					</p>
+
+					<h2>One curriculum today, any subject tomorrow</h2>
+					<p>
+						The first curriculum we shipped is a Software Engineering
+						apprenticeship, but the app itself doesn't know or care what
+						subject it's teaching. Any mentor who can write JSON and
+						Markdown — or use apprenti creator's visual studio — can build
+						and maintain their own path.
+					</p>
+
+					<p>
+						apprenti.dev is for apprentices who'd rather build something real
+						than pass a quiz, and for mentors who want a lightweight, durable
+						way to guide someone without adopting an LMS. It's free, it's
+						offline-capable, and it runs wherever you already work — Android,
+						iOS, Windows, macOS, or Linux.
+					</p>
+				</div>
+
+				<!-- CTA -->
+				<div class="text-center mt-16 pt-12 border-t">
+					<h2 class="text-2xl md:text-3xl font-bold mb-4">Take a closer look</h2>
+					<p class="text-muted-foreground mb-6">
+						Read the docs to see how paths, evidence, and reviews fit
+						together, or reach out with questions.
+					</p>
+					<div class="flex flex-col sm:flex-row gap-4 justify-center">
+						<a href="/docs" class="inline-flex items-center justify-center h-10 px-6 rounded-md bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors">
+							Read the docs
+						</a>
+						<a href="/contact" class="inline-flex items-center justify-center h-10 px-6 rounded-md border bg-background hover:bg-accent hover:text-accent-foreground transition-colors">
+							Get in touch
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</Layout>

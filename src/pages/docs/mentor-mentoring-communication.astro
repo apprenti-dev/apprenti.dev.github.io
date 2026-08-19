@@ -1,0 +1,140 @@
+---
+import DocsLayout from "../../layouts/docs.astro";
+---
+
+<DocsLayout title="Mentoring & communication — apprenti.dev Docs">
+    <div class="space-y-8">
+        <div>
+            <h1 class="text-3xl md:text-4xl font-bold">
+                Mentoring & communication
+            </h1>
+        </div>
+
+        <div class="prose dark:prose-invert max-w-none space-y-8">
+            <section>
+                <p class="text-muted-foreground leading-relaxed">
+                    Beyond reviewing submissions, mentors and apprentices
+                    need to talk about the work itself — a stuck point, a
+                    piece of feedback, a request for a closer look at some
+                    code. apprenti.dev handles this the same way it handles
+                    everything else: no server, Git as the record, encrypted
+                    at the application level so privacy doesn't depend
+                    solely on the repository being private.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    How it stays serverless and private
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Messages are written as immutable objects on a dedicated
+                    <code>apprenti/communication</code> branch, kept separate
+                    from curriculum history. Nothing is transmitted, though,
+                    unless every one of these holds:
+                </p>
+                <ul class="space-y-1 text-muted-foreground mt-2">
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>The
+                        repository's privacy has been <strong
+                            >positively verified</strong
+                        > as private (not just assumed) — public, internal,
+                        and "unknown" all count as <em>not</em> private
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>Your identity
+                        and membership are valid
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>The recipient's
+                        encryption key is available
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>The message's
+                        signature validates
+                    </li>
+                </ul>
+                <p class="text-muted-foreground leading-relaxed mt-4">
+                    If a repository's visibility ever changes to public
+                    mid-project, sync stops immediately: your local drafts
+                    and history stay available, but nothing more is pushed
+                    or pulled until it's private again.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    What you can do
+                </h2>
+                <ul class="space-y-1 text-muted-foreground mt-2">
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span><strong
+                            >Threads</strong
+                        > — grouped conversations, tied to a task, a commit, a
+                        branch, or a file when relevant
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span><strong
+                            >Feedback</strong
+                        > — structured mentor feedback with an optional category
+                        (architecture, correctness, readability, testing, performance,
+                        security, learning) and severity
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span><strong
+                            >Help requests</strong
+                        > — an apprentice can send <strong
+                            >I need help</strong
+                        > with a free-text description and automatically attach
+                        the current task, branch, and commit, so you get the context
+                        without them retyping it
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span><strong
+                            >Ask Mentor about…</strong
+                        > actions surface throughout the app — about a task, a
+                        file, a selection of code, or a commit — so a question
+                        always arrives with the right context already attached
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Formal code review stays where it belongs
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    apprenti.dev does not reinvent Pull Requests or Merge
+                    Requests. <strong>Request code review</strong> opens a
+                    real PR on GitHub or a real MR on GitLab and links it
+                    into the conversation — the mentorship layer is for the
+                    surrounding conversation, not a competing review tool.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Working offline
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Reading history, drafting messages, and sending a help
+                    request all work with no network. A draft is only
+                    queued to sync once the required encryption material is
+                    in place; nothing is ever pushed before the repository's
+                    privacy is (re-)verified, including a second check
+                    immediately before the final push, in case something
+                    changed mid-sync.
+                </p>
+            </section>
+        </div>
+
+        <div class="mt-8 flex gap-4">
+            <a href="/docs" class="text-sm text-link hover:underline"
+                >← All Docs</a
+            >
+            <a href="/" class="text-sm text-muted-foreground hover:underline"
+                >Back to apprenti.dev</a
+            >
+        </div>
+    </div>
+</DocsLayout>

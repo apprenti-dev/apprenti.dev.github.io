@@ -1,0 +1,146 @@
+---
+import DocsLayout from "../../layouts/docs.astro";
+---
+
+<DocsLayout title="Curriculum structure basics — apprenti.dev Docs">
+    <div class="space-y-8">
+        <div>
+            <h1 class="text-3xl md:text-4xl font-bold">
+                Curriculum structure basics
+            </h1>
+        </div>
+
+        <div class="prose dark:prose-invert max-w-none space-y-8">
+            <section>
+                <p class="text-muted-foreground leading-relaxed">
+                    A curriculum in apprenti.dev is not a database record —
+                    it is a folder of files that the app already knows how
+                    to read. Understanding that layout is the first step to
+                    authoring one, whether by hand or with
+                    <strong>apprenti creator</strong>.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    JSON for structure, Markdown for narrative
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Structured content — metadata, ordering, references,
+                    policies — is JSON. Long-form content — task
+                    instructions, a resource's writeup — is Markdown. Every
+                    durable structured object carries:
+                </p>
+                <pre><code class="language-json">{`{
+  "schemaVersion": 1,
+  "id": "stable-id"
+}`}</code></pre>
+                <p class="text-muted-foreground leading-relaxed">
+                    The <code>id</code> is permanent and independent of file
+                    paths — a task can move between modules or terms without
+                    ever changing identity. Never derive an id from a path,
+                    and never let the two disagree.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    One curriculum (the common case)
+                </h2>
+                <pre><code>/
+  curriculum.json
+  curriculum/
+    year-1/
+      term-1/
+        term.json
+        &lt;module&gt;/
+          &lt;task-id&gt;/
+            task.json
+            instructions.md
+  resources/
+    &lt;resource-id&gt;.json
+  competencies/
+    &lt;competency-id&gt;.json
+  schemas/
+    *.schema.json</code></pre>
+                <p class="text-muted-foreground leading-relaxed">
+                    <code>term.json</code> holds the ordered list of task
+                    ids for that term — that ordering, not folder or
+                    filename sort order, is what the app treats as the
+                    academic path.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Several curricula in one repository
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    The canonical, official repository holds more than one
+                    apprenticeship path side by side:
+                </p>
+                <pre><code>/
+  curricula.json
+  curricula/
+    software-engineering/
+      curriculum.json
+      curriculum/...
+    data-analytics-ai/
+      curriculum.json
+      curriculum/...
+  resources/          # shared library, referenced by id from any curriculum
+  competencies/
+  schemas/</code></pre>
+                <p class="text-muted-foreground leading-relaxed">
+                    <code>resources/{"{id}"}.json</code> and
+                    <code>competencies/{"{id}"}.json</code> live once at the
+                    repository root and are shared by every curriculum in
+                    that working copy by id — a nested
+                    <code>curricula/&lt;slug&gt;/resources/</code> file with
+                    the same id is an explicit <strong>override</strong>,
+                    not a second library. Duplicating the same content in
+                    both places is a bug, not a feature.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    The reference curriculum
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    The first official path is the
+                    <strong>Software Engineering apprenticeship</strong> —
+                    currently 54 tasks across 11 terms, hosted at
+                    <code>apprenti-dev/software-engineering-base</code>.
+                    Treat it as the reference for scale and structure: if a
+                    change to the format can't cleanly describe that
+                    curriculum, the format needs revisiting, not the
+                    curriculum.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Personal overlays are not curriculum
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    <code>learners/</code> and <code>mentors/</code> hold
+                    apprentice and mentor records for a specific pair —
+                    profile, task state, reflections, reviews. They live
+                    inside the same working copy but are never part of the
+                    shareable curriculum, and a curriculum-authoring tool
+                    should never write to them.
+                </p>
+            </section>
+        </div>
+
+        <div class="mt-8 flex gap-4">
+            <a href="/docs" class="text-sm text-link hover:underline"
+                >← All Docs</a
+            >
+            <a href="/" class="text-sm text-muted-foreground hover:underline"
+                >Back to apprenti.dev</a
+            >
+        </div>
+    </div>
+</DocsLayout>

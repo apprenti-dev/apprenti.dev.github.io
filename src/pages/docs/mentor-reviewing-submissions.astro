@@ -1,0 +1,116 @@
+---
+import DocsLayout from "../../layouts/docs.astro";
+---
+
+<DocsLayout title="Reviewing submissions — apprenti.dev Docs">
+    <div class="space-y-8">
+        <div>
+            <h1 class="text-3xl md:text-4xl font-bold">
+                Reviewing submissions
+            </h1>
+        </div>
+
+        <div class="prose dark:prose-invert max-w-none space-y-8">
+            <section>
+                <p class="text-muted-foreground leading-relaxed">
+                    Mentor navigation swaps <strong>Today</strong>/<strong
+                        >Path</strong
+                    > for <strong>Home</strong> / <strong>Reviews</strong> /
+                    <strong>Curriculum</strong>, alongside the same
+                    <strong>AI</strong> and <strong>More</strong> tabs.
+                    <strong>Reviews</strong> is where the work waiting on you
+                    lives.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">The inbox</h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Each item in the review inbox shows the task, the
+                    apprentice, when it was submitted, whether required
+                    evidence is present, an optional AI pre-review summary,
+                    and how many revision rounds have already happened. Home
+                    also surfaces anything overdue or blocked so nothing sits
+                    unnoticed.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    The review screen
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    On desktop, review opens as three panes side by side:
+                    Task requirements | Submission evidence | Mentor review.
+                    On mobile, the same information stacks. Either way, your
+                    actions are:
+                </p>
+                <ul class="space-y-1 text-muted-foreground mt-2">
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span><strong
+                            >Approve</strong
+                        >
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span><strong
+                            >Request revision</strong
+                        > — a comment is required; tell the apprentice specifically
+                        what to change
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>Discuss
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>Add a follow-up
+                        task
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>Add a mentor note
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>Ask AI for
+                        review assistance — labeled <strong
+                            >AI suggestion — mentor approval required</strong
+                        >, and it never changes review state on its own
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    What gets written
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    A review becomes a durable file at
+                    <code>mentors/&lt;your-id&gt;/reviews/&lt;review-id&gt;.json</code>
+                    — never mixed into the curriculum tree, never editing a
+                    file the apprentice owns. Commits follow a simple,
+                    readable convention:
+                </p>
+                <pre><code>mentor(ali): approve y1t1-002
+mentor(ali): request revision for y1t1-002</code></pre>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Working offline
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    You can review anything already fetched with the network
+                    off. Approve or request a revision, and it pushes the
+                    next time you sync — there is no requirement to be
+                    online at the moment you make a decision.
+                </p>
+            </section>
+        </div>
+
+        <div class="mt-8 flex gap-4">
+            <a href="/docs" class="text-sm text-link hover:underline"
+                >← All Docs</a
+            >
+            <a href="/" class="text-sm text-muted-foreground hover:underline"
+                >Back to apprenti.dev</a
+            >
+        </div>
+    </div>
+</DocsLayout>

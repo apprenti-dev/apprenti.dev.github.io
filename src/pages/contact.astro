@@ -1,0 +1,88 @@
+---
+import Layout from "../layouts/main.astro";
+import { MessageSquare, Bug } from "lucide-react";
+
+const title = "Contact — apprenti.dev";
+---
+
+<Layout {title}>
+    <section class="py-20 md:py-32">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto">
+                <div class="text-center space-y-4 mb-12">
+                    <h1 class="text-4xl md:text-5xl font-bold">
+                        Get in{" "}
+                        <span
+                            class="bg-gradient-to-r from-apprenti-violet to-apprenti-magenta bg-clip-text text-transparent"
+                        >
+                            touch
+                        </span>
+                    </h1>
+                    <p class="text-lg text-muted-foreground max-w-xl mx-auto">
+                        apprenti.dev is an open, Git-native project with no
+                        support team behind it — but there are good places to
+                        ask questions, report bugs, and follow along.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <a
+                        href="https://github.com/apprenti-dev/apprentiapp/discussions"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="group p-8 rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm shadow-lg shadow-apprenti-violet/5 hover:border-apprenti-violet/50 transition-colors"
+                    >
+                        <div class="inline-flex p-3 rounded-xl bg-gradient-to-br from-apprenti-violet to-apprenti-magenta mb-4">
+                            <MessageSquare class="h-6 w-6 text-white" />
+                        </div>
+                        <h2 class="text-xl font-semibold mb-2">
+                            Ask a question
+                        </h2>
+                        <p class="text-muted-foreground mb-4">
+                            Have a question about how apprenti.dev works, or
+                            want to talk through an idea? Start or join a
+                            thread on GitHub Discussions.
+                        </p>
+                        <span class="text-sm font-medium text-primary group-hover:underline">
+                            Open GitHub Discussions →
+                        </span>
+                    </a>
+
+                    <a
+                        href="https://github.com/apprenti-dev/apprentiapp/issues"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="group p-8 rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm shadow-lg shadow-apprenti-violet/5 hover:border-apprenti-violet/50 transition-colors"
+                    >
+                        <div class="inline-flex p-3 rounded-xl bg-gradient-to-br from-apprenti-magenta to-apprenti-peach mb-4">
+                            <Bug class="h-6 w-6 text-white" />
+                        </div>
+                        <h2 class="text-xl font-semibold mb-2">
+                            Report a bug or request a feature
+                        </h2>
+                        <p class="text-muted-foreground mb-4">
+                            Found something broken, or have an idea for what
+                            apprenti.dev should do next? File it as an issue
+                            on GitHub.
+                        </p>
+                        <span class="text-sm font-medium text-primary group-hover:underline">
+                            Open GitHub Issues →
+                        </span>
+                    </a>
+                </div>
+
+                <p class="text-center text-sm text-muted-foreground mt-10">
+                    Prefer self-serve? Browse the{" "}
+                    <a href="/docs" class="text-link hover:underline">documentation</a>
+                    {" "}or explore the{" "}
+                    <a
+                        href="https://github.com/apprenti-dev/apprentiapp"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-link hover:underline">source on GitHub</a
+                    >.
+                </p>
+            </div>
+        </div>
+    </section>
+</Layout>

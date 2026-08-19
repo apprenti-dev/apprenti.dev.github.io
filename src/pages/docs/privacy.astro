@@ -1,0 +1,313 @@
+---
+import DocsLayout from "../../layouts/docs.astro";
+---
+
+<DocsLayout title="Privacy Policy — apprenti.dev">
+    <div class="space-y-8">
+        <div>
+            <h1 class="text-3xl md:text-4xl font-bold">Privacy Policy</h1>
+            <p class="text-muted-foreground mt-1">Last updated: August 2026</p>
+        </div>
+
+        <div class="prose dark:prose-invert max-w-none space-y-8">
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">1. Overview</h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    apprenti.dev has <strong>no application backend</strong>.
+                    There is no account to create and no server that stores
+                    your data. The app is Git-native and offline-first: your
+                    curriculum, progress, reflections, and submissions live as
+                    plain files in a Git repository that <strong
+                        >you</strong
+                    > host, on a provider you chose (typically GitHub or
+                    GitLab). A small local database on your device is a
+                    rebuildable cache of that repository, not a separate copy
+                    apprenti.dev controls. This page explains what stays on
+                    your device, what lives in your repository, and the only
+                    circumstance under which anything leaves the device at
+                    all. Use of the app is also subject to our
+                    <a href="/docs/eula" class="text-link hover:underline"
+                        >Terms of Use</a
+                    >.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    2. What's stored in your Git repository
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Your curriculum repository is the source of truth for
+                    apprenticeship data. Depending on your role, it holds:
+                </p>
+                <ul class="space-y-1 text-muted-foreground mt-2">
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>Curriculum
+                        content — paths, tasks, and competencies, as JSON metadata
+                        and Markdown instructions
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>Your task state,
+                        notes, time logs, and reflections, under
+                        <code>learners/&lt;id&gt;/…</code>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>Evidence and
+                        submissions you attach to a task for review
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>Mentor reviews
+                        and notes, under <code>mentors/&lt;id&gt;/…</code>, written
+                        only by the mentor role
+                    </li>
+                </ul>
+                <p class="text-muted-foreground leading-relaxed mt-4">
+                    These are ordinary files, committed with ordinary Git
+                    operations. apprenti.dev never receives a copy of them —
+                    they exist only in the repository you push to and pull
+                    from, subject to whatever visibility and access controls
+                    you set on your Git host. Publishing or sharing a fork of
+                    a repository is your own Git operation; remember that
+                    <code>learners/</code> and <code>mentors/</code> folders should
+                    be removed from a fork before sharing it, and that Git
+                    history may still contain them even after removal.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    3. What's stored only on your device
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Some data never goes into Git and never leaves your
+                    device:
+                </p>
+                <ul class="space-y-1 text-muted-foreground mt-2">
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>A local SQLite
+                        database — a projection of your Git repository used
+                        for fast search and display. It is rebuildable from
+                        Git at any time and is not itself a source of truth.
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>Git provider credentials
+                        and any AI provider API keys, held in your
+                        platform's secure storage (Keychain, Credential
+                        Manager, or equivalent) — never written to Git,
+                        Markdown, JSON files, or logs.
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>Chat threads with
+                        the in-app AI assistant. These are a local, rebuildable
+                        cache, not Git-durable, unless you explicitly save a
+                        reply as a note on a task.
+                    </li>
+                </ul>
+                <p class="text-muted-foreground leading-relaxed mt-4">
+                    Secrets are redacted from application logs, and the app
+                    validates local model files and repository paths before
+                    using them to reduce the risk of a corrupted file or a
+                    malicious path affecting your device.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    4. AI providers
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    AI features are optional. You choose how they run:
+                </p>
+                <ul class="space-y-1 text-muted-foreground mt-2">
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span><strong
+                            >Local models (GGUF)</strong
+                        > run entirely on your device. Nothing about your prompts,
+                        curriculum, or answers leaves the device in this mode.
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span><strong
+                            >Cloud providers</strong
+                        > — OpenAI, Mistral, Anthropic, or OpenRouter — are only
+                        used if you configure one yourself with your own API
+                        key. When you do, the active task's context is sent to
+                        that provider to generate a reply; your broader
+                        history and other tasks are not included.
+                    </li>
+                </ul>
+                <div
+                    class="p-4 rounded-xl border border-border/50 bg-muted/30 mt-4"
+                >
+                    <p class="text-sm text-muted-foreground">
+                        <strong class="text-foreground">The app always
+                            labels which mode produced a reply</strong
+                        > — <strong class="text-foreground">Local</strong> or
+                        <strong class="text-foreground"
+                            >Cloud · &lt;provider&gt;</strong
+                        > — so it's never ambiguous whether anything left your
+                        device. You can disable cloud AI entirely from Settings
+                        → AI → Local only; there are no hidden cloud calls.
+                    </p>
+                </div>
+                <p class="text-muted-foreground leading-relaxed mt-4">
+                    Any cloud provider you configure processes your prompts
+                    under its own privacy policy and terms, not
+                    apprenti.dev's — see <a
+                        href="#7-third-parties"
+                        class="text-link hover:underline">Third parties</a
+                    > below.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    5. Mentor communication
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Messages between an apprentice and a mentor are stored as
+                    Git objects in the shared repository, the same way other
+                    apprenticeship data is — there is no chat server and no
+                    third party relaying messages. Because a private
+                    repository setting alone isn't a guarantee (visibility can
+                    change, or a fork can be shared publicly), message content
+                    is also protected with application-level encryption,
+                    independent of the repository's own access controls.
+                    Synchronizing communication is only attempted once the
+                    repository's privacy has been positively verified; if that
+                    can't be confirmed, or you're offline, messages stay local
+                    until it's safe to sync.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    6. What apprenti.dev does NOT do
+                </h2>
+                <div
+                    class="p-4 rounded-xl border border-green-500/30 bg-green-500/5 mt-2"
+                >
+                    <ul class="space-y-1 text-muted-foreground text-sm">
+                        <li class="flex items-start gap-2">
+                            <span class="text-green-500 mt-1">✗</span>No analytics
+                            or usage tracking by default
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-green-500 mt-1">✗</span>No ads
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-green-500 mt-1">✗</span>No selling
+                            or sharing of your data — there is nothing centrally
+                            stored to sell
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-green-500 mt-1">✗</span>No user
+                            account, and no server-side database of learners,
+                            mentors, or curricula
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-green-500 mt-1">✗</span>No sending
+                            of your data to a cloud AI provider unless you configure
+                            one yourself
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-green-500 mt-1">✗</span>No auto-approval
+                            or silent AI decisions — AI output is assistive only,
+                            and never changes review state on its own
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="7-third-parties">
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    7. Third parties
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Because apprenti.dev has no backend, the only third
+                    parties involved are the ones you personally choose to
+                    use:
+                </p>
+                <ul class="space-y-2 text-muted-foreground mt-2">
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span><strong
+                            >Your Git host</strong
+                        > (e.g. GitHub or GitLab) — stores your repository and
+                        is subject to that provider's own privacy policy and terms.
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span><strong
+                            >Your chosen cloud AI provider</strong
+                        > (OpenAI, Mistral, Anthropic, or OpenRouter), only if
+                        and when you configure one — subject to that provider's
+                        own privacy policy and terms.
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>If you use local
+                        models, the model files themselves may be downloaded
+                        from a file location you configure (for example, a
+                        Google Drive file you provide); once downloaded, the
+                        model runs entirely on-device.
+                    </li>
+                </ul>
+                <p class="text-muted-foreground leading-relaxed mt-4">
+                    apprenti.dev itself does not operate any of these
+                    services and does not receive your data through them.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    8. Your rights and control
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Because there is no central account or server-side store,
+                    there is nothing to request from apprenti.dev — you
+                    already hold everything. In practice:
+                </p>
+                <ul class="space-y-1 text-muted-foreground mt-2">
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>To access, edit,
+                        or delete your data, access, edit, or delete it in
+                        your Git repository — it's yours, hosted where you chose.
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>To clear the local
+                        cache, clear the app's local data on your device; the
+                        SQLite projection rebuilds from Git the next time you
+                        open the repository.
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>To remove a saved
+                        API key or Git credential, remove it from the app's
+                        settings; it is deleted from secure storage on your
+                        device.
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">9. Contact</h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    apprenti.dev has no support inbox tied to an account,
+                    since there is no account. For privacy questions, open an
+                    issue or discussion on the project's GitHub repository:
+                    <a
+                        href="https://github.com/apprenti-dev/apprentiapp"
+                        class="text-link hover:underline"
+                        target="_blank"
+                        rel="noopener noreferrer">github.com/apprenti-dev/apprentiapp</a
+                    >.
+                </p>
+            </section>
+        </div>
+
+        <div class="mt-8 flex gap-4">
+            <a href="/docs" class="text-sm text-link hover:underline"
+                >← All Docs</a
+            >
+            <a href="/" class="text-sm text-muted-foreground hover:underline"
+                >Back to apprenti.dev</a
+            >
+        </div>
+    </div>
+</DocsLayout>

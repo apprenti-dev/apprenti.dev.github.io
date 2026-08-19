@@ -1,0 +1,156 @@
+---
+import DocsLayout from "../../layouts/docs.astro";
+---
+
+<DocsLayout title="Authoring with apprenti creator — apprenti.dev Docs">
+    <div class="space-y-8">
+        <div>
+            <h1 class="text-3xl md:text-4xl font-bold">
+                Authoring with apprenti creator
+            </h1>
+        </div>
+
+        <div class="prose dark:prose-invert max-w-none space-y-8">
+            <section>
+                <p class="text-muted-foreground leading-relaxed">
+                    <strong>apprenti creator</strong> is a VS Code / Cursor /
+                    VSCodium extension for building a curriculum path
+                    visually, without hand-editing JSON. It writes exactly
+                    the same files the Flutter app reads — it is a studio
+                    for the files, not a second curriculum format.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    What it is not
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Creator is not a second copy of the app, not a review
+                    tool (the mentor's review inbox stays in the Flutter
+                    app), and not a place to touch <code>learners/</code> or
+                    <code>mentors/</code> — it will show a read-only banner
+                    if those folders exist, but it never writes to them.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    The Path canvas
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    The primary surface is a <strong>Path canvas</strong>,
+                    not a file tree:
+                </p>
+                <ul class="space-y-1 text-muted-foreground mt-2">
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>Horizontal
+                        axis: academic time —
+                        <code>year-1/term-1</code> → <code>term-2</code> →
+                        <code>summer</code> → <code>year-2/…</code>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>Vertical axis
+                        within a term: modules as lanes, tasks as cards in
+                        <code>term.json</code> order
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>Each card shows:
+                        id, title, hours, competency dots,
+                        locale-completeness pips, AI-policy mode, and a
+                        dangling-reference badge if something doesn't
+                        resolve
+                    </li>
+                </ul>
+                <p class="text-muted-foreground leading-relaxed">
+                    Dragging a task reorders or moves it — Creator rewrites
+                    the affected <code>term.json</code> files and the
+                    task's own <code>term</code>/<code>module</code> fields
+                    together, as one operation. If any step of a move fails,
+                    it stops and surfaces the problem rather than leaving
+                    two folders claiming the same id.
+                </p>
+                <p class="text-muted-foreground leading-relaxed">
+                    Two error states are visualized directly on the canvas:
+                    a <strong>ghost</strong> card (an id listed in
+                    <code>term.json</code> with no folder on disk) and an
+                    <strong>orphan</strong> lane (a task folder that exists
+                    but isn't listed anywhere) — both are one click away
+                    from being fixed.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Entity editors
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Double-clicking a card opens a three-pane task editor: a
+                    form (metadata, AI policy, evidence, acceptance
+                    criteria, resource/competency pickers), a Markdown
+                    editor with live preview for instructions, and — when
+                    the curriculum has locale overlays — a side-by-side
+                    source/translation column. Raw JSON is always one click
+                    away via <strong>Open Source</strong>.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Two more views worth knowing
+                </h2>
+                <ul class="space-y-1 text-muted-foreground mt-2">
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span
+                        ><strong>Competency matrix</strong> — competencies
+                        as rows, tasks as columns; click a cell to map or
+                        unmap a competency on a task.
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span
+                        ><strong>Locale board</strong> — one column per
+                        configured language, showing overlay coverage
+                        (present, missing, or invalid) for every manifest,
+                        term, and task.
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">Validation</h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Creator validates against the curriculum's own JSON
+                    Schemas plus structural rules — duplicate ids, tasks
+                    missing from every term, term entries with no matching
+                    folder, dangling competency/resource references, unsafe
+                    locale segments. Problems show with a file path and a
+                    fix action where one is safe to offer; nothing is
+                    auto-fixed silently.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Git stays Git
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Creator writes files to disk; it does not wrap
+                    <code>git</code>. Committing, diffing, and opening a
+                    pull request happen in VS Code's ordinary
+                    source-control view, exactly as they would for any other
+                    change to the repository. Creator may suggest a commit
+                    message; it never runs <code>git</code> on your behalf.
+                </p>
+            </section>
+        </div>
+
+        <div class="mt-8 flex gap-4">
+            <a href="/docs" class="text-sm text-link hover:underline"
+                >← All Docs</a
+            >
+            <a href="/" class="text-sm text-muted-foreground hover:underline"
+                >Back to apprenti.dev</a
+            >
+        </div>
+    </div>
+</DocsLayout>

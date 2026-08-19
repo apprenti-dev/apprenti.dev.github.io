@@ -1,0 +1,134 @@
+---
+import DocsLayout from "../../layouts/docs.astro";
+---
+
+<DocsLayout title="Submitting evidence for review — apprenti.dev Docs">
+    <div class="space-y-8">
+        <div>
+            <h1 class="text-3xl md:text-4xl font-bold">
+                Submitting evidence for review
+            </h1>
+        </div>
+
+        <div class="prose dark:prose-invert max-w-none space-y-8">
+            <section>
+                <p class="text-muted-foreground leading-relaxed">
+                    A submission is how a mentor reviews your work without
+                    guessing. It bundles what you did, proof they can
+                    inspect, and an honest account of any AI involvement.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Evidence types
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    A task's evidence requirement can point at any of:
+                </p>
+                <p class="text-muted-foreground leading-relaxed mt-2">
+                    <code>repository</code> · <code>commit</code> · <code
+                        >tag</code
+                    > · <code>url</code> · <code>markdown</code> · <code
+                        >file_reference</code
+                    > · <code>screenshot_reference</code> · <code
+                        >test_result</code
+                    > · <code>benchmark</code> · <code>demo</code> · <code
+                        >other</code
+                    >
+                </p>
+                <p class="text-muted-foreground leading-relaxed mt-4">
+                    Whatever the type, evidence should be something a
+                    mentor can actually open — a commit, a repository, a
+                    test run, a specific file — not a claim. As the in-app
+                    help puts it: <em>"I did it" is not evidence.</em>
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Before you can submit
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    <strong>Submit for review</strong> stays disabled until
+                    three things are complete:
+                </p>
+                <ol
+                    class="space-y-3 text-muted-foreground mt-2 list-decimal pl-5"
+                >
+                    <li>
+                        <strong>Reflection</strong> — at least 20 characters
+                        answering what you tried and what's still unclear.
+                    </li>
+                    <li>
+                        <strong>Evidence note</strong> — at least 8
+                        characters pointing at something inspectable: a
+                        commit, a repository path, a conflict-resolution
+                        note, a test run.
+                    </li>
+                    <li>
+                        <strong>AI disclosure</strong> — required whenever
+                        the task's policy asks for it. Choose one:
+                        <ul class="space-y-1 text-muted-foreground mt-2">
+                            <li class="flex items-start gap-2">
+                                <span class="text-link mt-1">•</span
+                                ><strong>None</strong> — you did not use AI
+                                on this task.
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-link mt-1">•</span
+                                ><strong>Assisted</strong> — AI explained a
+                                concept, asked a Socratic question, or gave
+                                a hint; you wrote the notes, code, and
+                                evidence.
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-link mt-1">•</span
+                                ><strong>Generated</strong> — AI produced
+                                substantial wording or code that you adapted
+                                into the submission.
+                            </li>
+                        </ul>
+                    </li>
+                </ol>
+                <p class="text-muted-foreground leading-relaxed mt-4">
+                    Leaving disclosure blank is not the same as choosing
+                    <strong>None</strong> — pick deliberately. If a task has
+                    AI-sourced notes attached but disclosure is still
+                    <strong>None</strong>, the app warns you (it will still
+                    let you submit if the task's policy allows that
+                    combination) rather than silently rewriting your
+                    answer.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    What happens after Submit
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Your submission becomes a durable, structured record in
+                    your fork, visible to your mentor once they sync. From
+                    there, a submission moves through: submitted →
+                    approved, or submitted → revision requested →
+                    resubmitted → approved (or revision requested again).
+                </p>
+                <p class="text-muted-foreground leading-relaxed mt-4">
+                    If your mentor requests a revision, you'll see their
+                    comment on the task, make the change, and resubmit —
+                    the history of every round trip stays attached to the
+                    task, not just the latest attempt.
+                </p>
+            </section>
+        </div>
+
+        <div class="mt-8 flex gap-4">
+            <a href="/docs" class="text-sm text-link hover:underline"
+                >← All Docs</a
+            >
+            <a href="/" class="text-sm text-muted-foreground hover:underline"
+                >Back to apprenti.dev</a
+            >
+        </div>
+    </div>
+</DocsLayout>

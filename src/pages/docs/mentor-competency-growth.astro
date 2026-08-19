@@ -1,0 +1,114 @@
+---
+import DocsLayout from "../../layouts/docs.astro";
+---
+
+<DocsLayout title="Tracking competency growth — apprenti.dev Docs">
+    <div class="space-y-8">
+        <div>
+            <h1 class="text-3xl md:text-4xl font-bold">
+                Tracking competency growth
+            </h1>
+        </div>
+
+        <div class="prose dark:prose-invert max-w-none space-y-8">
+            <section>
+                <p class="text-muted-foreground leading-relaxed">
+                    Competencies in apprenti.dev are not a self-rated
+                    progress bar. They exist to answer one question
+                    defensibly: <em
+                        >what can this apprentice actually do, and what's the
+                        evidence?</em
+                    >
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">Levels</h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Every competency has five levels:
+                </p>
+                <ul class="space-y-1 text-muted-foreground mt-2">
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>Foundation
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>Apprentice
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>Practitioner
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>Journeyman
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>Mastery Evidence
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Where evidence comes from
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Only <strong>approved</strong> tasks and submissions
+                    count as evidence toward a competency. Work that's still
+                    in progress, submitted-but-not-yet-reviewed, or sent
+                    back for revision does not contribute — an apprentice
+                    cannot self-award progress, and neither can an
+                    unreviewed submission.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    What you can do as a mentor
+                </h2>
+                <ul class="space-y-1 text-muted-foreground mt-2">
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>Open the
+                        evidence list behind any competency and trace every
+                        claim back to a specific approved task
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>Assign or
+                        change a competency level yourself, with the change
+                        recorded durably (and its history preserved) in Git
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>Review an
+                        AI-suggested level if one is offered — it is always
+                        clearly labeled non-authoritative and requires your
+                        approval before it means anything
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>Use gap
+                        detection and suggested next tasks to steer what an
+                        apprentice should work on next
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    The guarantee
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Every competency claim a mentor or apprentice can see
+                    must trace back to approved evidence that a mentor can
+                    open and inspect. If it can't, it isn't real progress
+                    yet — it's a suggestion.
+                </p>
+            </section>
+        </div>
+
+        <div class="mt-8 flex gap-4">
+            <a href="/docs" class="text-sm text-link hover:underline"
+                >← All Docs</a
+            >
+            <a href="/" class="text-sm text-muted-foreground hover:underline"
+                >Back to apprenti.dev</a
+            >
+        </div>
+    </div>
+</DocsLayout>

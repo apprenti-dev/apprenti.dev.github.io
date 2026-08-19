@@ -1,0 +1,96 @@
+---
+import DocsLayout from "../../layouts/docs.astro";
+---
+
+<DocsLayout title="Search across your curriculum — apprenti.dev Docs">
+    <div class="space-y-8">
+        <div>
+            <h1 class="text-3xl md:text-4xl font-bold">
+                Search across your curriculum
+            </h1>
+        </div>
+
+        <div class="prose dark:prose-invert max-w-none space-y-8">
+            <section>
+                <p class="text-muted-foreground leading-relaxed">
+                    <strong>Search</strong> looks across everything the app
+                    has projected from your repository — fully offline,
+                    with no query ever leaving the device.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    What's indexed
+                </h2>
+                <ul class="space-y-1 text-muted-foreground mt-2">
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>Curriculum,
+                        terms, modules, tasks
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>Task titles and
+                        full instructions
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>Your
+                        reflections
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>Mentor notes
+                        and feedback you've synced
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>Resource titles
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>Competency
+                        descriptions
+                    </li>
+                </ul>
+                <p class="text-muted-foreground leading-relaxed mt-4">
+                    Type a task title, a task id, or just a word from the
+                    instructions — the hint text says exactly that: <em
+                        >"Task title, id, or a word from the
+                        instructions."</em
+                    >
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">Filters</h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Narrow results by type, year, term, module, status,
+                    competency, or resource provider when a search returns
+                    more than you want to scan.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Why it's instant
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Search runs against the on-device projection (SQLite
+                    full-text search), not against Git or the network. That
+                    projection can always be rebuilt from your repository,
+                    so a search index that gets out of sync is a
+                    non-issue — it's a cache, not a second source of truth.
+                    If you work across more than one curriculum, search
+                    stays scoped to whichever one is currently active, so
+                    results from a different apprenticeship never bleed
+                    in.
+                </p>
+            </section>
+        </div>
+
+        <div class="mt-8 flex gap-4">
+            <a href="/docs" class="text-sm text-link hover:underline"
+                >← All Docs</a
+            >
+            <a href="/" class="text-sm text-muted-foreground hover:underline"
+                >Back to apprenti.dev</a
+            >
+        </div>
+    </div>
+</DocsLayout>

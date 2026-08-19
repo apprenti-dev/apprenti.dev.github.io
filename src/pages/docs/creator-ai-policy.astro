@@ -1,0 +1,125 @@
+---
+import DocsLayout from "../../layouts/docs.astro";
+---
+
+<DocsLayout title="Setting the AI policy for a task — apprenti.dev Docs">
+    <div class="space-y-8">
+        <div>
+            <h1 class="text-3xl md:text-4xl font-bold">
+                Setting the AI policy for a task
+            </h1>
+        </div>
+
+        <div class="prose dark:prose-invert max-w-none space-y-8">
+            <section>
+                <p class="text-muted-foreground leading-relaxed">
+                    Every task can declare what AI is allowed to do on it,
+                    and whether an apprentice must disclose using it. This is
+                    authored once, on the task, and enforced everywhere the
+                    app offers AI assistance.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">The shape</h2>
+                <pre><code class="language-json">{`{
+  "aiPolicy": {
+    "mode": "guided",
+    "allowedCapabilities": ["explain", "hint", "quiz", "review"],
+    "solutionGenerationAllowed": false,
+    "disclosureRequired": true
+  }
+}`}</code></pre>
+                <ul class="space-y-1 text-muted-foreground mt-2">
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span
+                        ><strong>mode</strong> — the overall stance for this
+                        task (currently <code>guided</code> in practice).
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span
+                        ><strong>allowedCapabilities</strong> — which
+                        task-detail actions are enabled: explain, hint,
+                        quiz, review, and similar. Anything not listed here
+                        shows as disabled rather than being hidden, so the
+                        apprentice can tell it's a deliberate choice.
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span
+                        ><strong>solutionGenerationAllowed</strong> —
+                        whether the apprentice can ask AI to produce a full
+                        solution once they've explicitly scoped a
+                        conversation to this task. Most tasks keep this
+                        <code>false</code>; you can enable it deliberately
+                        for a task where working through a generated
+                        solution is itself the point.
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span
+                        ><strong>disclosureRequired</strong> — whether
+                        <strong>Submit for review</strong> is blocked until
+                        the apprentice records how they used AI (None /
+                        Assisted / Generated).
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Authoring this in apprenti creator
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    The task editor presents AI policy as chips and toggles
+                    — a segmented mode selector, capability chips, and two
+                    switches (solution generation, disclosure) — never as a
+                    raw JSON blob to hand-edit. Disclosure defaults on for
+                    new tasks; you turn it off deliberately, not by
+                    omission.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Why disclosure matters
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Disclosure is not a ban on AI, and most tasks allow
+                    explanation, hints, and quizzes. It exists so a mentor
+                    reviewing a submission can trust that what looks like
+                    the apprentice's own reasoning actually is — or knows
+                    exactly where it wasn't. Setting
+                    <code>disclosureRequired: true</code> (the sensible
+                    default) keeps that guarantee in place; leave it off
+                    only for tasks where AI involvement genuinely doesn't
+                    need tracking.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    A reasonable default for a new task
+                </h2>
+                <pre><code class="language-json">{`{
+  "mode": "guided",
+  "allowedCapabilities": ["explain", "hint", "quiz"],
+  "solutionGenerationAllowed": false,
+  "disclosureRequired": true
+}`}</code></pre>
+                <p class="text-muted-foreground leading-relaxed">
+                    Loosen it deliberately per task, not globally — the
+                    policy lives on the task precisely so different tasks
+                    can make different calls.
+                </p>
+            </section>
+        </div>
+
+        <div class="mt-8 flex gap-4">
+            <a href="/docs" class="text-sm text-link hover:underline"
+                >← All Docs</a
+            >
+            <a href="/" class="text-sm text-muted-foreground hover:underline"
+                >Back to apprenti.dev</a
+            >
+        </div>
+    </div>
+</DocsLayout>

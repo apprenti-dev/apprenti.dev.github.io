@@ -1,0 +1,54 @@
+---
+import "../styles/global.css";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
+const { title = "apprenti.dev — Learn by doing. Grow through mentorship." } =
+	Astro.props;
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta
+			name="description"
+			content="apprenti.dev is a free, Git-native, offline-first, AI-assisted apprenticeship app for apprentices, mentors, and curriculum content creators."
+		/>
+		<meta
+			name="keywords"
+			content="apprenticeship, mentorship, Git-native, offline-first, AI-assisted learning, curriculum, software engineering apprenticeship"
+		/>
+		<meta
+			property="og:title"
+			content="apprenti.dev — Learn by doing. Grow through mentorship."
+		/>
+		<meta
+			property="og:description"
+			content="A free, Git-native, offline-first apprenticeship app. No backend, no lock-in — just a Git repository, structured tasks, and mentor review."
+		/>
+		<meta property="og:type" content="website" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="preconnect" href="https://rsms.me/" />
+		<link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+
+		<title>{title}</title>
+		<script is:inline>
+			(function () {
+				const stored = localStorage.getItem("theme");
+				const prefersDark = window.matchMedia(
+					"(prefers-color-scheme: dark)",
+				).matches;
+				if (stored === "dark" || (!stored && prefersDark)) {
+					document.documentElement.classList.add("dark");
+				}
+			})();
+		</script>
+	</head>
+	<body class="antialiased overflow-x-hidden">
+		<Header client:load />
+		<main>
+			<slot />
+		</main>
+		<Footer />
+	</body>
+</html>

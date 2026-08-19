@@ -1,0 +1,149 @@
+---
+import DocsLayout from "../../layouts/docs.astro";
+---
+
+<DocsLayout title="Working through your path — apprenti.dev Docs">
+    <div class="space-y-8">
+        <div>
+            <h1 class="text-3xl md:text-4xl font-bold">
+                Working through your path
+            </h1>
+        </div>
+
+        <div class="prose dark:prose-invert max-w-none space-y-8">
+            <section>
+                <p class="text-muted-foreground leading-relaxed">
+                    Three tabs carry most of your day: <strong
+                        >Today</strong
+                    >, <strong>Path</strong>, and the task itself.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">Today</h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    <strong>Today</strong> shows the one thing that matters
+                    right now: your current task, a <strong
+                        >Continue</strong
+                    > action, and roughly how much effort is left. It also
+                    surfaces anything waiting on someone else — mentor
+                    feedback you haven't read, or a revision request —
+                    without dumping your entire multi-year plan on the
+                    screen every time you open the app.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">Path</h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    <strong>Path</strong> is the hierarchical view of the
+                    whole apprenticeship: year → term → module → task. Each
+                    task shows one status:
+                </p>
+                <ul class="space-y-1 text-muted-foreground mt-2">
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>Not started
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>In progress
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>Submitted
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>Revision
+                        requested
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>Approved
+                    </li>
+                </ul>
+                <p class="text-muted-foreground leading-relaxed mt-4">
+                    Most curricula are <strong>sequential</strong> — you
+                    submit earlier tasks before later ones become available
+                    for submission (you can still read ahead). A curriculum
+                    may instead allow <strong>random</strong> order. You can
+                    optionally overlay competency tags on the Path to see
+                    which tasks build which skills.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">Task detail</h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Opening a task lays out, in order: <strong
+                        >Objective</strong
+                    >, <strong>Why this matters</strong>, <strong
+                        >Resources</strong
+                    >, <strong>Instructions</strong>, <strong
+                        >Evidence</strong
+                    > requirements, <strong>Acceptance criteria</strong>,
+                    your <strong>Notes</strong>, your <strong
+                        >Reflection</strong
+                    >, <strong>AI assistance</strong>, <strong
+                        >Submission</strong
+                    >, mentor feedback, and history. You don't need to hunt
+                    for what's expected — it's all on one screen.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">Notes</h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Add a note at any point — your own thought, or a quoted
+                    passage from the instructions (select text, then <strong
+                        >Create note</strong
+                    >). Notes are plain Markdown files in your fork, so
+                    they're yours permanently, and you can link between them
+                    and tasks with <code>[[note:id]]</code> / <code
+                        >[[task:y1t1-002]]</code
+                    > style references.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Logging work
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Use <strong>Log work</strong> to record time against a
+                    task (<code>1h</code>, <code>30m</code>, <code
+                        >1h 30m</code
+                    > — up to 24h per entry, with an optional comment on
+                    what you did). <strong>Time logged</strong> on the task
+                    shows your running total, optionally next to the task's
+                    estimated effort. This is for your own record and your
+                    mentor's context, not a productivity score.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Saving vs. submitting
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Reflections and notes autosave locally as you type, but
+                    nothing is durable — nothing survives a fresh install or
+                    reaches your mentor — until you explicitly <strong
+                        >Save reflection</strong
+                    > / <strong>Save work</strong>, which commits it to your
+                    fork. Submitting for review is a separate, deliberate
+                    action, covered in <a
+                        href="/docs/apprentice-submitting-evidence"
+                        class="text-link hover:underline"
+                        >Submitting evidence for review</a
+                    >.
+                </p>
+            </section>
+        </div>
+
+        <div class="mt-8 flex gap-4">
+            <a href="/docs" class="text-sm text-link hover:underline"
+                >← All Docs</a
+            >
+            <a href="/" class="text-sm text-muted-foreground hover:underline"
+                >Back to apprenti.dev</a
+            >
+        </div>
+    </div>
+</DocsLayout>

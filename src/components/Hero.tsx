@@ -138,22 +138,22 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight max-w-3xl"
+              className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-wide max-w-3xl"
             >
-              You build.{" "}
+              LEARN BY DOING.{" "}
               <span className="bg-gradient-to-r from-apprenti-violet-on-dark via-apprenti-magenta to-apprenti-cyan bg-clip-text text-transparent animate-gradient">
-                A mentor reviews.
+                GROW THROUGH MENTORSHIP.
               </span>
             </motion.h1>
 
-            {/* Motto */}
+            {/* Tagline */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.15 }}
-              className="text-xs font-semibold text-apprenti-violet-on-dark tracking-wider"
+              className="text-lg md:text-xl font-semibold text-foreground max-w-2xl"
             >
-              LEARN BY DOING. GROW THROUGH MENTORSHIP.
+              You follow the path. A mentor confirms you've got it.
             </motion.p>
 
             {/* Subheading */}
@@ -163,10 +163,10 @@ export function Hero() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed"
             >
-              apprenti.dev is a Git-native, offline-first apprenticeship app for
-              developers. There's no backend and no application database — your
-              curriculum, tasks, reflections, and mentor reviews live as
-              ordinary files in a Git repository you already control.
+              apprenti.dev is a free apprenticeship app that works fully
+              offline. Your curriculum, your work, and your mentor's
+              feedback live as plain files you own — not locked inside
+              someone else's server.
             </motion.p>
 
             {/* Quick highlights */}

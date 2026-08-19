@@ -1,8 +1,8 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { GraduationCap, Compass, Hammer, Upload, TrendingUp, ChevronLeft, ChevronRight } from "lucide-react";
+import { GraduationCap, Sparkles, Compass, Hammer, Upload, TrendingUp, ChevronLeft, ChevronRight } from "lucide-react";
 import { Lightbox } from "@/components/Lightbox";
-import { StoreBadges } from "@/components/StoreBadges";
+import { PLATFORMS, PLATFORM_BADGE_CLASS } from "@/lib/store-badges";
 
 const heroScreenshots = [
   {
@@ -117,11 +117,18 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
+              className="flex flex-wrap items-center justify-center lg:justify-start gap-2"
             >
               <div className="inline-flex items-center gap-2 rounded-full border border-apprenti-violet/30 bg-apprenti-violet/10 dark:bg-apprenti-violet/20 backdrop-blur-sm px-4 py-1.5 text-sm">
                 <GraduationCap className="h-4 w-4 text-apprenti-violet-on-dark" />
                 <span className="text-foreground/70 dark:text-muted-foreground font-semibold tracking-widest text-xs">
                   LEARN • BUILD • GROW
+                </span>
+              </div>
+              <div className="inline-flex items-center gap-2 rounded-full border border-apprenti-cyan/30 bg-apprenti-cyan/10 dark:bg-apprenti-cyan/15 backdrop-blur-sm px-4 py-1.5 text-sm">
+                <Sparkles className="h-4 w-4 text-apprenti-cyan" />
+                <span className="text-foreground/70 dark:text-muted-foreground font-semibold tracking-widest text-xs">
+                  FREE FOREVER
                 </span>
               </div>
             </motion.div>
@@ -186,7 +193,7 @@ export function Hero() {
               })}
             </motion.div>
 
-            {/* Get the app */}
+            {/* Supported platforms */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -194,9 +201,16 @@ export function Hero() {
               className="flex flex-col items-center lg:items-start gap-3 w-full pt-4"
             >
               <span className="text-xs text-muted-foreground/50 uppercase tracking-widest font-semibold">
-                Get the app
+                Supported platforms
               </span>
-              <StoreBadges />
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2">
+                {PLATFORMS.map((platform) => (
+                  <span key={platform} className={PLATFORM_BADGE_CLASS}>
+                    {platform}
+                  </span>
+                ))}
+                <span className="text-xs text-muted-foreground">— coming soon</span>
+              </div>
             </motion.div>
           </div>
 

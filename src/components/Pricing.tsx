@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 
 const reasons = [
-  "No backend to fund",
+  "No backend to fund, ever",
   "Bring your own AI key",
   "Fork anytime, no lock-in",
 ];
@@ -21,7 +21,7 @@ export function FreeAndOpen() {
           >
             Free.{" "}
             <span className="bg-gradient-to-r from-apprenti-violet-on-dark to-apprenti-cyan bg-clip-text text-transparent">
-              No tiers.
+              Forever.
             </span>
           </motion.h2>
 
@@ -32,7 +32,8 @@ export function FreeAndOpen() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-lg text-muted-foreground leading-relaxed"
           >
-            apprenti.dev is free — no tiers, no subscription. There's no
+            apprenti.dev is free — no tiers, no subscription, and that's a
+            permanent commitment, not an introductory offer. There's no
             backend to run and no hosting to fund: Git is already free, your
             repository is already yours, and any AI cost is a provider key
             you bring and control yourself, not a markup we charge. Because

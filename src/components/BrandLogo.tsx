@@ -25,7 +25,7 @@ export function BrandLogo({ variant = "header", className = "", showWordmark = t
                 width={appIcon.width}
                 height={appIcon.height}
                 alt="apprenti.dev"
-                className={`${iconSize} shrink-0 rounded-[22%] object-contain`}
+                className={`${iconSize} shrink-0 object-contain`}
             />
             {showWordmark && (
                 <span className={`${wordmarkSize} font-bold leading-none tracking-tight whitespace-nowrap`}>

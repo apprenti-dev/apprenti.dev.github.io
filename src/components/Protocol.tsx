@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import {
     GitBranch,
     Cloud,
@@ -7,9 +6,7 @@ import {
     Smartphone,
     GitFork,
     Layers,
-    ArrowRight,
 } from "lucide-react";
-import { GITHUB_REPO_URL } from "@/lib/store-badges";
 
 const layers = [
     {
@@ -105,30 +102,6 @@ export function Architecture() {
                             it. Everything you can see in the app, you can also read straight out
                             of the repository.
                         </motion.p>
-
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: 0.3 }}
-                            className="flex flex-col sm:flex-row gap-3 pt-4"
-                        >
-                            <Button
-                                variant="outline"
-                                className="border-apprenti-violet-on-dark/30 hover:bg-apprenti-violet/20 group"
-                                asChild
-                            >
-                                <a
-                                    href={GITHUB_REPO_URL}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    <GitBranch className="mr-2 h-4 w-4" />
-                                    View the Repository
-                                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                                </a>
-                            </Button>
-                        </motion.div>
                     </div>
 
                     {/* Right: Layer stack */}

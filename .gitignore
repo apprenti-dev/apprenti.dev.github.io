@@ -23,8 +23,11 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
-# cursor project settings
-.cursor/
+# cursor project settings (root only — skills/cursor/.cursor/ is real package content)
+/.cursor/
 
-# Claude Code local session state
-.claude/
+# Claude Code local session state (root only — skills/claude/.claude/ is real package content)
+/.claude/
+
+# generated skill-package downloads (rebuilt by scripts/build-skill-packages.mjs)
+public/downloads/

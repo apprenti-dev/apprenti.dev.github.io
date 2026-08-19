@@ -29,14 +29,26 @@ const roadmapItems = [
     {
         title: "AI-assisted learning",
         description:
-            "Curriculum-wide chat, save-as-note, and task-level explain/hint/quiz/coach are live; submission pre-review, a mentor AI assistant, and fully offline local-model chat are underway.",
+            "Curriculum-wide chat, save-as-note, and task-level explain/hint/quiz/coach are live — assistive, never authoritative, with a human mentor always reviewing the actual work.",
+        status: "done",
+    },
+    {
+        title: "Multi-curriculum support",
+        description:
+            "Multiple curricula in one repository, plus English/Turkish content overlays, are live.",
+        status: "done",
+    },
+    {
+        title: "The apprenti creator studio",
+        description:
+            "A visual authoring studio for building and maintaining curricula — path canvas, entity editors, locale board — is in development.",
         status: "in-progress",
     },
     {
-        title: "Multi-curriculum support & the apprenti creator studio",
+        title: "Mentor-apprentice communication",
         description:
-            "Multiple curricula and English/Turkish content are live; a visual authoring studio for building new curricula is in development.",
-        status: "in-progress",
+            "Threads, structured feedback, and help requests between a mentor and their apprentice — serverless and Git-backed, like everything else — are planned next.",
+        status: "planned",
     },
 ];
 

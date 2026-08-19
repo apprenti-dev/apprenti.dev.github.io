@@ -20,7 +20,7 @@ const faqs = [
   {
     question: "Is apprenti.dev free?",
     answer:
-      "Yes. There are no pricing tiers. Because there's no backend to operate and AI runs on a provider key you supply, the product has no ongoing cost to pass on to you.",
+      "Yes — free forever, not a free trial or a free tier of something bigger. There are no pricing tiers and none planned. Because there's no backend to operate and AI runs on a provider key you supply, the product has no ongoing cost to pass on to you.",
   },
   {
     question: "What platforms does it run on?",

@@ -7,9 +7,7 @@ import {
     Terminal,
     Github,
     Gitlab,
-    ArrowRight,
 } from "lucide-react";
-import { GITHUB_REPO_URL } from "@/lib/store-badges";
 
 const platforms = [
     { name: "Android", icon: Smartphone, kind: "platform" as const },
@@ -90,24 +88,6 @@ export function PlatformSupport() {
                             </div>
                         </motion.div>
                     ))}
-                </motion.div>
-
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                    className="flex justify-center mt-10"
-                >
-                    <a
-                        href={GITHUB_REPO_URL}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group inline-flex items-center gap-2 text-sm font-medium text-apprenti-violet-on-dark hover:underline"
-                    >
-                        View on GitHub
-                        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                    </a>
                 </motion.div>
             </div>
         </section>

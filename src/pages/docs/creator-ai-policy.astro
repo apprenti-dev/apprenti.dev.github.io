@@ -1,5 +1,22 @@
 ---
 import DocsLayout from "../../layouts/docs.astro";
+import { Code } from "astro:components";
+
+const policyShape = `{
+  "aiPolicy": {
+    "mode": "guided",
+    "allowedCapabilities": ["explain", "hint", "quiz", "review"],
+    "solutionGenerationAllowed": false,
+    "disclosureRequired": true
+  }
+}`;
+
+const defaultPolicy = `{
+  "mode": "guided",
+  "allowedCapabilities": ["explain", "hint", "quiz"],
+  "solutionGenerationAllowed": false,
+  "disclosureRequired": true
+}`;
 ---
 
 <DocsLayout title="Setting the AI policy for a task — apprenti.dev Docs">
@@ -22,19 +39,13 @@ import DocsLayout from "../../layouts/docs.astro";
 
             <section>
                 <h2 class="text-xl font-semibold mt-8 mb-3">The shape</h2>
-                <pre><code class="language-json">{`{
-  "aiPolicy": {
-    "mode": "guided",
-    "allowedCapabilities": ["explain", "hint", "quiz", "review"],
-    "solutionGenerationAllowed": false,
-    "disclosureRequired": true
-  }
-}`}</code></pre>
+                <div class="not-prose rounded-lg border border-border/50 overflow-hidden dark:hidden"><Code code={policyShape} lang="json" theme="github-light" /></div>
+                <div class="not-prose rounded-lg border border-border/50 overflow-hidden hidden dark:block"><Code code={policyShape} lang="json" theme="github-dark" /></div>
                 <ul class="space-y-1 text-muted-foreground mt-2">
                     <li class="flex items-start gap-2">
                         <span class="text-link mt-1">•</span
                         ><strong>mode</strong> — the overall stance for this
-                        task (currently <code>guided</code> in practice).
+                        task (currently <strong>guided</strong> in practice).
                     </li>
                     <li class="flex items-start gap-2">
                         <span class="text-link mt-1">•</span
@@ -50,7 +61,7 @@ import DocsLayout from "../../layouts/docs.astro";
                         whether the apprentice can ask AI to produce a full
                         solution once they've explicitly scoped a
                         conversation to this task. Most tasks keep this
-                        <code>false</code>; you can enable it deliberately
+                        <strong>false</strong>; you can enable it deliberately
                         for a task where working through a generated
                         solution is itself the point.
                     </li>
@@ -87,10 +98,9 @@ import DocsLayout from "../../layouts/docs.astro";
                     explanation, hints, and quizzes. It exists so a mentor
                     reviewing a submission can trust that what looks like
                     the apprentice's own reasoning actually is — or knows
-                    exactly where it wasn't. Setting
-                    <code>disclosureRequired: true</code> (the sensible
-                    default) keeps that guarantee in place; leave it off
-                    only for tasks where AI involvement genuinely doesn't
+                    exactly where it wasn't. Requiring disclosure by default
+                    keeps that guarantee in place; leave it off only for
+                    tasks where AI involvement genuinely doesn't
                     need tracking.
                 </p>
             </section>
@@ -99,12 +109,8 @@ import DocsLayout from "../../layouts/docs.astro";
                 <h2 class="text-xl font-semibold mt-8 mb-3">
                     A reasonable default for a new task
                 </h2>
-                <pre><code class="language-json">{`{
-  "mode": "guided",
-  "allowedCapabilities": ["explain", "hint", "quiz"],
-  "solutionGenerationAllowed": false,
-  "disclosureRequired": true
-}`}</code></pre>
+                <div class="not-prose rounded-lg border border-border/50 overflow-hidden dark:hidden"><Code code={defaultPolicy} lang="json" theme="github-light" /></div>
+                <div class="not-prose rounded-lg border border-border/50 overflow-hidden hidden dark:block"><Code code={defaultPolicy} lang="json" theme="github-dark" /></div>
                 <p class="text-muted-foreground leading-relaxed">
                     Loosen it deliberately per task, not globally — the
                     policy lives on the task precisely so different tasks

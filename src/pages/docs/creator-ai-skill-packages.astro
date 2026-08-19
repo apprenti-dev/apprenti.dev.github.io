@@ -1,0 +1,151 @@
+---
+import DocsLayout from "../../layouts/docs.astro";
+---
+
+<DocsLayout title="Using AI skill packages — apprenti.dev Docs">
+    <div class="space-y-8">
+        <div>
+            <h1 class="text-3xl md:text-4xl font-bold">
+                Using AI skill packages
+            </h1>
+        </div>
+
+        <div class="prose dark:prose-invert max-w-none space-y-8">
+            <section>
+                <p class="text-muted-foreground leading-relaxed">
+                    apprenti.dev publishes a small instruction package for four AI
+                    coding assistants — Claude Code, Cursor, OpenAI Codex, and
+                    OpenCode. Each one teaches the assistant the curriculum's
+                    JSON+Markdown shapes, the locale-overlay rules, the personal-data
+                    boundaries, and a validation checklist to run before calling any
+                    change finished. Download them from
+                    <a href="/skills" class="text-link hover:underline">the AI Skills page</a>.
+                </p>
+                <p class="text-muted-foreground leading-relaxed">
+                    None of these replace <strong>apprenti creator</strong> (the
+                    visual authoring extension) — they're for whichever coding
+                    assistant you already work in, including inside apprenti
+                    creator's own VS Code window if you use one there too.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">Claude Code</h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Unzip the Claude Code package into the root of your curriculum
+                    repository. Claude Code discovers project skills automatically
+                    — no restart or registration step is needed. The skill
+                    activates on its own when you're working with curriculum
+                    files, and loads its two reference files (JSON shapes,
+                    validation checklist) only when it needs the detail, so you
+                    don't need to open them yourself.
+                </p>
+                <div class="not-prose rounded-lg border border-border/50 bg-muted/40 px-4 py-3 text-sm">
+                    <span class="text-muted-foreground">Package:</span>
+                    <code class="ml-1">apprenti-skill-claude.zip</code>
+                    <span class="text-muted-foreground ml-3">Creates:</span>
+                    <code class="ml-1">.claude/skills/apprenti-curriculum-author/</code>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">Cursor</h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Unzip the Cursor package into the root of your curriculum
+                    repository. Cursor picks up project rules from that folder
+                    automatically. This one is scoped to curriculum files —
+                    tasks, terms, the curriculum manifest, resources,
+                    competencies, and instructions files — so it stays out of the
+                    way everywhere else in the repository.
+                </p>
+                <div class="not-prose rounded-lg border border-border/50 bg-muted/40 px-4 py-3 text-sm">
+                    <span class="text-muted-foreground">Package:</span>
+                    <code class="ml-1">apprenti-skill-cursor.zip</code>
+                    <span class="text-muted-foreground ml-3">Creates:</span>
+                    <code class="ml-1">.cursor/rules/apprenti-curriculum-author.mdc</code>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">OpenAI Codex</h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Unzip the Codex package into the root of your curriculum
+                    repository. It creates a project instructions file that Codex
+                    reads automatically at the start of every session in that
+                    repository.
+                </p>
+                <div class="not-prose rounded-lg border border-border/50 bg-muted/40 px-4 py-3 text-sm">
+                    <span class="text-muted-foreground">Package:</span>
+                    <code class="ml-1">apprenti-skill-codex.zip</code>
+                    <span class="text-muted-foreground ml-3">Creates:</span>
+                    <code class="ml-1">AGENTS.md</code>
+                </div>
+                <p class="text-muted-foreground leading-relaxed">
+                    If your repository already has its own project instructions
+                    file, don't overwrite it — merge this package's content into
+                    yours instead, or nest it under the curriculum folder if
+                    you'd rather scope it to that subtree (Codex loads these
+                    files from nested directories too).
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">OpenCode</h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Unzip the OpenCode package into the root of your curriculum
+                    repository. It creates the same project instructions
+                    convention OpenCode reads automatically. If you'd rather not
+                    touch your main instructions file, register it separately
+                    through OpenCode's own configuration instead — see its docs
+                    for the exact setting. You can also regenerate project
+                    guidance any time with OpenCode's init command and merge this
+                    content in afterward.
+                </p>
+                <div class="not-prose rounded-lg border border-border/50 bg-muted/40 px-4 py-3 text-sm">
+                    <span class="text-muted-foreground">Package:</span>
+                    <code class="ml-1">apprenti-skill-opencode.zip</code>
+                    <span class="text-muted-foreground ml-3">Creates:</span>
+                    <code class="ml-1">AGENTS.md</code>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    What to expect
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Ask your assistant to draft a new task, translate a term into
+                    another locale, or add a competency, and it should produce
+                    something matching the shapes documented in
+                    <a href="/docs/creator-curriculum-structure" class="text-link hover:underline">Curriculum structure basics</a>
+                    — stable ids independent of file paths, a complete AI policy
+                    block, evidence types a mentor can actually open, and calm,
+                    non-gamified task copy. It should also refuse to touch any
+                    apprentice or mentor personal-data folders, and should never
+                    commit or push on its own — those stay your decision.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Keeping a package up to date
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    These packages are regenerated whenever the curriculum format
+                    changes. If you're mid-way through authoring and a new version
+                    ships, re-download and unzip over the existing files — nothing
+                    else in your repository is affected.
+                </p>
+            </section>
+        </div>
+
+        <div class="mt-8 flex gap-4">
+            <a href="/docs" class="text-sm text-link hover:underline"
+                >← All Docs</a
+            >
+            <a href="/" class="text-sm text-muted-foreground hover:underline"
+                >Back to apprenti.dev</a
+            >
+        </div>
+    </div>
+</DocsLayout>

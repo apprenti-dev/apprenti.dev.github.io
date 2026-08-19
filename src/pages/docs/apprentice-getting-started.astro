@@ -52,16 +52,16 @@ import DocsLayout from "../../layouts/docs.astro";
                             <li class="flex items-start gap-2">
                                 <span class="text-link mt-1">•</span
                                 ><strong>Open local repository</strong> —
-                                pick a folder on this device that contains
-                                <code>curriculum.json</code>.
+                                pick a folder on this device that contains a
+                                curriculum manifest file.
                             </li>
                             <li class="flex items-start gap-2">
                                 <span class="text-link mt-1">•</span
                                 ><strong>Clone repository</strong> — paste a
-                                GitHub or GitLab HTTPS URL (<code
-                                    >https://github.com/owner/repo.git</code
-                                >). Public repositories clone without a
-                                token; private repositories need one.
+                                GitHub or GitLab HTTPS URL for the
+                                repository. Public repositories clone
+                                without a token; private repositories need
+                                one.
                             </li>
                         </ul>
                     </li>
@@ -76,6 +76,14 @@ import DocsLayout from "../../layouts/docs.astro";
                         The app validates the repository, builds a local
                         projection, and the <strong>Path</strong> becomes
                         browsable.
+                    </li>
+                    <li>
+                        If the curriculum offers more than one written
+                        language, pick a content language here too — this
+                        is separate from your app's Appearance language
+                        setting, and it's the only place that controls
+                        which language task titles and instructions
+                        display in.
                     </li>
                 </ol>
             </section>
@@ -108,15 +116,14 @@ import DocsLayout from "../../layouts/docs.astro";
                 <p class="text-muted-foreground leading-relaxed">
                     Your apprentice records — profile, task state,
                     reflections, evidence, notes, work log, submissions —
-                    live only under <code>learners/&lt;your-id&gt;/</code> in
-                    the repository. Curriculum content (tasks, resources,
-                    competencies) lives everywhere else and is shared. The
-                    app never publishes a fork on your behalf and never
-                    strips personal data automatically. If you ever copy or
-                    make a repository public yourself, remove <code
-                        >learners/</code
-                    > (and <code>mentors/</code>) first — and remember that
-                    Git history can still contain old copies of those files
+                    live only in your own personal folder in the repository.
+                    Curriculum content (tasks, resources, competencies)
+                    lives everywhere else and is shared. The app never
+                    publishes a fork on your behalf and never strips
+                    personal data automatically. If you ever copy or make a
+                    repository public yourself, remove the apprentice and
+                    mentor personal folders first — and remember that Git
+                    history can still contain old copies of those files
                     unless you start fresh.
                 </p>
             </section>

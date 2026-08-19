@@ -28,8 +28,8 @@ import DocsLayout from "../../layouts/docs.astro";
                 <p class="text-muted-foreground leading-relaxed">
                     Creator is not a second copy of the app, not a review
                     tool (the mentor's review inbox stays in the Flutter
-                    app), and not a place to touch <code>learners/</code> or
-                    <code>mentors/</code> — it will show a read-only banner
+                    app), and not a place to touch apprentice or mentor
+                    personal-data folders — it will show a read-only banner
                     if those folders exist, but it never writes to them.
                 </p>
             </section>
@@ -45,14 +45,13 @@ import DocsLayout from "../../layouts/docs.astro";
                 <ul class="space-y-1 text-muted-foreground mt-2">
                     <li class="flex items-start gap-2">
                         <span class="text-link mt-1">•</span>Horizontal
-                        axis: academic time —
-                        <code>year-1/term-1</code> → <code>term-2</code> →
-                        <code>summer</code> → <code>year-2/…</code>
+                        axis: academic time — year, term, an optional
+                        summer term, and on into the next year
                     </li>
                     <li class="flex items-start gap-2">
                         <span class="text-link mt-1">•</span>Vertical axis
                         within a term: modules as lanes, tasks as cards in
-                        <code>term.json</code> order
+                        the term's own task order
                     </li>
                     <li class="flex items-start gap-2">
                         <span class="text-link mt-1">•</span>Each card shows:
@@ -64,16 +63,16 @@ import DocsLayout from "../../layouts/docs.astro";
                 </ul>
                 <p class="text-muted-foreground leading-relaxed">
                     Dragging a task reorders or moves it — Creator rewrites
-                    the affected <code>term.json</code> files and the
-                    task's own <code>term</code>/<code>module</code> fields
-                    together, as one operation. If any step of a move fails,
+                    the affected term files and the task's own term and
+                    module fields together, as one operation. If any step
+                    of a move fails,
                     it stops and surfaces the problem rather than leaving
                     two folders claiming the same id.
                 </p>
                 <p class="text-muted-foreground leading-relaxed">
                     Two error states are visualized directly on the canvas:
-                    a <strong>ghost</strong> card (an id listed in
-                    <code>term.json</code> with no folder on disk) and an
+                    a <strong>ghost</strong> card (an id listed in a term
+                    file with no folder on disk) and an
                     <strong>orphan</strong> lane (a task folder that exists
                     but isn't listed anywhere) — both are one click away
                     from being fixed.
@@ -134,12 +133,12 @@ import DocsLayout from "../../layouts/docs.astro";
                     Git stays Git
                 </h2>
                 <p class="text-muted-foreground leading-relaxed">
-                    Creator writes files to disk; it does not wrap
-                    <code>git</code>. Committing, diffing, and opening a
-                    pull request happen in VS Code's ordinary
-                    source-control view, exactly as they would for any other
-                    change to the repository. Creator may suggest a commit
-                    message; it never runs <code>git</code> on your behalf.
+                    Creator writes files to disk; it does not wrap Git.
+                    Committing, diffing, and opening a pull request happen
+                    in VS Code's ordinary source-control view, exactly as
+                    they would for any other change to the repository.
+                    Creator may suggest a commit message; it never runs Git
+                    on your behalf.
                 </p>
             </section>
         </div>

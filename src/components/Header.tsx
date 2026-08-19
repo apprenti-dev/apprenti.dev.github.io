@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Menu, X, ChevronDown, Github, Home } from "lucide-react";
+import { Menu, X, ChevronDown, Home } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { BrandLogo } from "@/components/BrandLogo";
 
@@ -9,8 +9,6 @@ const docsAudienceItems = [
   { label: "For Content Creators", href: "/docs#creators" },
 ];
 
-const GITHUB_URL = "https://github.com/apprenti-dev/apprentiapp";
-
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDocsOpen, setIsDocsOpen] = useState(false);
@@ -19,6 +17,8 @@ export function Header() {
   const sectionNavItems = [
     { label: "How It Works", href: "/#how-it-works" },
     { label: "Features", href: "/#features" },
+    { label: "Curricula", href: "/curricula" },
+    { label: "AI Skills", href: "/skills" },
   ];
 
   // Close docs dropdown on outside click
@@ -96,15 +96,6 @@ export function Header() {
 
         {/* Actions */}
         <div className="flex items-center gap-4 sm:gap-5">
-          <a
-            href={GITHUB_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-muted-foreground hover:text-foreground transition-colors"
-            aria-label="GitHub"
-          >
-            <Github className="h-5 w-5" />
-          </a>
           <ThemeToggle />
 
           {/* Mobile Menu Button */}

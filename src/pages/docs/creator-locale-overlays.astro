@@ -1,5 +1,20 @@
 ---
 import DocsLayout from "../../layouts/docs.astro";
+import { Code } from "astro:components";
+
+const overlayFileList = `curriculum.json
+curriculum.tr.json
+curriculum/year-1/term-1/term.json
+curriculum/year-1/term-1/term.tr.json
+curriculum/.../y1t1-002/task.json
+curriculum/.../y1t1-002/task.tr.json
+curriculum/.../y1t1-002/instructions.md
+curriculum/.../y1t1-002/instructions.tr.md`;
+
+const manifestLocales = `{
+  "sourceLocale": "en",
+  "contentLocales": ["en", "tr"]
+}`;
 ---
 
 <DocsLayout title="Locale overlays — apprenti.dev Docs">
@@ -15,31 +30,65 @@ import DocsLayout from "../../layouts/docs.astro";
                     without maintaining separate copies of the whole content
                     tree. English (or whichever language the curriculum was
                     authored in) stays canonical; every other language is a
-                    sibling <strong>overlay</strong>.
+                    sibling <strong>overlay</strong>. apprenti.dev's own
+                    reference curriculum already ships this way — English
+                    and Turkish, live today.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Content locale is not the app's UI language
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    These are two independent settings, and it's worth being
+                    precise about the difference:
+                </p>
+                <ul class="space-y-1 text-muted-foreground mt-2">
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span
+                        ><strong>Appearance language</strong> — the app's
+                        own chrome: buttons, navigation, labels. Set once,
+                        applies everywhere, has nothing to do with
+                        curriculum content.
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span
+                        ><strong>Content locale</strong> — which language a
+                        curriculum's own content (titles, term headings,
+                        instructions) displays in. Chosen per curriculum, on
+                        the curriculum picker.
+                    </li>
+                </ul>
+                <p class="text-muted-foreground leading-relaxed mt-4">
+                    When an apprentice first attaches a curriculum, its
+                    content locale seeds from the current Appearance
+                    language — but only if that language is one the
+                    curriculum actually offers. After that first attach,
+                    the two settings are fully decoupled: switching
+                    Appearance later does not reload the Path or re-resolve
+                    task content into a different language. Don't assume a
+                    Turkish app UI means an apprentice wants Turkish task
+                    content, or the reverse — the picker is the only source
+                    of truth for content locale.
                 </p>
             </section>
 
             <section>
                 <h2 class="text-xl font-semibold mt-8 mb-3">The pattern</h2>
                 <p class="text-muted-foreground leading-relaxed">
-                    For any canonical file <code>{"{stem}.{ext}"}</code>, an
-                    overlay for locale <code>tr</code> is
-                    <code>{"{stem}.tr.{ext}"}</code>, sitting right next to
-                    it:
+                    For any canonical file, an overlay for locale
+                    <strong>tr</strong> has the same name with
+                    <strong>.tr</strong> inserted before the extension,
+                    sitting right next to it:
                 </p>
-                <pre><code>curriculum.json
-curriculum.tr.json
-curriculum/year-1/term-1/term.json
-curriculum/year-1/term-1/term.tr.json
-curriculum/.../y1t1-002/task.json
-curriculum/.../y1t1-002/task.tr.json
-curriculum/.../y1t1-002/instructions.md
-curriculum/.../y1t1-002/instructions.tr.md</code></pre>
+                <div class="not-prose rounded-lg border border-border/50 overflow-hidden dark:hidden"><Code code={overlayFileList} lang="text" theme="github-light" /></div>
+                <div class="not-prose rounded-lg border border-border/50 overflow-hidden hidden dark:block"><Code code={overlayFileList} lang="text" theme="github-dark" /></div>
                 <p class="text-muted-foreground leading-relaxed">
-                    Never copy <code>curriculum/</code> into parallel
-                    <code>en/</code> and <code>tr/</code> trees, and never
-                    rename the canonical file to <code>*.en.*</code> — both
-                    break the overlay model and duplicate every task id.
+                    Never copy the curriculum folder into parallel per-locale
+                    folder trees, and never rename a canonical file to mark
+                    it as the English version — both break the overlay
+                    model and duplicate every task id.
                 </p>
             </section>
 
@@ -50,15 +99,12 @@ curriculum/.../y1t1-002/instructions.tr.md</code></pre>
                 <p class="text-muted-foreground leading-relaxed">
                     On the manifest:
                 </p>
-                <pre><code class="language-json">{`{
-  "sourceLocale": "en",
-  "contentLocales": ["en", "tr"]
-}`}</code></pre>
+                <div class="not-prose rounded-lg border border-border/50 overflow-hidden dark:hidden"><Code code={manifestLocales} lang="json" theme="github-light" /></div>
+                <div class="not-prose rounded-lg border border-border/50 overflow-hidden hidden dark:block"><Code code={manifestLocales} lang="json" theme="github-dark" /></div>
                 <p class="text-muted-foreground leading-relaxed">
-                    Both are optional — no <code>sourceLocale</code> means
-                    English; no <code>contentLocales</code> means "use
-                    overlays if present." This is separate from
-                    <code>languages</code>, which lists
+                    Both are optional — no source locale means English; no
+                    declared content locales means "use overlays if
+                    present." This is separate from the field that lists
                     <strong>programming</strong> languages the curriculum
                     teaches (Python, C, …) and must never be reused for
                     human locales.
@@ -76,21 +122,37 @@ curriculum/.../y1t1-002/instructions.tr.md</code></pre>
                     typical overlay content.
                 </p>
                 <p class="text-muted-foreground leading-relaxed">
-                    Never overlay: <code>id</code>,
-                    <code>schemaVersion</code>, <code>term</code>,
-                    <code>module</code>, <code>estimatedHours</code>,
-                    competency/resource <strong>ids</strong>,
-                    <code>aiPolicy</code>, <code>instructionsFile</code>,
-                    <code>statusModel</code>, or any folder path. These are
-                    identity and structure, not prose — apprenti creator's
+                    Never overlay any of the following — these are identity
+                    and structure, not prose. apprenti creator's
                     translator-facing fields disable them outright, and
                     validation rejects an overlay that tries to write one
-                    anyway.
+                    anyway:
+                </p>
+                <ul class="not-prose grid grid-cols-2 sm:grid-cols-3 gap-1.5 text-sm text-muted-foreground mb-4">
+                    <li><code>id</code></li>
+                    <li><code>schemaVersion</code></li>
+                    <li><code>term</code></li>
+                    <li><code>module</code></li>
+                    <li><code>estimatedHours</code></li>
+                    <li><code>aiPolicy</code></li>
+                    <li><code>instructionsFile</code></li>
+                    <li><code>statusModel</code></li>
+                    <li>any competency/resource id</li>
+                    <li>any folder path</li>
+                    <li>any URL</li>
+                </ul>
+                <p class="text-muted-foreground leading-relaxed">
+                    The URL restriction has one deliberate exception: an
+                    overlay may supply a genuinely localized resource URL
+                    (a translated article at a different address, say).
+                    Never translate a folder slug either — a term folder
+                    like "year-1/term-1" stays exactly that in every
+                    locale.
                 </p>
                 <p class="text-muted-foreground leading-relaxed">
-                    An overlay whose <code>id</code> doesn't match the
-                    canonical file's <code>id</code> is simply ignored by
-                    the app — Creator flags this as an error rather than
+                    An overlay whose id doesn't match the canonical file's
+                    id is simply ignored by the app — Creator flags this as
+                    an error rather than
                     letting a mismatched file silently do nothing.
                 </p>
             </section>
@@ -103,6 +165,15 @@ curriculum/.../y1t1-002/instructions.tr.md</code></pre>
                     missing overlay file is not an error — a repository
                     with no translations at all behaves exactly as it
                     always has.
+                </p>
+                <p class="text-muted-foreground leading-relaxed">
+                    List fields — evidence and acceptance criteria — don't
+                    merge item by item. A present, non-empty overlay list
+                    replaces the whole list. Search stays aware of both
+                    sides too: it indexes the resolved (locale-aware) title
+                    and instructions alongside the original English title,
+                    so switching content locale never makes a task
+                    unfindable.
                 </p>
             </section>
 
@@ -127,13 +198,10 @@ curriculum/.../y1t1-002/instructions.tr.md</code></pre>
                     A note on voice
                 </h2>
                 <p class="text-muted-foreground leading-relaxed">
-                    When writing translations, keep Git terminology (<code
-                        >commit</code
-                    >, <code>branch</code>, <code>merge</code>,
-                    <code>clone</code>, <code>pull</code>,
-                    <code>push</code>, <code>fork</code>,
-                    <code>working tree</code>) in English regardless of
-                    target language — apprentices are expected to know
+                    When writing translations, keep Git terminology (commit,
+                    branch, merge, rebase, clone, pull, push, fork, working
+                    tree) in English regardless of target language —
+                    apprentices are expected to know
                     these terms in their canonical form. Keep task ids,
                     commands, code fences, and file names untouched. Empty
                     overlay values are not acceptable placeholders; leave a

@@ -1,0 +1,171 @@
+---
+import Layout from '../layouts/main.astro';
+import { Compass, UserCheck, PenTool, GitFork, FolderGit2, HardDrive } from "lucide-react";
+
+const CURRICULUM_REPO = "https://github.com/apprenti-dev/software-engineering-base";
+---
+
+<Layout title="Curricula Catalog — apprenti.dev">
+	<section class="py-20 md:py-32">
+		<div class="container mx-auto px-4">
+			<div class="max-w-4xl mx-auto">
+				<div class="text-center space-y-4 mb-12">
+					<h1 class="text-4xl md:text-6xl font-bold">
+						The{" "}
+						<span class="bg-gradient-to-r from-apprenti-violet to-apprenti-magenta bg-clip-text text-transparent">
+							curricula
+						</span>{" "}
+						catalog
+					</h1>
+					<p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+						apprenti.dev is curriculum-agnostic — a curriculum is just a Git
+						repository. Here's what's available today, and how to put it to
+						work as an apprentice, a mentor, or a content creator.
+					</p>
+				</div>
+
+				<!-- Catalog card -->
+				<div class="mb-16 rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm shadow-lg shadow-apprenti-violet/5 p-8">
+					<div class="flex flex-wrap items-center gap-3 mb-3">
+						<h2 class="text-2xl font-bold">Software Engineering apprenticeship</h2>
+						<span class="inline-flex items-center rounded-full border border-apprenti-violet/30 bg-apprenti-violet/10 px-3 py-1 text-xs font-semibold text-apprenti-violet-on-dark">
+							Reference curriculum
+						</span>
+					</div>
+					<p class="text-muted-foreground leading-relaxed mb-4">
+						The first official apprenti.dev path — 54 tasks across 11 terms,
+						covering the practice of software engineering from first
+						principles through independent work. It's the curriculum every
+						fork starts from, and the reference implementation for the
+						curriculum format itself.
+					</p>
+					<div class="flex flex-wrap items-center gap-4">
+						<a
+							href={CURRICULUM_REPO}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="inline-flex items-center justify-center h-10 px-5 rounded-md bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors"
+						>
+							View on GitHub →
+						</a>
+						<code class="text-sm text-muted-foreground">apprenti-dev/software-engineering-base</code>
+					</div>
+				</div>
+
+				<p class="text-center text-sm text-muted-foreground mb-20 max-w-2xl mx-auto">
+					More curricula will appear here as mentors and content creators
+					author and publish their own — see
+					<a href="/docs/creator-publishing-forking" class="text-link hover:underline">Publishing &amp; forking a curriculum</a>
+					in the docs. There's no submission process yet; a curriculum exists
+					the moment its repository does.
+				</p>
+
+				<!-- Opening a curriculum -->
+				<div class="mb-20">
+					<h2 class="text-2xl md:text-3xl font-bold mb-3 text-center">Opening a curriculum in the app</h2>
+					<p class="text-muted-foreground text-center max-w-2xl mx-auto mb-10">
+						Whichever role you're in, apprenti.dev opens a curriculum the same
+						way — from <strong class="text-foreground">More</strong> in the
+						app:
+					</p>
+					<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+						<div class="rounded-2xl border border-border/50 bg-card/50 p-6">
+							<div class="inline-flex p-2.5 rounded-xl bg-apprenti-cyan/15 mb-4">
+								<FolderGit2 class="h-5 w-5 text-apprenti-cyan" />
+							</div>
+							<h3 class="font-semibold mb-2">Clone repository</h3>
+							<p class="text-sm text-muted-foreground leading-relaxed">
+								Paste a GitHub or GitLab HTTPS URL — your fork, or the
+								reference curriculum above. Public repositories clone
+								without a token; private ones (and pushing your own work)
+								need a personal access token with read/write access to
+								repository contents, stored only in this device's secure
+								storage.
+							</p>
+						</div>
+						<div class="rounded-2xl border border-border/50 bg-card/50 p-6">
+							<div class="inline-flex p-2.5 rounded-xl bg-apprenti-peach/15 mb-4">
+								<HardDrive class="h-5 w-5 text-apprenti-peach" />
+							</div>
+							<h3 class="font-semibold mb-2">Open local repository</h3>
+							<p class="text-sm text-muted-foreground leading-relaxed">
+								Already have a curriculum folder on this device — cloned
+								yourself, or handed to you directly? Point the app at it
+								and it works fully offline from there, with no remote
+								required until you choose to sync.
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Forking for your role -->
+				<div>
+					<h2 class="text-2xl md:text-3xl font-bold mb-3 text-center">Forking for your role</h2>
+					<p class="text-muted-foreground text-center max-w-2xl mx-auto mb-10">
+						A curriculum repository is shared; a fork is where your personal
+						work lives. The mechanics differ slightly by role.
+					</p>
+					<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+						<div class="rounded-2xl border border-border/50 bg-card/50 p-6">
+							<div class="inline-flex p-2.5 rounded-xl bg-apprenti-violet/15 mb-4">
+								<Compass class="h-5 w-5 text-apprenti-violet-on-dark" />
+							</div>
+							<h3 class="font-semibold mb-3">Apprentices</h3>
+							<ol class="text-sm text-muted-foreground leading-relaxed space-y-2 list-decimal pl-4">
+								<li>Fork the curriculum repo to your own GitHub or GitLab account (or just download it as a local folder).</li>
+								<li>Open your fork in apprenti.dev with <strong class="text-foreground">Clone repository</strong>.</li>
+								<li>Your profile, tasks, reflections, and submissions live in your own personal folder inside your fork — never in the upstream repo.</li>
+							</ol>
+							<a href="/docs/apprentice-getting-started" class="inline-block mt-4 text-sm font-medium text-link hover:underline">Full guide →</a>
+						</div>
+						<div class="rounded-2xl border border-border/50 bg-card/50 p-6">
+							<div class="inline-flex p-2.5 rounded-xl bg-apprenti-magenta/15 mb-4">
+								<UserCheck class="h-5 w-5 text-apprenti-magenta" />
+							</div>
+							<h3 class="font-semibold mb-3">Mentors</h3>
+							<ol class="text-sm text-muted-foreground leading-relaxed space-y-2 list-decimal pl-4">
+								<li>Fork the curriculum repo — your fork pairs with the apprentice(s) you mentor.</li>
+								<li>Give your apprentice access to that fork, then each of you opens it with <strong class="text-foreground">Clone repository</strong>.</li>
+								<li>Your reviews live in your own personal folder — the app never overwrites either side's personal data on sync.</li>
+							</ol>
+							<a href="/docs/mentor-setting-up-repository" class="inline-block mt-4 text-sm font-medium text-link hover:underline">Full guide →</a>
+						</div>
+						<div class="rounded-2xl border border-border/50 bg-card/50 p-6">
+							<div class="inline-flex p-2.5 rounded-xl bg-apprenti-peach/15 mb-4">
+								<PenTool class="h-5 w-5 text-apprenti-peach" />
+							</div>
+							<h3 class="font-semibold mb-3">Content Creators</h3>
+							<ol class="text-sm text-muted-foreground leading-relaxed space-y-2 list-decimal pl-4">
+								<li>Fork the curriculum repo as a structural reference, or start from an empty repository with a single curriculum manifest file.</li>
+								<li>Author tasks and modules by hand (JSON + Markdown) or visually with <strong class="text-foreground">apprenti creator</strong>.</li>
+								<li>Push to your own repository — there's no publish button. Sharing a curriculum is just sharing a Git repository.</li>
+							</ol>
+							<a href="/docs/creator-curriculum-structure" class="inline-block mt-4 text-sm font-medium text-link hover:underline">Full guide →</a>
+						</div>
+					</div>
+				</div>
+
+				<!-- CTA -->
+				<div class="text-center mt-20 pt-12 border-t">
+					<div class="inline-flex items-center gap-2 rounded-full border border-apprenti-cyan/30 bg-apprenti-cyan/10 px-4 py-1.5 text-sm font-semibold text-apprenti-cyan mb-6">
+						<GitFork class="h-4 w-4" />
+						Free forever — fork anything, anytime
+					</div>
+					<h2 class="text-2xl md:text-3xl font-bold mb-4">Ready to open a curriculum?</h2>
+					<p class="text-muted-foreground mb-6 max-w-xl mx-auto">
+						Read the full docs for your role, or head straight to the reference
+						curriculum on GitHub.
+					</p>
+					<div class="flex flex-col sm:flex-row gap-4 justify-center">
+						<a href="/docs" class="inline-flex items-center justify-center h-10 px-6 rounded-md bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors">
+							Read the docs
+						</a>
+						<a href={CURRICULUM_REPO} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center h-10 px-6 rounded-md border bg-background hover:bg-accent hover:text-accent-foreground transition-colors">
+							View the curriculum repo
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</Layout>

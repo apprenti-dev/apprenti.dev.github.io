@@ -26,28 +26,23 @@ import DocsLayout from "../../layouts/docs.astro";
                 </h2>
                 <p class="text-muted-foreground leading-relaxed">
                     The canonical curriculum lives in one repository (for
-                    the reference curriculum,
-                    <code>apprenti-dev/software-engineering-base</code>). A
-                    mentor typically works from a fork that pairs with one
-                    apprentice — <code>origin</code> is that fork,
-                    <code>upstream</code> is the canonical repository it
+                    the reference curriculum, the one listed in the
+                    <a href="/curricula" class="text-link hover:underline">curricula catalog</a>).
+                    A mentor typically works from a fork that pairs with one
+                    apprentice — <strong>origin</strong> is that fork,
+                    <strong>upstream</strong> is the canonical repository it
                     came from.
                 </p>
                 <p class="text-muted-foreground leading-relaxed">
-                    The app can fetch <code>upstream</code>, show what
+                    The app can fetch <strong>upstream</strong>, show what
                     changed, and merge those curriculum updates into the
-                    fork — without touching anything under
-                    <code>learners/</code> or <code>mentors/</code>.
-                    Ownership stays cleanly split:
-                    <code
-                        >curriculum.json, curriculum/**, resources/**,
-                        competencies/**, schemas/**</code
-                    > → curator/upstream-owned, safe to pull in.
-                    <code
-                        >learners/&lt;id&gt;/**, mentors/&lt;id&gt;/**</code
-                    > → pair-owned overlay, never touched by an upstream
-                    merge.
+                    fork — without touching apprentice or mentor
+                    personal-data folders. Ownership stays cleanly split:
                 </p>
+                <ul class="not-prose space-y-2 text-sm text-muted-foreground mb-4">
+                    <li>Curriculum content (manifest, tasks, resources, competencies, schemas) — curator/upstream-owned, safe to pull in.</li>
+                    <li>Apprentice and mentor personal folders — pair-owned overlay, never touched by an upstream merge.</li>
+                </ul>
                 <p class="text-muted-foreground leading-relaxed">
                     Because of that split, pulling in a curriculum update
                     never risks overwriting a reflection, a submission, or a
@@ -71,15 +66,14 @@ import DocsLayout from "../../layouts/docs.astro";
                 <ul class="space-y-1 text-muted-foreground mt-2">
                     <li class="flex items-start gap-2">
                         <span class="text-link mt-1">•</span>Copy the
-                        shareable trees: <code>curriculum.json</code>,
-                        <code>curriculum/</code>, <code>resources/</code>,
-                        <code>competencies/</code>, <code>schemas/</code>,
-                        curriculum <code>docs/</code>.
+                        shareable trees: the curriculum manifest, the
+                        curriculum content itself, resources, competencies,
+                        schemas, and the curriculum's own docs folder.
                     </li>
                     <li class="flex items-start gap-2">
                         <span class="text-link mt-1">•</span>Do
-                        <strong>not</strong> copy <code>learners/</code> or
-                        <code>mentors/</code> — those hold a specific pair's
+                        <strong>not</strong> copy the apprentice or mentor
+                        personal-data folders — those hold a specific pair's
                         personal records, not curriculum.
                     </li>
                     <li class="flex items-start gap-2">
@@ -89,9 +83,9 @@ import DocsLayout from "../../layouts/docs.astro";
                     </li>
                 </ul>
                 <p class="text-muted-foreground leading-relaxed">
-                    Deleting <code>learners/</code> and
-                    <code>mentors/</code> from the working tree is the
-                    minimum. If those folders were ever committed, Git
+                    Deleting the apprentice and mentor personal-data folders
+                    from the working tree is the minimum. If those folders
+                    were ever committed, Git
                     history retains them until you start a genuinely new
                     repository or rewrite history — the app cannot do this
                     for you, and won't attempt to guess when it's safe.
@@ -108,11 +102,9 @@ import DocsLayout from "../../layouts/docs.astro";
                     diffs, pull requests — to VS Code's or Cursor's own
                     source-control tooling, the same interface a curator
                     already uses for everything else in the repository. It
-                    may suggest a commit message (<code
-                        >curriculum: add …</code
-                    >); it never runs <code>git push</code> on your behalf,
-                    and it refuses to write to
-                    <code>learners/</code>/<code>mentors/</code> even if
+                    may suggest a commit message; it never pushes anything
+                    on your behalf, and it refuses to write to the
+                    apprentice or mentor personal-data folders even if
                     asked.
                 </p>
             </section>
@@ -123,16 +115,13 @@ import DocsLayout from "../../layouts/docs.astro";
                 </h2>
                 <p class="text-muted-foreground leading-relaxed">
                     Creator can scaffold either a single-curriculum
-                    repository (root <code>curriculum.json</code>) or add a
-                    new curriculum into an existing multi-curriculum
-                    repository (<code>curricula/&lt;slug&gt;/</code>,
-                    appended to <code>curricula.json</code>). Either way, a
-                    new curriculum starts with its own empty term and
-                    reuses the shared root
-                    <code>resources/</code>/<code>competencies/</code>
-                    libraries rather than copying them — the library is
-                    meant to be shared across every curriculum in that
-                    working copy, not duplicated per curriculum.
+                    repository or add a new curriculum into an existing
+                    multi-curriculum repository. Either way, a new
+                    curriculum starts with its own empty term and reuses
+                    the shared root resource and competency libraries
+                    rather than copying them — the library is meant to be
+                    shared across every curriculum in that working copy,
+                    not duplicated per curriculum.
                 </p>
             </section>
         </div>

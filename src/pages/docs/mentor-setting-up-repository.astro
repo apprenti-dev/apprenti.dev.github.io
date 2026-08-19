@@ -34,11 +34,10 @@ import DocsLayout from "../../layouts/docs.astro";
                     unnecessary and should not be granted.
                 </p>
                 <p class="text-muted-foreground leading-relaxed mt-4">
-                    A fork typically tracks two remotes: <code
-                        >origin</code
-                    > — your (and your apprentice's) working copy, and
-                    <code>upstream</code> — the canonical curriculum you
-                    forked from.
+                    A fork typically tracks two remotes:
+                    <strong>origin</strong> — your (and your apprentice's)
+                    working copy, and <strong>upstream</strong> — the
+                    canonical curriculum you forked from.
                 </p>
                 <p class="text-muted-foreground leading-relaxed mt-4">
                     You can fetch upstream, preview what changed, and merge
@@ -72,18 +71,17 @@ import DocsLayout from "../../layouts/docs.astro";
                     </li>
                 </ul>
                 <p class="text-muted-foreground leading-relaxed mt-4">
-                    Everything else — <code>curriculum.json</code>,
-                    <code>curriculum/</code>, <code>resources/</code>,
-                    <code>competencies/</code>, <code>schemas/</code>,
-                    curriculum <code>docs/</code> — is shareable curriculum
-                    content, not personal data.
+                    Everything else — the curriculum manifest, the
+                    curriculum content itself, resources, competencies,
+                    schemas, and the curriculum's own docs folder — is
+                    shareable curriculum content, not personal data.
                 </p>
                 <p class="text-muted-foreground leading-relaxed mt-4">
                     The app never publishes a fork for you, and it never
                     strips these folders automatically. If you or your
                     apprentice ever intend to share this repository more
-                    widely — as a public example, say — remove
-                    <code>learners/</code> and <code>mentors/</code> from the
+                    widely — as a public example, say — remove the
+                    apprentice and mentor personal-data folders from the
                     working tree first. Deleting them is only the minimum:
                     Git history can still contain earlier copies until you
                     start a fresh repository or rewrite history yourself.
@@ -94,16 +92,15 @@ import DocsLayout from "../../layouts/docs.astro";
                 <h2 class="text-xl font-semibold mt-8 mb-3">
                     Ownership boundaries, in short
                 </h2>
+                <ul class="not-prose space-y-2 text-sm text-muted-foreground mb-4">
+                    <li>Curriculum content (manifest, tasks, resources, competencies, schemas) — curator/upstream-owned, shareable.</li>
+                    <li>The apprentice's personal folder — apprentice overlay, never a base.</li>
+                    <li>The mentor's personal folder — mentor overlay, never a base.</li>
+                </ul>
                 <p class="text-muted-foreground leading-relaxed">
-                    <code
-                        >curriculum.json, curriculum/**, resources/**, competencies/**,
-                        schemas/**</code
-                    > → curator/upstream-owned, shareable.
-                    <code>learners/&lt;id&gt;/**</code> → apprentice overlay,
-                    never a base. <code>mentors/&lt;id&gt;/**</code> → mentor
-                    overlay, never a base. The app is designed to never
-                    silently overwrite either side during a sync — conflicts
-                    always surface for a human decision.
+                    The app is designed to never silently overwrite either
+                    side during a sync — conflicts always surface for a
+                    human decision.
                 </p>
             </section>
         </div>

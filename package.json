@@ -4,7 +4,10 @@
   "version": "1.0.0",
   "description": "apprenti.dev — learn by doing, grow through mentorship.",
   "scripts": {
+    "build:skills": "node scripts/build-skill-packages.mjs",
+    "predev": "npm run build:skills",
     "dev": "astro dev",
+    "prebuild": "npm run build:skills",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
@@ -39,6 +42,7 @@
   },
   "devDependencies": {
     "@types/node": "^22.12.0",
+    "archiver": "^8.0.0",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.49"
   }

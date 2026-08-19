@@ -1,5 +1,9 @@
 ---
 import DocsLayout from "../../layouts/docs.astro";
+import { Code } from "astro:components";
+
+const commitExamples = `mentor(ali): approve y1t1-002
+mentor(ali): request revision for y1t1-002`;
 ---
 
 <DocsLayout title="Reviewing submissions — apprenti.dev Docs">
@@ -81,14 +85,13 @@ import DocsLayout from "../../layouts/docs.astro";
                     What gets written
                 </h2>
                 <p class="text-muted-foreground leading-relaxed">
-                    A review becomes a durable file at
-                    <code>mentors/&lt;your-id&gt;/reviews/&lt;review-id&gt;.json</code>
-                    — never mixed into the curriculum tree, never editing a
-                    file the apprentice owns. Commits follow a simple,
-                    readable convention:
+                    A review becomes a durable file in your own personal
+                    folder — never mixed into the curriculum tree, never
+                    editing a file the apprentice owns. Commits follow a
+                    simple, readable convention, for example:
                 </p>
-                <pre><code>mentor(ali): approve y1t1-002
-mentor(ali): request revision for y1t1-002</code></pre>
+                <div class="not-prose rounded-lg border border-border/50 overflow-hidden dark:hidden"><Code code={commitExamples} lang="text" theme="github-light" /></div>
+                <div class="not-prose rounded-lg border border-border/50 overflow-hidden hidden dark:block"><Code code={commitExamples} lang="text" theme="github-dark" /></div>
             </section>
 
             <section>

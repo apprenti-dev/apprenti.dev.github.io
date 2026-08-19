@@ -1,6 +1,6 @@
 ---
 import Layout from "../layouts/main.astro";
-import { MessageSquare, Bug } from "lucide-react";
+import { BookOpen, GitFork } from "lucide-react";
 
 const title = "Contact — apprenti.dev";
 ---
@@ -20,67 +20,60 @@ const title = "Contact — apprenti.dev";
                     </h1>
                     <p class="text-lg text-muted-foreground max-w-xl mx-auto">
                         apprenti.dev is an open, Git-native project with no
-                        support team behind it — but there are good places to
-                        ask questions, report bugs, and follow along.
+                        support team behind it. The application repository
+                        isn't public yet — once it is, this page will link
+                        straight to Discussions and Issues. Until then, here's
+                        where to start.
                     </p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <a
-                        href="https://github.com/apprenti-dev/apprentiapp/discussions"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        href="/docs"
                         class="group p-8 rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm shadow-lg shadow-apprenti-violet/5 hover:border-apprenti-violet/50 transition-colors"
                     >
                         <div class="inline-flex p-3 rounded-xl bg-gradient-to-br from-apprenti-violet to-apprenti-magenta mb-4">
-                            <MessageSquare class="h-6 w-6 text-white" />
+                            <BookOpen class="h-6 w-6 text-white" />
                         </div>
                         <h2 class="text-xl font-semibold mb-2">
-                            Ask a question
+                            Browse the docs
                         </h2>
                         <p class="text-muted-foreground mb-4">
-                            Have a question about how apprenti.dev works, or
-                            want to talk through an idea? Start or join a
-                            thread on GitHub Discussions.
+                            Most questions about how apprenti.dev works — for
+                            apprentices, mentors, or curriculum content
+                            creators — are answered in the documentation hub.
                         </p>
                         <span class="text-sm font-medium text-primary group-hover:underline">
-                            Open GitHub Discussions →
+                            Open the docs →
                         </span>
                     </a>
 
                     <a
-                        href="https://github.com/apprenti-dev/apprentiapp/issues"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        href="/curricula"
                         class="group p-8 rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm shadow-lg shadow-apprenti-violet/5 hover:border-apprenti-violet/50 transition-colors"
                     >
                         <div class="inline-flex p-3 rounded-xl bg-gradient-to-br from-apprenti-magenta to-apprenti-peach mb-4">
-                            <Bug class="h-6 w-6 text-white" />
+                            <GitFork class="h-6 w-6 text-white" />
                         </div>
                         <h2 class="text-xl font-semibold mb-2">
-                            Report a bug or request a feature
+                            Explore the curriculum
                         </h2>
                         <p class="text-muted-foreground mb-4">
-                            Found something broken, or have an idea for what
-                            apprenti.dev should do next? File it as an issue
-                            on GitHub.
+                            The Software Engineering apprenticeship curriculum
+                            is already open on GitHub — fork it, open an issue
+                            against it, or start a discussion there directly.
                         </p>
                         <span class="text-sm font-medium text-primary group-hover:underline">
-                            Open GitHub Issues →
+                            View the curricula catalog →
                         </span>
                     </a>
                 </div>
 
                 <p class="text-center text-sm text-muted-foreground mt-10">
-                    Prefer self-serve? Browse the{" "}
-                    <a href="/docs" class="text-link hover:underline">documentation</a>
-                    {" "}or explore the{" "}
-                    <a
-                        href="https://github.com/apprenti-dev/apprentiapp"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="text-link hover:underline">source on GitHub</a
-                    >.
+                    Prefer self-serve? Read the{" "}
+                    <a href="/about" class="text-link hover:underline">story behind apprenti.dev</a>
+                    {" "}or check the{" "}
+                    <a href="/#faq" class="text-link hover:underline">FAQ</a>.
                 </p>
             </div>
         </div>

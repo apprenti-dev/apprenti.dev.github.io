@@ -1,6 +1,6 @@
 ---
 import Layout from "../layouts/main.astro";
-import { BookOpen, GitFork } from "lucide-react";
+import { MessageSquare, BookOpen, GitFork } from "lucide-react";
 
 const title = "Contact — apprenti.dev";
 ---
@@ -20,19 +20,37 @@ const title = "Contact — apprenti.dev";
                     </h1>
                     <p class="text-lg text-muted-foreground max-w-xl mx-auto">
                         apprenti.dev is an open, Git-native project with no
-                        support team behind it. The application repository
-                        isn't public yet — once it is, this page will link
-                        straight to Discussions and Issues. Until then, here's
-                        where to start.
+                        support team behind it — but there's still a real way
+                        to reach us, and plenty to explore on your own.
                     </p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <a
+                        href="/feedback"
+                        class="group p-8 rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm shadow-lg shadow-apprenti-violet/5 hover:border-apprenti-violet/50 transition-colors md:col-span-2"
+                    >
+                        <div class="inline-flex p-3 rounded-xl bg-gradient-to-br from-apprenti-violet to-apprenti-magenta mb-4">
+                            <MessageSquare class="h-6 w-6 text-white" />
+                        </div>
+                        <h2 class="text-xl font-semibold mb-2">
+                            Send feedback
+                        </h2>
+                        <p class="text-muted-foreground mb-4">
+                            Questions, bug reports, or ideas for apprenti.dev
+                            — send a message directly and we'll get back to
+                            you.
+                        </p>
+                        <span class="text-sm font-medium text-primary group-hover:underline">
+                            Open the feedback form →
+                        </span>
+                    </a>
+
+                    <a
                         href="/docs"
                         class="group p-8 rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm shadow-lg shadow-apprenti-violet/5 hover:border-apprenti-violet/50 transition-colors"
                     >
-                        <div class="inline-flex p-3 rounded-xl bg-gradient-to-br from-apprenti-violet to-apprenti-magenta mb-4">
+                        <div class="inline-flex p-3 rounded-xl bg-gradient-to-br from-apprenti-magenta to-apprenti-peach mb-4">
                             <BookOpen class="h-6 w-6 text-white" />
                         </div>
                         <h2 class="text-xl font-semibold mb-2">
@@ -52,7 +70,7 @@ const title = "Contact — apprenti.dev";
                         href="/curricula"
                         class="group p-8 rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm shadow-lg shadow-apprenti-violet/5 hover:border-apprenti-violet/50 transition-colors"
                     >
-                        <div class="inline-flex p-3 rounded-xl bg-gradient-to-br from-apprenti-magenta to-apprenti-peach mb-4">
+                        <div class="inline-flex p-3 rounded-xl bg-gradient-to-br from-apprenti-cyan to-apprenti-violet mb-4">
                             <GitFork class="h-6 w-6 text-white" />
                         </div>
                         <h2 class="text-xl font-semibold mb-2">

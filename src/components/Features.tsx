@@ -11,9 +11,9 @@ import {
 const features = [
   {
     icon: GitBranch,
-    title: "Git is the source of truth",
+    title: "Files, not a backend",
     description:
-      "No application backend, no proprietary database, no vendor lock-in. Curriculum, tasks, reflections, submissions, and mentor reviews are all just files in a Git repository — yours to keep, move, or fork at any time.",
+      "No application backend, no proprietary database, no vendor lock-in. Curriculum, tasks, reflections, submissions, and mentor reviews are all just plain files — in a local folder or a Git repository you choose to sync — yours to keep, move, or fork at any time.",
     gradient: "from-apprenti-violet to-apprenti-magenta",
   },
   {

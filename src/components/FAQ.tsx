@@ -15,7 +15,12 @@ const faqs = [
   {
     question: "How does \"Git-native, no backend\" work if I'm not a technical mentor?",
     answer:
-      "The app hides Git's mechanics behind ordinary actions — 'Sync,' 'Publish,' 'Approve' — while a Git repository does the actual persisting, syncing, and history-keeping underneath. Mentors and apprentices interact with tasks, reviews, and messages, never raw Git commands.",
+      "The app hides Git's mechanics behind ordinary actions — 'Sync,' 'Publish,' 'Approve' — while a Git repository does the actual persisting, syncing, and history-keeping underneath. Mentors and apprentices interact with tasks, reviews, and messages, never raw Git commands. And if you'd rather skip Git entirely, you can — see the next question.",
+  },
+  {
+    question: "Do I need a GitHub or GitLab account?",
+    answer:
+      "No. You can point apprenti.dev at a plain folder on your device — no account, no network, and no remote required. Syncing to GitHub or GitLab is there for when you want to back up, share, or collaborate with a mentor or apprentice, but it's optional, not a requirement to use the app at all.",
   },
   {
     question: "Is apprenti.dev free?",
@@ -29,7 +34,7 @@ const faqs = [
   {
     question: "Is there a marketplace of curricula, or can I write my own?",
     answer:
-      "There's no marketplace — curricula are Git repositories. The first official path is the Software Engineering apprenticeship, and it's built to be forked or extended. You (or a mentor) can also author an entirely new, curriculum-agnostic path using apprenti creator, the companion authoring studio.",
+      "There's no marketplace — a curriculum is just a folder of files, local or in a Git repository. The first official path is the Software Engineering apprenticeship, and it's built to be forked or extended. You (or a mentor) can also author an entirely new, curriculum-agnostic path using apprenti creator, the companion authoring studio.",
   },
   {
     question: "How does AI assistance work, and is my data private?",

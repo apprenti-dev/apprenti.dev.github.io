@@ -5,7 +5,7 @@ import { Code } from "astro:components";
 const policyShape = `{
   "aiPolicy": {
     "mode": "guided",
-    "allowedCapabilities": ["explain", "hint", "quiz", "review"],
+    "allowedCapabilities": ["explain", "hint", "quiz", "coach"],
     "solutionGenerationAllowed": false,
     "disclosureRequired": true
   }
@@ -49,11 +49,17 @@ const defaultPolicy = `{
                     </li>
                     <li class="flex items-start gap-2">
                         <span class="text-link mt-1">•</span
-                        ><strong>allowedCapabilities</strong> — which
-                        task-detail actions are enabled: explain, hint,
-                        quiz, review, and similar. Anything not listed here
-                        shows as disabled rather than being hidden, so the
-                        apprentice can tell it's a deliberate choice.
+                        ><strong>allowedCapabilities</strong> — which of the
+                        four apprentice-facing task-detail modes are
+                        switched on: <strong>explain</strong>,
+                        <strong>hint</strong>, <strong>quiz</strong>, and
+                        <strong>coach</strong>. Leave a mode out and it
+                        shows as disabled rather than hidden, so the
+                        apprentice can tell it's a deliberate choice, not a
+                        bug. Unless you say otherwise, a new task gets
+                        <strong>explain</strong>, <strong>hint</strong>, and
+                        <strong>quiz</strong> — <strong>coach</strong> is
+                        off until you add it.
                     </li>
                     <li class="flex items-start gap-2">
                         <span class="text-link mt-1">•</span
@@ -73,6 +79,17 @@ const defaultPolicy = `{
                         Assisted / Generated).
                     </li>
                 </ul>
+                <p class="text-muted-foreground leading-relaxed mt-4">
+                    See
+                    <a href="/docs/apprentice-ai-assistance-modes" class="text-link hover:underline">the five AI assistance modes</a>
+                    for what an apprentice actually sees and experiences from
+                    explain, hint, quiz, coach, and solution. Mentor-side AI
+                    assistance (pre-review and the mentor-packet assistant)
+                    is separate from this policy entirely — it's always
+                    available to mentors, since it's a tool for the
+                    mentor's own judgment, not something this policy needs
+                    to switch on or off.
+                </p>
             </section>
 
             <section>

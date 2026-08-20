@@ -106,11 +106,19 @@ Notes:
   `file_reference`, `screenshot_reference`, `test_result`, `benchmark`, `demo`,
   `other`. Pick whichever a mentor can actually open and inspect — never something
   that only proves a claim was made.
-- `aiPolicy.allowedCapabilities` is drawn from a small set (`explain`, `hint`, `quiz`,
-  `review`, and similar) — anything omitted shows as *disabled*, not hidden, in the
-  app, so omission is a deliberate authoring choice, not an oversight.
-- `aiPolicy.solutionGenerationAllowed` should default to `false`. Only set it `true`
-  for a task where walking through a generated solution is itself the point.
+- `aiPolicy.allowedCapabilities` controls exactly four apprentice-facing task-detail
+  modes: `explain`, `hint`, `quiz`, `coach`. Omit one and it shows as *disabled*, not
+  hidden, in the app, so omission is a deliberate authoring choice, not an oversight.
+  Unspecified defaults to `["explain", "hint", "quiz"]` — `coach` is off until a task
+  adds it. `review` and `mentor` are a *different*, mentor-facing AI surface (pre-review
+  and the mentor-packet assistant) that is always available to mentors regardless of
+  this list — don't put them in `allowedCapabilities`, they aren't apprentice modes.
+- `aiPolicy.solutionGenerationAllowed` is a separate boolean, not part of
+  `allowedCapabilities` — it gates the fifth, most powerful mode (`solution`, which
+  can produce a complete solution) and should default to `false`. Only set it `true`
+  for a task where walking through a generated solution is itself the point. Even when
+  `true`, solution generation only ever runs once a conversation is explicitly scoped
+  to that task, never in the general curriculum-wide chat.
 - `aiPolicy.disclosureRequired` should default to `true` — turn it off deliberately
   per task, never globally.
 - `instructions.md` (referenced by `instructionsFile`) holds the long-form narrative

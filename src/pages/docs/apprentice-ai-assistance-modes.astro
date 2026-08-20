@@ -1,0 +1,140 @@
+---
+import DocsLayout from "../../layouts/docs.astro";
+---
+
+<DocsLayout title="The five AI assistance modes — apprenti.dev Docs">
+    <div class="space-y-8">
+        <div>
+            <h1 class="text-3xl md:text-4xl font-bold">
+                The five AI assistance modes
+            </h1>
+        </div>
+
+        <div class="prose dark:prose-invert max-w-none space-y-8">
+            <section>
+                <p class="text-muted-foreground leading-relaxed">
+                    On any task's detail screen, AI assistance shows up as up
+                    to five distinct modes — not one generic chat. Each one
+                    has a narrow, specific job, and each one is switched on
+                    or off independently by that task's AI policy. This page
+                    covers what each mode actually does; see
+                    <a href="/docs/apprentice-using-ai-assistance" class="text-link hover:underline">Using AI assistance</a>
+                    for how the AI tab, providers, and privacy work in
+                    general.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">Explain</h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Prompt: <em>"Explain this task."</em> Explains the
+                    concepts behind the task without writing the solution
+                    for you. This is the closest thing to a starting point —
+                    reach for it when the instructions make sense but the
+                    underlying idea doesn't yet.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">Hint</h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Prompt: <em>"Give me a hint for this task."</em> Gives a
+                    progressive hint and deliberately stops short of solving
+                    the assignment. Use it when you know roughly what to do
+                    but are stuck on the next step, not when you want the
+                    answer.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">Quiz</h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Prompt: <em>"Quiz me on this task."</em> Asks one
+                    Socratic question about the task. Answer it in the same
+                    thread and the next reply evaluates what you said — what
+                    was right, what to revisit — and asks a follow-up
+                    question, the same way a real back-and-forth quiz would.
+                    It never writes the assignment for you along the way.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">Coach</h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Prompt: <em>"Help me reflect on this task."</em> Coaches
+                    a short reflection rather than doing the reflecting for
+                    you — useful right before you write your own reflection
+                    for submission, to think through what you actually
+                    learned instead of staring at a blank field.
+                </p>
+                <p class="text-muted-foreground leading-relaxed">
+                    Coach is <strong>off by default</strong>. If it's not
+                    showing up on a task, that's very likely deliberate —
+                    ask your mentor or the curriculum author if you think it
+                    should be available.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">Solution</h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Prompt: <em>"Write the full solution for this task."</em>
+                    The one mode that can actually produce a complete,
+                    finished solution. It's the exception, not the rule —
+                    Explain, Hint, Quiz, and Coach are all built to
+                    deliberately stop short of this.
+                </p>
+                <p class="text-muted-foreground leading-relaxed">
+                    Solution is <strong>off by default</strong>, controlled
+                    by its own separate policy setting (not the same list
+                    that turns on Explain/Hint/Quiz/Coach), and only ever
+                    available once you've scoped a conversation to a
+                    specific task — never in the general, curriculum-wide AI
+                    tab chat. Even there, if your message reads like a
+                    request for a full solution (things like "give me the
+                    full answer" or "write all the code"), the assistant
+                    proactively declines and offers a hint or an explanation
+                    instead, unless this task has explicitly turned Solution
+                    on.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    What's on by default
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Unless a task says otherwise: <strong>Explain</strong>,
+                    <strong>Hint</strong>, and <strong>Quiz</strong> are on.
+                    <strong>Coach</strong> and <strong>Solution</strong> are
+                    off. A mode that's off shows as disabled rather than
+                    disappearing, so you can always tell it was a deliberate
+                    choice by whoever set up the task — not a bug.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Mentor-side assistance isn't one of these
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Mentors have their own AI assist — a pre-review summary
+                    and a mentor-packet assistant — always available to
+                    them regardless of a task's policy, since it's a tool
+                    for the mentor's own judgment, not something apprentices
+                    invoke. It never approves or rejects anything on its
+                    own; the mentor remains the authority either way.
+                </p>
+            </section>
+        </div>
+
+        <div class="mt-8 flex gap-4">
+            <a href="/docs" class="text-sm text-link hover:underline"
+                >← All Docs</a
+            >
+            <a href="/" class="text-sm text-muted-foreground hover:underline"
+                >Back to apprenti.dev</a
+            >
+        </div>
+    </div>
+</DocsLayout>

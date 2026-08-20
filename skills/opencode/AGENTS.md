@@ -46,6 +46,14 @@ false` and `disclosureRequired: true` unless a task deliberately overrides),
 `"instructions.md"` — the long-form Markdown narrative; don't inline long prose into
 `task.json` itself).
 
+`aiPolicy.allowedCapabilities` controls exactly four apprentice-facing modes:
+`explain`, `hint`, `quiz`, `coach` — default `["explain", "hint", "quiz"]`, so
+`coach` is off until added. `solutionGenerationAllowed` is a separate boolean
+gating a fifth mode, `solution`, that can produce a complete solution — default
+`false`, and only reachable once a conversation is scoped to that task. `review`
+and `mentor` are a different, mentor-facing AI surface, always available to
+mentors regardless of this policy — never put them in `allowedCapabilities`.
+
 **`term.json`** — `{schemaVersion, id, title, tasks: [id, id, ...]}`. The `tasks`
 array's **order** is the academic path — not folder or filename order.
 
@@ -93,14 +101,6 @@ makes search go blind.
 
 In translations, keep Git terminology (`commit`, `branch`, `merge`, `rebase`,
 `clone`, `pull`, `push`, `fork`, `working tree`) in English, and never write an
-empty string as a placeholder — omit the field from the overlay instead.
-
-## Validation checklist — run before presenting any change as finished
-
-- No two objects share the same `id`.
-- Every task id in a `term.json` has a matching folder on disk (no ghost entries).
-- Every task folder on disk is listed in some `term.json` (no orphan folders).
-
 ---
 
 *This file is one of several equivalent per-tool instruction packages

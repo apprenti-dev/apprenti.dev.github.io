@@ -27,6 +27,12 @@ const packages = [
 		blurb: "The same AGENTS.md convention OpenCode reads, with setup notes for opencode.json and /init.",
 		install: "AGENTS.md",
 	},
+	{
+		tool: "copilot",
+		name: "GitHub Copilot",
+		blurb: "A repo-wide copilot-instructions.md plus a path-scoped instructions file for curriculum content specifically.",
+		install: ".github/copilot-instructions.md",
+	},
 ];
 ---
 
@@ -90,6 +96,27 @@ const packages = [
 						invent an id from a file path, and never commit or publish
 						anything without a human deciding to.
 					</p>
+				</div>
+
+				<div class="rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm shadow-lg shadow-apprenti-violet/5 p-8 mb-16">
+					<h2 class="text-xl font-bold mb-2">ChatGPT (Custom GPT)</h2>
+					<p class="text-sm text-muted-foreground leading-relaxed mb-4">
+						Plain ChatGPT can't discover a file in your repository the way the
+						five tools above do — there's no equivalent mechanism. This package
+						is a template for your own personal Custom GPT instead: an
+						Instructions file plus three Knowledge files you paste and upload
+						once. It works the same way pedagogically, but you'll paste or
+						upload the specific file you want help with into each chat yourself,
+						since this Custom GPT has no direct access to your repository.
+					</p>
+					<code class="text-xs text-muted-foreground/80 mb-4 block">Paste into a Custom GPT's Instructions + Knowledge fields</code>
+					<a
+						href="/downloads/apprenti-skill-chatgpt.zip"
+						class="inline-flex items-center justify-center gap-2 h-10 px-5 rounded-md bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors"
+					>
+						<Download class="h-4 w-4" />
+						Download for ChatGPT
+					</a>
 				</div>
 
 				<div class="text-center pt-8 border-t">

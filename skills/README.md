@@ -26,10 +26,16 @@ which zips each tool's folder here into a downloadable package under
 | `skills/cursor/` | `public/downloads/apprenti-skill-cursor.zip` |
 | `skills/codex/` | `public/downloads/apprenti-skill-codex.zip` |
 | `skills/opencode/` | `public/downloads/apprenti-skill-opencode.zip` |
+| `skills/copilot/` | `public/downloads/apprenti-skill-copilot.zip` |
+| `skills/chatgpt/` | `public/downloads/apprenti-skill-chatgpt.zip` |
 
-Each folder's contents unzip directly into a content creator's curriculum
-repository at the paths shown — e.g. `skills/claude/.claude/skills/...` unzips to
-`.claude/skills/...` in their project.
+For the first five, each folder's contents unzip directly into a content
+creator's curriculum repository at the paths shown — e.g.
+`skills/claude/.claude/skills/...` unzips to `.claude/skills/...` in their
+project. `skills/chatgpt/` is different: it's not a repo-drop package, but an
+Instructions file + Knowledge files meant to be pasted/uploaded into a personal
+Custom GPT — see that folder's own `README.md` for the setup flow, which is
+also what `apprenti-skill-chatgpt.zip` contains when unzipped locally.
 
 These packages are presented to visitors on `/skills` (the product page) and
 documented in depth at `/docs/creator-ai-skill-packages`.

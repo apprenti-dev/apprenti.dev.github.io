@@ -13,12 +13,14 @@ import DocsLayout from "../../layouts/docs.astro";
         <div class="prose dark:prose-invert max-w-none space-y-8">
             <section>
                 <p class="text-muted-foreground leading-relaxed">
-                    apprenti.dev publishes a small instruction package for four AI
-                    coding assistants — Claude Code, Cursor, OpenAI Codex, and
-                    OpenCode. Each one teaches the assistant the curriculum's
+                    apprenti.dev publishes a small instruction package for five AI
+                    coding assistants — Claude Code, Cursor, OpenAI Codex, OpenCode,
+                    and GitHub Copilot — plus a template for a personal ChatGPT
+                    Custom GPT. Each one teaches the assistant the curriculum's
                     JSON+Markdown shapes, the locale-overlay rules, the personal-data
-                    boundaries, and a validation checklist to run before calling any
-                    change finished. Download them from
+                    boundaries, pedagogical guidance for writing quality content, and
+                    a validation checklist to run before calling any change finished.
+                    Download them from
                     <a href="/skills" class="text-link hover:underline">the AI Skills page</a>.
                 </p>
                 <p class="text-muted-foreground leading-relaxed">
@@ -107,6 +109,62 @@ import DocsLayout from "../../layouts/docs.astro";
                     <span class="text-muted-foreground ml-3">Creates:</span>
                     <code class="ml-1">AGENTS.md</code>
                 </div>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">GitHub Copilot</h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Unzip the Copilot package into the root of your curriculum
+                    repository. It creates two files: a repository-wide
+                    instructions file Copilot Chat reads automatically, and a
+                    path-scoped instructions file that only applies to curriculum
+                    files specifically (task, term, and curriculum JSON, resources,
+                    competencies, instructions files) — currently read by
+                    Copilot's cloud agent and code review. Each is self-contained,
+                    so either one on its own is complete.
+                </p>
+                <div class="not-prose rounded-lg border border-border/50 bg-muted/40 px-4 py-3 text-sm">
+                    <span class="text-muted-foreground">Package:</span>
+                    <code class="ml-1">apprenti-skill-copilot.zip</code>
+                    <span class="text-muted-foreground ml-3">Creates:</span>
+                    <code class="ml-1">.github/copilot-instructions.md</code>,
+                    <code class="ml-1">.github/instructions/apprenti-curriculum-author.instructions.md</code>
+                </div>
+                <p class="text-muted-foreground leading-relaxed">
+                    If your repository already has its own repo-wide Copilot
+                    instructions file, don't overwrite it — merge this package's
+                    content into yours instead.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    ChatGPT (Custom GPT)
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    This one is a different shape from the five above, because
+                    plain ChatGPT has no mechanism to discover a file in your
+                    repository on its own. Unzip the package locally instead of
+                    into a repository — it contains an instructions file to paste
+                    into a personal <strong>Custom GPT</strong>'s Instructions
+                    field, and three reference files to upload as that GPT's
+                    Knowledge files. Full setup steps are in the package's own
+                    README, since the flow (create a GPT, paste, upload) doesn't
+                    map onto "unzip into your repo" the way the others do.
+                </p>
+                <div class="not-prose rounded-lg border border-border/50 bg-muted/40 px-4 py-3 text-sm">
+                    <span class="text-muted-foreground">Package:</span>
+                    <code class="ml-1">apprenti-skill-chatgpt.zip</code>
+                    <span class="text-muted-foreground ml-3">Sets up:</span>
+                    a personal Custom GPT (any name you like)
+                </div>
+                <p class="text-muted-foreground leading-relaxed">
+                    The real difference in daily use: this Custom GPT never sees
+                    your repository unless you paste or upload a file into the
+                    chat yourself, and you're the one who copies its answer back
+                    into your repository and commits it — nothing here reaches
+                    your files on its own.
+                </p>
             </section>
 
             <section>

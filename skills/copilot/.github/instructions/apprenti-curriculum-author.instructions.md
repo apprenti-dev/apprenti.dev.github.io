@@ -1,0 +1,145 @@
+---
+applyTo: "curriculum.json,curricula.json,curriculum/**/*.json,curricula/**/*.json,resources/**/*.json,competencies/**/*.json,**/task.json,**/term.json,**/instructions*.md"
+---
+
+# apprenti.dev curriculum author
+
+apprenti.dev is a Git-native, offline-first apprenticeship app. A "curriculum" is a
+folder of JSON (structure) and Markdown (narrative) files in a Git repository, read
+directly by the app — not a database. This file governs how to create and edit
+those files. It is not about editing the app itself, and it never touches personal
+apprentice/mentor data. It supplements this repository's
+`.github/copilot-instructions.md`, which carries the same facts repo-wide — if only
+one of the two is present in a given context, treat it as complete on its own.
+
+## Hard boundaries — never violate these
+
+- **Never create, edit, or delete anything under `learners/<id>/` or `mentors/<id>/`.**
+  Those are personal, pair-owned records — not curriculum content.
+- **Never invent an `id` from a file path.** Every task, resource, and competency has
+  a permanent `id` independent of where it lives; a task can move between modules or
+  terms without its `id` changing.
+- **Never duplicate a `resources/{id}.json` or `competencies/{id}.json`** that already
+  exists at the repository root into a per-curriculum folder — a nested copy with the
+  same id is an explicit override, not a new resource.
+- **Never fork `curriculum/` into parallel `en/`/`tr/` trees.** Locales are sibling
+  overlay files (`instructions.md` + `instructions.tr.md`), not folder copies.
+- **Never commit, push, or publish on your own initiative.** Editing files is fine;
+  deciding something is ready to commit or share is a human decision.
+
+## Repository shapes
+
+Single curriculum: root `curriculum.json` + `curriculum/year-1/term-1/term.json` +
+`curriculum/.../<task-id>/{task.json,instructions.md}`. Multiple curricula: root
+`curricula.json` + `curricula/<slug>/curriculum.json` each. Either way, `resources/`,
+`competencies/`, and `schemas/` live once at the repository root, shared by id.
+
+## Core JSON shapes
+
+Every durable object carries `{"schemaVersion": 1, "id": "stable-id"}`.
+
+`task.json` fields: `id`, `term`, `module`, `title`, `objective`, `whyThisMatters`,
+`estimatedHours`, `evidence` (plain array of strings, not a typed object — each one
+is guidance describing something a mentor can actually open and inspect: a commit,
+a file, a test run, a resolved conflict, never a claim only the apprentice could
+confirm; what's submitted today is one evidence note meant to satisfy every string
+here), `acceptanceCriteria` (array), `aiPolicy` (`{mode, allowedCapabilities[],
+solutionGenerationAllowed, disclosureRequired}` — default `solutionGenerationAllowed:
+false` and `disclosureRequired: true` unless a task deliberately overrides),
+`competencies` (ids), `resources` (ids), `instructionsFile` (usually
+`"instructions.md"`, holding the long-form Markdown narrative).
+
+`aiPolicy.allowedCapabilities` controls exactly four apprentice-facing modes:
+`explain`, `hint`, `quiz`, `coach` — default `["explain", "hint", "quiz"]`, so
+`coach` is off until added. `solutionGenerationAllowed` is a separate boolean
+gating a fifth mode, `solution`, that can produce a complete solution — default
+`false`, and only reachable once a conversation is scoped to that task. `review`
+and `mentor` are a different, mentor-facing AI surface, always available to
+mentors regardless of this policy — never put them in `allowedCapabilities`.
+
+`term.json`: `{schemaVersion, id, title, tasks: [id, id, ...]}` — the `tasks` array's
+**order** is the academic path, not folder or filename order.
+
+`curriculum.json`: also carries `sourceLocale` / `contentLocales` for human written
+language overlays — never confuse these with a curriculum's own `languages` field
+(programming languages taught, e.g. Python, C).
+
+`competencies/{id}.json` always has exactly five levels, in order: Foundation,
+Apprentice, Practitioner, Journeyman, Mastery Evidence. Today the app doesn't
+actually read this array to assign a level automatically — it just counts approved
+tasks per competency id (one reaches Apprentice, three reach Practitioner).
+
+## Writing quality content, not just valid content
+
+The shapes above get a file past the schema; a competency or task that's valid
+JSON can still be pedagogically weak.
+
+- **Design backward** — write the competency as a real capability someone either
+  has or doesn't, then design the task to demonstrate it, not the other way
+  around.
+- **Write levels with checkable verbs** (can complete, can diagnose, can defend a
+  trade-off, can teach), never mental-state verbs (understands, knows).
+- **Give a competency at least three tasks somewhere in the path** — one
+  referenced by a single task can never reach Practitioner automatically and
+  probably isn't a real competency.
+- **Reuse competency ids across curricula deliberately** — check the shared
+  library before minting a new id for a capability an existing one already
+  measures.
+- **Make every `evidence` string inspectable**, never a claim — "I did it" is
+  not evidence.
+- **Make every `acceptanceCriteria` item checkable, not judged**, and paired
+  with a matching `evidence` string.
+- **Prefer evidence of process over a final answer alone** — a final-answer-only
+  task is the easiest to satisfy with one pasted AI response and no
+  understanding.
+- **Calibrate difficulty to the task's place in `term.json`'s order.**
+- **Treat the 20-char reflection / 8-char evidence-note minimums as a floor**,
+  not a quality target.
+
+## Locale overlays
+
+**Content locale ≠ the app's UI language.** Appearance language is chrome only. A
+curriculum's content locale is a separate, per-curriculum choice made on the
+curriculum picker (from that manifest's `contentLocales`/`sourceLocale`); it only
+seeds from Appearance on first attach, then the two are fully decoupled. Never
+assume a UI language implies a content-locale preference.
+
+For canonical file `{stem}.{ext}`, a `tr` overlay is `{stem}.tr.{ext}` next to it
+(e.g. `task.json` + `task.tr.json`, `instructions.md` + `instructions.tr.md`). Overlay
+files are sparse — only translatable prose fields. **Never overlay:** `id`,
+`schemaVersion`, `term`, `module`, `estimatedHours`, competency/resource ids,
+`aiPolicy`, `instructionsFile`, `statusModel`, any folder path, or a URL (unless
+deliberately localizing a resource URL) — those are identity/structure,
+canonical-only. Never translate a folder slug. An overlay `id` that doesn't match
+its canonical file's `id` is silently ignored by the app — that's an authoring bug
+to fix. Locale codes in file names must be a short language code (`[a-z]{2,8}`,
+e.g. `tr` not `tr-TR`) — never `..`, `/`, or `\`. Fallback at read time: present
+non-empty overlay wins, otherwise canonical value; a missing overlay file is not an
+error; list fields (`evidence`, `acceptanceCriteria`) are replaced wholesale, never
+merged item-by-item. In translations, keep Git terms (`commit`, `branch`, `merge`,
+`rebase`, `clone`, `pull`, `push`, `fork`, `working tree`) in English, and never
+write an empty string as a placeholder — omit the field instead.
+
+## Before presenting any change as finished, check
+
+No duplicate ids · every `term.json` task id has a matching folder (no ghosts) ·
+every task folder is listed in some `term.json` (no orphans) · no dangling
+resource/competency references · overlay ids match their canonical file · no empty
+overlay strings · every `acceptanceCriteria` item is checkable and paired with a
+matching `evidence` string · every `evidence` item is inspectable, not a claim ·
+a newly referenced competency is reachable by at least three tasks · valid JSON
+matching the shapes above.
+
+## Voice for learner-facing text
+
+Calm, professional, developer-oriented. Never "LMS," "course," "student," or
+"instructor." No gamification language (points, streaks, badges, game-style
+leveling). The product's motto is "LEARN BY DOING. GROW THROUGH MENTORSHIP." — don't
+invent alternate slogans.
+
+## More detail
+
+Full docs: `apprenti.dev/docs` (see "For Content Creators," including the
+"creating quality content for learners" series the section above is condensed
+from). Working example: the reference curriculum at
+`apprenti-dev/software-engineering-base` (`apprenti.dev/curricula`).

@@ -1,0 +1,74 @@
+---
+import Layout from "../../../layouts/main.astro";
+import CatalogGuideLinks from "../../../components/CatalogGuideLinks.astro";
+import { BadgeCheck, FileCheck2, Lock, ScrollText, ShieldCheck } from "lucide-react";
+import { ISSUE_URL } from "../../../lib/catalog";
+---
+
+<Layout title="Get a repo listed — apprenti.dev">
+	<section class="py-20 md:py-32">
+		<div class="container mx-auto px-4">
+			<div class="max-w-4xl mx-auto">
+				<p class="text-sm text-muted-foreground mb-6">
+					<a href="/curricula" class="text-link hover:underline">Curricula catalog</a>
+					<span class="mx-1.5">/</span>
+					<span>Get a repo listed</span>
+				</p>
+
+				<div id="listing-rules" class="space-y-4 mb-12">
+					<h1 class="text-4xl md:text-5xl font-bold">Want your curriculum listed?</h1>
+					<p class="text-lg text-muted-foreground max-w-2xl">
+						Anyone can author and publish a curriculum — that's the point of
+						it being just a Git repository. Getting it added to this catalog
+						is a separate, deliberate step: open an issue on the apprenti.dev
+						website repository and we'll review it against these rules.
+					</p>
+				</div>
+
+				<ul class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto mb-10">
+					<li class="flex items-start gap-3 rounded-xl border border-border/50 bg-card/50 p-4">
+						<Lock class="h-5 w-5 text-apprenti-violet-on-dark shrink-0 mt-0.5" />
+						<span class="text-sm text-muted-foreground"><strong class="text-foreground">Public repository only.</strong> We will not list a private repository, regardless of how it's shared with us.</span>
+					</li>
+					<li class="flex items-start gap-3 rounded-xl border border-border/50 bg-card/50 p-4">
+						<FileCheck2 class="h-5 w-5 text-apprenti-violet-on-dark shrink-0 mt-0.5" />
+						<span class="text-sm text-muted-foreground"><strong class="text-foreground">Valid curriculum format.</strong> A real, schema-valid curriculum manifest (or a top-level list of manifests for more than one) — see <a href="/docs/creator-curriculum-structure" class="text-link hover:underline">Curriculum structure basics</a>.</span>
+					</li>
+					<li class="flex items-start gap-3 rounded-xl border border-border/50 bg-card/50 p-4">
+						<ShieldCheck class="h-5 w-5 text-apprenti-violet-on-dark shrink-0 mt-0.5" />
+						<span class="text-sm text-muted-foreground"><strong class="text-foreground">No personal data.</strong> No apprentice or mentor personal-data folders — a listed curriculum is shareable content only, never someone's private fork.</span>
+					</li>
+					<li class="flex items-start gap-3 rounded-xl border border-border/50 bg-card/50 p-4">
+						<ScrollText class="h-5 w-5 text-apprenti-violet-on-dark shrink-0 mt-0.5" />
+						<span class="text-sm text-muted-foreground"><strong class="text-foreground">A stated license.</strong> Say what license or usage terms apply, so others know whether and how they can fork it.</span>
+					</li>
+					<li class="flex items-start gap-3 rounded-xl border border-border/50 bg-card/50 p-4 md:col-span-2">
+						<BadgeCheck class="h-5 w-5 text-apprenti-violet-on-dark shrink-0 mt-0.5" />
+						<span class="text-sm text-muted-foreground"><strong class="text-foreground">No misleading branding.</strong> Don't present a listing as official endorsement beyond appearing in this catalog. Open, free references over paywalled or single-vendor ones are encouraged but not required — the same standard our own reference curricula follow.</span>
+					</li>
+				</ul>
+
+				<div class="text-center mb-16">
+					<a
+						href={ISSUE_URL}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="inline-flex items-center justify-center h-10 px-6 rounded-md bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors"
+					>
+						Open a listing request →
+					</a>
+					<p class="text-xs text-muted-foreground mt-3">
+						Submitting a request doesn't guarantee a listing — we review each one.
+					</p>
+				</div>
+
+				<div>
+					<h2 class="text-sm font-semibold uppercase tracking-wide text-muted-foreground mb-3">
+						Related guides
+					</h2>
+					<CatalogGuideLinks />
+				</div>
+			</div>
+		</div>
+	</section>
+</Layout>

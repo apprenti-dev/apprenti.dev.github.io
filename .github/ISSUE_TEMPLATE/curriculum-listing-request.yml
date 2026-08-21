@@ -8,7 +8,7 @@ body:
     attributes:
       value: |
         Thanks for building a curriculum for apprenti.dev. Before submitting, please read the
-        listing rules on the [curricula catalog page](https://apprenti.dev/curricula#listing-rules).
+        listing rules on the [Get a repo listed](https://apprenti.dev/curricula/guides/listing) page.
         A request that doesn't meet them will be closed and you're welcome to reopen once it does.
 
   - type: input

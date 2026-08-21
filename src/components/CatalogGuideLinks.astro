@@ -1,0 +1,31 @@
+---
+const links = [
+	{
+		href: "/curricula/guides/opening",
+		label: "Opening a curriculum",
+		hint: "Clone a repo or open a local folder",
+	},
+	{
+		href: "/curricula/guides/forking",
+		label: "Forking for your role",
+		hint: "Apprentice, mentor, or creator",
+	},
+	{
+		href: "/curricula/guides/listing",
+		label: "Get a repo listed",
+		hint: "Rules and a listing request",
+	},
+];
+---
+
+<nav aria-label="Catalog guides" class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+	{links.map((link) => (
+		<a
+			href={link.href}
+			class="rounded-xl border border-border/50 bg-card/50 px-4 py-3 hover:bg-accent/40 transition-colors"
+		>
+			<span class="block text-sm font-semibold">{link.label}</span>
+			<span class="block text-xs text-muted-foreground mt-1">{link.hint}</span>
+		</a>
+	))}
+</nav>

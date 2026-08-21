@@ -136,8 +136,8 @@ export function Roadmap() {
                     </div>
 
                     <p className="mt-8 text-sm italic text-muted-foreground text-center">
-                        Desktop builds are tested today; Android/iOS builds and
-                        app-store listings are the next packaging milestone.
+                        Builds are sideloaded from GitHub Releases. There are
+                        no app-store listings.
                     </p>
                 </div>
             </div>

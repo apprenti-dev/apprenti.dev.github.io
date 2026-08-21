@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { motion } from "framer-motion";
 import {
   Accordion,
@@ -6,7 +7,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-const faqs = [
+const faqs: { question: string; answer: ReactNode }[] = [
   {
     question: "What is apprenti.dev, and is it an LMS?",
     answer:
@@ -29,8 +30,16 @@ const faqs = [
   },
   {
     question: "What platforms does it run on?",
-    answer:
-      "Android, iOS, Windows, macOS, and Linux, from one shared codebase. Download the latest release, or browse every published version on GitHub Releases.",
+    answer: (
+      <>
+        Windows, macOS, Linux, and Android, from one shared codebase. Builds
+        are sideloaded from GitHub Releases — there are no store listings.{" "}
+        <a href="/docs/installing" className="text-link hover:underline">
+          Installing the app
+        </a>{" "}
+        has the per-OS steps.
+      </>
+    ),
   },
   {
     question: "Is there a marketplace of curricula, or can I write my own?",
@@ -44,8 +53,20 @@ const faqs = [
   },
   {
     question: "What's the relationship between apprenti (the app) and apprenti creator (the authoring tool)?",
-    answer:
-      "apprenti is the runtime apprentices and mentors use day to day. apprenti creator is a separate VS Code extension for designing and maintaining curricula — a visual path canvas and entity editors instead of hand-edited JSON. Both read and write the exact same Git files; neither introduces a second format or a hidden database.",
+    answer: (
+      <>
+        apprenti is the runtime apprentices and mentors use day to day.
+        apprenti creator is a separate VS Code / Cursor / VSCodium extension
+        for designing and maintaining curricula — a visual path canvas and
+        entity editors instead of hand-edited JSON. Both read and write the
+        exact same Git files; neither introduces a second format or a hidden
+        database. Creator is not a second OS app;{" "}
+        <a href="/docs/installing#creator" className="text-link hover:underline">
+          install the VSIX
+        </a>
+        , not another zip.
+      </>
+    ),
   },
 ];
 

@@ -46,6 +46,9 @@ export function DownloadButtons({
 			>
 				All versions
 			</a>
+			<a href="/docs/installing" className={versionsClass}>
+				How to install
+			</a>
 		</div>
 	);
 }

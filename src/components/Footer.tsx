@@ -105,6 +105,14 @@ export function Footer() {
               </li>
               <li>
                 <a
+                  href="/docs/installing"
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  Install guide
+                </a>
+              </li>
+              <li>
+                <a
                   href="/#faq"
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >

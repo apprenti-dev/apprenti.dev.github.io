@@ -5,6 +5,7 @@ import { BrandLogo } from "@/components/BrandLogo";
 import { LATEST_RELEASE_URL } from "@/lib/downloads";
 
 const docsAudienceItems = [
+  { label: "Install guide", href: "/docs/installing" },
   { label: "For Apprentices", href: "/docs#apprentices" },
   { label: "For Mentors", href: "/docs#mentors" },
   { label: "For Content Creators", href: "/docs#creators" },

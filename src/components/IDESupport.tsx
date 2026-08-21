@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import {
     Smartphone,
-    Tablet,
     Monitor,
     Laptop,
     Terminal,
@@ -12,7 +11,6 @@ import { DownloadButtons } from "@/components/DownloadButtons";
 
 const platforms = [
     { name: "Android", icon: Smartphone, kind: "platform" as const },
-    { name: "iOS", icon: Tablet, kind: "platform" as const },
     { name: "Windows", icon: Monitor, kind: "platform" as const },
     { name: "macOS", icon: Laptop, kind: "platform" as const },
     { name: "Linux", icon: Terminal, kind: "platform" as const },
@@ -67,7 +65,7 @@ export function PlatformSupport() {
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true }}
-                    className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-6 max-w-5xl mx-auto"
+                    className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 max-w-5xl mx-auto"
                 >
                     {platforms.map((platform) => (
                         <motion.div

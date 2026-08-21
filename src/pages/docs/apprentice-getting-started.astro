@@ -1,5 +1,6 @@
 ---
 import DocsLayout from "../../layouts/docs.astro";
+import { ALL_RELEASES_URL, LATEST_RELEASE_URL } from "../../lib/downloads";
 ---
 
 <DocsLayout title="Getting started — apprenti.dev Docs">
@@ -18,6 +19,31 @@ import DocsLayout from "../../layouts/docs.astro";
                     your progress back to Git when you're ready. There is no
                     application backend, so there is nothing to sign up for
                     beyond a place to put a repository.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Get the app
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Download the newest non-prerelease from
+                    <a
+                        href={LATEST_RELEASE_URL}
+                        class="text-link hover:underline"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >GitHub Releases</a
+                    >, or browse
+                    <a
+                        href={ALL_RELEASES_URL}
+                        class="text-link hover:underline"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >all versions</a
+                    >
+                    if you need a specific build. Pick the installer for your
+                    platform, then come back here to open a curriculum.
                 </p>
             </section>
 

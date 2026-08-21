@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect } from "react";
-import { Menu, X, ChevronDown, Home, MessageSquare } from "lucide-react";
+import { Menu, X, ChevronDown, Home, MessageSquare, Download } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { BrandLogo } from "@/components/BrandLogo";
+import { LATEST_RELEASE_URL } from "@/lib/downloads";
 
 const docsAudienceItems = [
   { label: "For Apprentices", href: "/docs#apprentices" },
@@ -95,7 +96,16 @@ export function Header() {
         </div>
 
         {/* Actions */}
-        <div className="flex items-center gap-4 sm:gap-5">
+        <div className="flex items-center gap-3 sm:gap-5">
+          <a
+            href={LATEST_RELEASE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-1.5 h-9 px-3 sm:px-4 rounded-md bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
+          >
+            <Download className="h-4 w-4" />
+            Download
+          </a>
           <a
             href="/feedback"
             className="hidden md:inline-flex text-muted-foreground hover:text-foreground transition-colors"
@@ -143,6 +153,16 @@ export function Header() {
                 {item.label}
               </a>
             ))}
+            <a
+              href={LATEST_RELEASE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-sm font-medium text-foreground hover:text-foreground transition-colors"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <Download className="h-4 w-4" />
+              Download
+            </a>
             <a
               href="/feedback"
               className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"

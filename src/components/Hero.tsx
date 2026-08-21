@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { GraduationCap, Sparkles, Bot, Play, Compass, Hammer, Upload, TrendingUp, ChevronLeft, ChevronRight } from "lucide-react";
 import { Lightbox } from "@/components/Lightbox";
+import { DownloadButtons } from "@/components/DownloadButtons";
 import { PLATFORMS, PLATFORM_BADGE_CLASS } from "@/lib/store-badges";
 
 const heroScreenshots = [
@@ -169,17 +170,21 @@ export function Hero() {
               someone else's server.
             </motion.p>
 
-            {/* Watch demo */}
-            <motion.a
-              href="#demo"
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.25 }}
-              className="inline-flex items-center gap-2 text-sm font-semibold text-apprenti-violet-on-dark hover:underline"
+              className="flex flex-col sm:flex-row items-center lg:items-start gap-4"
             >
-              <Play className="h-4 w-4 fill-current" />
-              Watch the demo
-            </motion.a>
+              <DownloadButtons />
+              <a
+                href="#demo"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-apprenti-violet-on-dark hover:underline h-10"
+              >
+                <Play className="h-4 w-4 fill-current" />
+                Watch the demo
+              </a>
+            </motion.div>
 
             {/* Quick highlights */}
             <motion.div
@@ -241,7 +246,6 @@ export function Hero() {
                     {platform}
                   </span>
                 ))}
-                <span className="text-xs text-muted-foreground">— coming soon</span>
               </div>
             </motion.div>
           </div>

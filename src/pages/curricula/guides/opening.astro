@@ -2,6 +2,7 @@
 import Layout from "../../../layouts/main.astro";
 import CatalogGuideLinks from "../../../components/CatalogGuideLinks.astro";
 import { FolderGit2, HardDrive } from "lucide-react";
+import { ALL_RELEASES_URL, LATEST_RELEASE_URL } from "../../../lib/downloads";
 ---
 
 <Layout title="Opening a curriculum — apprenti.dev">
@@ -19,6 +20,12 @@ import { FolderGit2, HardDrive } from "lucide-react";
 					<p class="text-lg text-muted-foreground max-w-2xl">
 						Whichever role you're in, apprenti.dev opens a curriculum the same
 						way — from <strong class="text-foreground">More</strong> in the app.
+					</p>
+					<p class="text-sm text-muted-foreground max-w-2xl">
+						Don't have the app yet?
+						<a href={LATEST_RELEASE_URL} target="_blank" rel="noopener noreferrer" class="text-link hover:underline">Download the latest release</a>
+						or see
+						<a href={ALL_RELEASES_URL} target="_blank" rel="noopener noreferrer" class="text-link hover:underline">all versions</a>.
 					</p>
 				</div>
 

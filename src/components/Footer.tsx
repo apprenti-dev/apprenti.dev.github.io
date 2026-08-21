@@ -1,4 +1,5 @@
 import { BrandLogo } from "@/components/BrandLogo";
+import { ALL_RELEASES_URL, LATEST_RELEASE_URL } from "@/lib/downloads";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -27,6 +28,26 @@ export function Footer() {
           <div>
             <h3 className="font-semibold mb-4 text-sm">Product</h3>
             <ul className="space-y-3">
+              <li>
+                <a
+                  href={LATEST_RELEASE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  Download
+                </a>
+              </li>
+              <li>
+                <a
+                  href={ALL_RELEASES_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  All versions
+                </a>
+              </li>
               <li>
                 <a
                   href="/#features"

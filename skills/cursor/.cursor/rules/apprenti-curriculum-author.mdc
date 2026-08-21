@@ -47,11 +47,12 @@ Single curriculum: root `curriculum.json` + `curriculum/year-1/term-1/term.json`
 
 Every durable object carries `{"schemaVersion": 1, "id": "stable-id"}`.
 
-`task.json` fields: `id`, `term`, `module`, `title`, `objective`, `whyItMatters`,
-`estimatedHours`, `evidence` (`{type, description}`, type one of `repository`,
-`commit`, `tag`, `url`, `markdown`, `file_reference`, `screenshot_reference`,
-`test_result`, `benchmark`, `demo`, `other` — pick one a mentor can actually open),
-`acceptanceCriteria` (array), `aiPolicy` (`{mode, allowedCapabilities[],
+`task.json` fields: `id`, `term`, `module`, `title`, `objective`, `whyThisMatters`,
+`estimatedHours`, `evidence` (plain array of strings, not a typed object — each one
+is guidance describing something a mentor can actually open and inspect: a commit,
+a file, a test run, a resolved conflict, never a claim only the apprentice could
+confirm; what's submitted today is one evidence note meant to satisfy every string
+here), `acceptanceCriteria` (array), `aiPolicy` (`{mode, allowedCapabilities[],
 solutionGenerationAllowed, disclosureRequired}` — default `solutionGenerationAllowed:
 false` and `disclosureRequired: true` unless a task deliberately overrides),
 `competencies` (ids), `resources` (ids), `instructionsFile` (usually
@@ -73,7 +74,36 @@ language overlays — never confuse these with a curriculum's own `languages` fi
 (programming languages taught, e.g. Python, C).
 
 `competencies/{id}.json` always has exactly five levels, in order: Foundation,
-Apprentice, Practitioner, Journeyman, Mastery Evidence.
+Apprentice, Practitioner, Journeyman, Mastery Evidence. Today the app doesn't
+actually read this array to assign a level automatically — it just counts approved
+tasks per competency id (one reaches Apprentice, three reach Practitioner).
+
+## Writing quality content, not just valid content
+
+The shapes above get a file past the schema; a competency or task that's valid
+JSON can still be pedagogically weak.
+
+- **Design backward** — write the competency as a real capability someone either
+  has or doesn't, then design the task to demonstrate it, not the other way
+  around.
+- **Write levels with checkable verbs** (can complete, can diagnose, can defend a
+  trade-off, can teach), never mental-state verbs (understands, knows).
+- **Give a competency at least three tasks somewhere in the path** — one
+  referenced by a single task can never reach Practitioner automatically and
+  probably isn't a real competency.
+- **Reuse competency ids across curricula deliberately** — check the shared
+  library before minting a new id for a capability an existing one already
+  measures.
+- **Make every `evidence` string inspectable**, never a claim — "I did it" is
+  not evidence.
+- **Make every `acceptanceCriteria` item checkable, not judged**, and paired
+  with a matching `evidence` string.
+- **Prefer evidence of process over a final answer alone** — a final-answer-only
+  task is the easiest to satisfy with one pasted AI response and no
+  understanding.
+- **Calibrate difficulty to the task's place in `term.json`'s order.**
+- **Treat the 20-char reflection / 8-char evidence-note minimums as a floor**,
+  not a quality target.
 
 ## Locale overlays
 
@@ -104,7 +134,10 @@ write an empty string as a placeholder — omit the field instead.
 No duplicate ids · every `term.json` task id has a matching folder (no ghosts) ·
 every task folder is listed in some `term.json` (no orphans) · no dangling
 resource/competency references · overlay ids match their canonical file · no empty
-overlay strings · valid JSON matching the shapes above.
+overlay strings · every `acceptanceCriteria` item is checkable and paired with a
+matching `evidence` string · every `evidence` item is inspectable, not a claim ·
+a newly referenced competency is reachable by at least three tasks · valid JSON
+matching the shapes above.
 
 ## Voice for learner-facing text
 
@@ -115,6 +148,7 @@ invent alternate slogans.
 
 ## More detail
 
-Full docs: `apprenti.dev/docs` (see "For Content Creators"). Working example: the
-reference curriculum at `apprenti-dev/software-engineering-base`
-(`apprenti.dev/curricula`).
+Full docs: `apprenti.dev/docs` (see "For Content Creators," including the
+"creating quality content for learners" series the section above is condensed
+from). Working example: the reference curriculum at
+`apprenti-dev/software-engineering-base` (`apprenti.dev/curricula`).

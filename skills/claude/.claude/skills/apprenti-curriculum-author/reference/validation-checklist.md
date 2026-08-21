@@ -42,6 +42,21 @@ what you can; flag what you can't verify from the files you can see.
 - [ ] Nothing in this change assumes the app's UI/Appearance language implies a
       particular content locale — those are independent settings.
 
+## Quality (see `quality-guidelines.md` for the reasoning behind each)
+
+- [ ] Every `acceptanceCriteria` item is a fact a mentor can check without forming
+      a subjective opinion — not "clean code," but something checkable.
+- [ ] Every `acceptanceCriteria` item has a matching `evidence` expectation that
+      would actually let a mentor verify it.
+- [ ] Every `evidence` item describes something inspectable (a commit, a file, a
+      test run) — never a claim only the apprentice could confirm.
+- [ ] A competency introduced or newly referenced by this change is reachable by
+      at least three tasks somewhere in the curriculum path — or that's flagged
+      explicitly as a deliberate exception, not an oversight.
+- [ ] A new competency's level descriptions use checkable verbs (can complete,
+      can diagnose, can defend, can teach), not mental-state verbs (understands,
+      knows).
+
 ## AI policy
 
 - [ ] Every `task.json` has an `aiPolicy` block.

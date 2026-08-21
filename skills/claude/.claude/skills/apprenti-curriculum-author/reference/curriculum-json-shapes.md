@@ -76,12 +76,12 @@ curriculum. A curriculum-authoring assistant should never write to them.
   "module": "foundations",
   "title": "Set up your development environment",
   "objective": "Have a working, reproducible dev environment for the rest of the term.",
-  "whyItMatters": "Every later task assumes this environment exists and works.",
+  "whyThisMatters": "Every later task assumes this environment exists and works.",
   "estimatedHours": 3,
-  "evidence": {
-    "type": "repository",
-    "description": "A commit showing your configured environment and a passing smoke test."
-  },
+  "evidence": [
+    "A commit showing your configured environment",
+    "A passing smoke test, shown in the evidence note"
+  ],
   "acceptanceCriteria": [
     "The smoke test script runs without errors.",
     "The environment is reproducible from a clean checkout."
@@ -102,10 +102,13 @@ Notes:
 
 - `id` is permanent. It does not encode the task's current term/module — `term` and
   `module` fields carry that, and can change independently of `id`.
-- `evidence.type` is one of: `repository`, `commit`, `tag`, `url`, `markdown`,
-  `file_reference`, `screenshot_reference`, `test_result`, `benchmark`, `demo`,
-  `other`. Pick whichever a mentor can actually open and inspect — never something
-  that only proves a claim was made.
+- `evidence` is a plain array of strings, not a typed object — there's no
+  `evidence.type` enum in the schema or the app. Each string is guidance you write
+  for the apprentice: something a mentor can actually open and inspect (a commit, a
+  specific file, a test run, a resolved conflict), never a claim that only proves
+  something was attempted. What an apprentice actually submits today is one evidence
+  note that should satisfy every string in this list — not a multi-part form with one
+  field per item.
 - `aiPolicy.allowedCapabilities` controls exactly four apprentice-facing task-detail
   modes: `explain`, `hint`, `quiz`, `coach`. Omit one and it shows as *disabled*, not
   hidden, in the app, so omission is a deliberate authoring choice, not an oversight.
@@ -145,12 +148,15 @@ not renaming folders.
 {
   "schemaVersion": 1,
   "id": "software-engineering",
-  "title": "Software Engineering apprenticeship",
-  "description": "A Git-native path from first principles to independent, reviewed work.",
+  "name": "Software Engineering apprenticeship",
+  "philosophy": "A Git-native path from first principles to independent, reviewed work.",
   "sourceLocale": "en",
   "contentLocales": ["en", "tr"]
 }
 ```
+
+The required field is `name`, not `title` — a manifest missing `name` is rejected
+outright and the app won't recognize it as a curriculum at all.
 
 `sourceLocale` and `contentLocales` are about **human** written language for content
 overlays (see below) — never reuse a curriculum's own `languages` field (which lists
@@ -163,11 +169,16 @@ overlays (see below) — never reuse a curriculum's own `languages` field (which
   "schemaVersion": 1,
   "id": "intro-to-toolchains",
   "title": "Introduction to build toolchains",
-  "kind": "article",
   "url": "https://example.com/toolchains",
-  "description": "A short primer on what a toolchain is and why reproducibility matters."
+  "type": "article",
+  "provider": "Example Publisher",
+  "tier": "reference",
+  "topics": ["toolchains"]
 }
 ```
+
+The field is `type`, not `kind` — there's no `description` field in the schema
+either; use `provider`, `tier`, and `topics` to describe a resource instead.
 
 ## `competencies/{id}.json`
 
@@ -188,9 +199,17 @@ overlays (see below) — never reuse a curriculum's own `languages` field (which
 ```
 
 The five official levels are always Foundation → Apprentice → Practitioner →
-Journeyman → Mastery Evidence, in that order. Custom level counts are technically
-allowed by schema, but the app's competency engine assumes exactly five — don't
-diverge without calling it out explicitly.
+Journeyman → Mastery Evidence, in that order — this is a content convention every
+real competency in the reference curricula follows, not a schema requirement.
+Today the app's competency engine doesn't actually read this array at all: it just
+counts, per competency id, how many approved tasks reference it — one approved task
+reaches Apprentice, three reach Practitioner, and that's the entire computed
+signal. The five level descriptions are for a mentor's own qualitative judgment,
+not yet something the app assigns automatically. See
+`apprenti.dev/docs/mentor-competency-growth` and
+`apprenti.dev/docs/creator-designing-competencies` for the full picture, including
+why a competency needs at least three tasks somewhere in the path if you want that
+automatic signal to mean anything.
 
 ## Locale overlays
 

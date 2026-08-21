@@ -35,11 +35,13 @@ shared by id across every curriculum in that working copy.
 
 Every durable object carries `{"schemaVersion": 1, "id": "stable-id"}`.
 
-**`task.json`** — `id`, `term`, `module`, `title`, `objective`, `whyItMatters`,
-`estimatedHours`, `evidence: {type, description}` (type is one of `repository`,
-`commit`, `tag`, `url`, `markdown`, `file_reference`, `screenshot_reference`,
-`test_result`, `benchmark`, `demo`, `other` — pick something a mentor can actually
-open and inspect), `acceptanceCriteria: []`, `aiPolicy: {mode, allowedCapabilities[],
+**`task.json`** — `id`, `term`, `module`, `title`, `objective`, `whyThisMatters`,
+`estimatedHours`, `evidence: []` (a plain array of strings, not a typed object —
+each one is guidance you write describing something a mentor can actually open and
+inspect: a commit, a specific file, a test run, a resolved conflict — never a claim
+only the apprentice could confirm; what's actually submitted today is one evidence
+note meant to satisfy every string here, not a form with one field per item),
+`acceptanceCriteria: []`, `aiPolicy: {mode, allowedCapabilities[],
 solutionGenerationAllowed, disclosureRequired}` (default `solutionGenerationAllowed:
 false` and `disclosureRequired: true` unless a task deliberately overrides),
 `competencies: []`, `resources: []`, `instructionsFile` (usually
@@ -62,7 +64,44 @@ written-language overlays. Never confuse these with a curriculum's own `language
 field, which lists **programming** languages taught (e.g. Python, C).
 
 **`competencies/{id}.json`** — always exactly five levels, in order: Foundation,
-Apprentice, Practitioner, Journeyman, Mastery Evidence.
+Apprentice, Practitioner, Journeyman, Mastery Evidence. Today the app doesn't
+actually read this array to assign a level automatically — it just counts approved
+tasks per competency id (one reaches Apprentice, three reach Practitioner). See
+"Writing quality content" below for what that means for how you design one.
+
+## Writing quality content, not just valid content
+
+The shapes above get a file past the schema; a competency or task that's valid
+JSON can still be pedagogically weak. Before calling one done:
+
+- **Design backward.** Write the competency as a real capability someone either
+  has or doesn't ("can resolve a merge conflict without losing work"), then design
+  the task to demonstrate it — not the other way around.
+- **Write levels with checkable verbs.** "Can complete," "can diagnose," "can
+  defend a trade-off," "can teach" — not "understands" or "knows," which no
+  mentor can verify.
+- **Give a competency at least three tasks somewhere in the path** if you want
+  the app's automatic Apprentice/Practitioner signal to mean anything — a
+  competency referenced by only one task can never reach Practitioner
+  automatically, and probably isn't a real competency, just a note about that
+  task.
+- **Reuse competency ids across curricula deliberately.** Check the shared
+  library before minting a new id for a capability an existing one already
+  measures.
+- **Make every `evidence` string inspectable**, never a claim — "I did it" is not
+  evidence.
+- **Make every `acceptanceCriteria` item checkable, not judged** — "no function
+  exceeds 40 lines" beats "code is clean," because two mentors can't disagree
+  about the former. Pair each criterion with a matching `evidence` string.
+- **Prefer evidence of process over a final answer alone** — incremental commit
+  history, a note about a specific decision made partway through — since a
+  final-answer-only task is the easiest to satisfy with one pasted AI response
+  and no understanding.
+- **Calibrate difficulty to the task's place in `term.json`'s order** — each task
+  should ask for a little more independence than the one before it.
+- **Treat the 20-char reflection / 8-char evidence-note minimums as a floor**,
+  not a quality target — write task instructions that make a substantive answer
+  obvious for that specific task.
 
 ## Locale overlays
 
@@ -123,7 +162,11 @@ competency levels are an assessment scale, not a game). The product's motto is
 
 ## Where to point a human for more
 
-- `apprenti.dev/docs` — full docs hub, including "For Content Creators."
+- `apprenti.dev/docs` — full docs hub, including "For Content Creators" — the
+  "creating quality content for learners" series there (how competencies and
+  evidence connect, designing competencies and levels, writing tasks that
+  produce real evidence) is what the "Writing quality content" section above is
+  condensed from.
 - `apprenti.dev/curricula` — the curricula catalog; the reference curriculum at
   `apprenti-dev/software-engineering-base` (54 tasks, 11 terms) is a real, working
   example to study.

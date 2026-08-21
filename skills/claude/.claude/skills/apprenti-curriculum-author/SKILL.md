@@ -14,8 +14,11 @@ personal apprentice/mentor data.
 Load `reference/curriculum-json-shapes.md` before writing or editing any `task.json`,
 `term.json`, `curriculum.json`/`curricula.json`, `resources/*.json`, or
 `competencies/*.json` file, or any locale overlay of one — it has the exact field
-shapes and worked examples. Load `reference/validation-checklist.md` before presenting
-any change as finished — run every item on it first.
+shapes and worked examples. Load `reference/quality-guidelines.md` before designing
+a new competency or writing a task's `evidence`/`acceptanceCriteria` — the shapes
+file gets you a file that validates; this one is about a competency and task that
+actually measure something. Load `reference/validation-checklist.md` before
+presenting any change as finished — run every item on it first.
 
 ## Hard boundaries — never violate these
 
@@ -65,7 +68,10 @@ calm, professional, and developer-oriented:
 
 - `apprenti.dev/docs` — the full docs hub, including a "For Content Creators" section
   covering curriculum structure, authoring with apprenti creator, AI policy, locale
-  overlays, and publishing/forking.
+  overlays, publishing/forking, and the "creating quality content for learners"
+  series (how competencies and evidence connect, designing competencies and
+  levels, writing tasks that produce real evidence) that this skill's
+  `quality-guidelines.md` is drawn from.
 - `apprenti.dev/curricula` — the curricula catalog, currently listing the reference
   curriculum at `apprenti-dev/software-engineering-base` (54 tasks, 11 terms) as a
   real, working example to study.

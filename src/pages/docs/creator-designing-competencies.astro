@@ -1,0 +1,145 @@
+---
+import DocsLayout from "../../layouts/docs.astro";
+import { Code } from "astro:components";
+
+const weakLevel = `{ "level": 2, "name": "Apprentice", "description": "Understands branching and merging." }`;
+const strongLevel = `{ "level": 2, "name": "Apprentice", "description": "Can complete a scoped branching/merging task with limited guidance and produce evidence of the result." }`;
+---
+
+<DocsLayout title="Designing competencies and levels — apprenti.dev Docs">
+    <div class="space-y-8">
+        <div>
+            <h1 class="text-3xl md:text-4xl font-bold">
+                Designing competencies and levels
+            </h1>
+        </div>
+
+        <div class="prose dark:prose-invert max-w-none space-y-8">
+            <section>
+                <p class="text-muted-foreground leading-relaxed">
+                    The second of three pages on creating quality content
+                    for learners — this one is judgment, not schema. The
+                    format (see
+                    <a href="/docs/creator-competencies-and-evidence" class="text-link hover:underline">How competencies and evidence connect</a>)
+                    will accept a badly designed competency without
+                    complaint. This page is about not writing one.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Start from the capability, not the activity
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Design backward: write the competency first, as a
+                    real-world capability a person either has or doesn't —
+                    "can resolve a merge conflict without losing work," not
+                    "completes the Git module." Only once that's written do
+                    you design tasks that would actually demonstrate it.
+                    Designing forward from "what should the third task in
+                    this module be" tends to produce activities that keep
+                    an apprentice busy without ever pinning down what
+                    they're supposed to walk away able to do.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Write levels apprentices can be told apart by
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    A weak level description restates the competency at a
+                    slightly bigger size. A strong one names an observable
+                    difference in what the person can be handed and trusted
+                    with:
+                </p>
+                <div class="not-prose rounded-lg border border-border/50 overflow-hidden dark:hidden"><Code code={weakLevel} lang="json" theme="github-light" /></div>
+                <div class="not-prose rounded-lg border border-border/50 overflow-hidden hidden dark:block"><Code code={weakLevel} lang="json" theme="github-dark" /></div>
+                <p class="text-muted-foreground leading-relaxed mt-2 mb-2">
+                    versus:
+                </p>
+                <div class="not-prose rounded-lg border border-border/50 overflow-hidden dark:hidden"><Code code={strongLevel} lang="json" theme="github-light" /></div>
+                <div class="not-prose rounded-lg border border-border/50 overflow-hidden hidden dark:block"><Code code={strongLevel} lang="json" theme="github-dark" /></div>
+                <p class="text-muted-foreground leading-relaxed mt-4">
+                    "Understands" and "knows" describe a mental state no
+                    mentor can check. "Can complete," "can diagnose," "can
+                    defend a trade-off," "can teach" describe an action a
+                    mentor can actually watch for in a submission. Write
+                    every level with a verb like that, and the five-level
+                    ladder — Foundation, Apprentice, Practitioner,
+                    Journeyman, Mastery Evidence — should read as five
+                    different things a person can be trusted to do alone,
+                    not five sizes of the same sentence.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Design for the signal the app actually computes
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Today, a competency only automatically reaches
+                    <strong>Apprentice</strong> once one approved task
+                    references it, and <strong>Practitioner</strong> once
+                    three do — see
+                    <a href="/docs/mentor-competency-growth" class="text-link hover:underline">Tracking competency growth</a>.
+                    A competency touched by a single task will never cross
+                    into Practitioner automatically, no matter how good
+                    that task is — there's nothing more for the count to
+                    add up from. If a competency matters enough to name,
+                    give it at least three tasks somewhere across the
+                    curriculum path that plausibly get approved at
+                    different points, so growth is something the apprentice
+                    (and the app) can actually see happen over time rather
+                    than flipping on once and never changing again.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Fewer competencies, reused more
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    A competency that only one task ever references isn't
+                    really a competency — it's a note about that one task,
+                    dressed up as a capability. Prefer a smaller set of
+                    competencies that recur across many tasks and terms
+                    over a large set that each exist for a single task.
+                    Recurrence is what makes "growth" a meaningful word
+                    here: the same competency getting harder tasks pointed
+                    at it over a curriculum's life, not a checklist of
+                    one-off badges.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Reuse ids across curricula deliberately
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Because competency files are shared by id across every
+                    curriculum in a repository, adding a second curriculum
+                    is a good moment to check the existing library before
+                    writing a new file. If your new curriculum genuinely
+                    needs the same "git" capability the first one measures,
+                    reference the existing id — don't create
+                    <strong>"git-basics"</strong> alongside it, which
+                    fragments one real skill into two shallow signals that
+                    never individually reach Practitioner. Only give a
+                    competency a new id when it's actually a different
+                    capability, even if the name would otherwise be
+                    tempting to reuse.
+                </p>
+            </section>
+        </div>
+
+        <div class="mt-8 flex gap-4">
+            <a href="/docs" class="text-sm text-link hover:underline"
+                >← All Docs</a
+            >
+            <a href="/" class="text-sm text-muted-foreground hover:underline"
+                >Back to apprenti.dev</a
+            >
+        </div>
+    </div>
+</DocsLayout>

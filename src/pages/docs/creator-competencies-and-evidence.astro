@@ -1,0 +1,204 @@
+---
+import DocsLayout from "../../layouts/docs.astro";
+import { Code } from "astro:components";
+
+const taskShape = `{
+  "schemaVersion": 1,
+  "id": "y1t1-004",
+  "title": "Rebase a feature branch cleanly",
+  "term": "year-1/term-1",
+  "module": "git",
+  "estimatedHours": 3,
+  "competencies": ["git"],
+  "resources": ["pro-git"],
+  "aiPolicy": { "mode": "guided", "allowedCapabilities": ["explain", "hint", "quiz"] },
+  "evidence": [
+    "Git history showing an interactive rebase, not a squashed rewrite",
+    "A short note explaining one conflict you resolved and why"
+  ],
+  "acceptanceCriteria": [
+    "Feature branch is rebased onto the current main with no merge commits",
+    "At least one resolved conflict is described in the submission note"
+  ]
+}`;
+
+const competencyShape = `{
+  "schemaVersion": 1,
+  "id": "git",
+  "title": "Git",
+  "description": "Git data model, commits, branching, merging...",
+  "levels": [
+    { "level": 1, "name": "Foundation", "description": "..." },
+    { "level": 2, "name": "Apprentice", "description": "..." },
+    { "level": 3, "name": "Practitioner", "description": "..." },
+    { "level": 4, "name": "Journeyman", "description": "..." },
+    { "level": 5, "name": "Mastery Evidence", "description": "..." }
+  ]
+}`;
+---
+
+<DocsLayout title="How competencies and evidence connect — apprenti.dev Docs">
+    <div class="space-y-8">
+        <div>
+            <h1 class="text-3xl md:text-4xl font-bold">
+                How competencies and evidence connect
+            </h1>
+        </div>
+
+        <div class="prose dark:prose-invert max-w-none space-y-8">
+            <section>
+                <p class="text-muted-foreground leading-relaxed">
+                    This is the first of three pages on creating quality
+                    content for learners. This one is the wiring diagram —
+                    which fields on a task point at which other files, and
+                    what each one is actually for.
+                    <a href="/docs/creator-designing-competencies" class="text-link hover:underline">Designing competencies and levels</a>
+                    and
+                    <a href="/docs/creator-writing-quality-tasks" class="text-link hover:underline">Writing tasks that produce real evidence</a>
+                    build on it with the pedagogical judgment calls the
+                    format itself can't make for you.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    A task is a hub, not a container
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    A task never embeds a competency's or resource's
+                    content — it only carries their ids, and the app
+                    resolves each one against the shared library:
+                </p>
+                <div class="not-prose rounded-lg border border-border/50 overflow-hidden dark:hidden"><Code code={taskShape} lang="json" theme="github-light" /></div>
+                <div class="not-prose rounded-lg border border-border/50 overflow-hidden hidden dark:block"><Code code={taskShape} lang="json" theme="github-dark" /></div>
+                <ul class="space-y-1 text-muted-foreground mt-2">
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span
+                        ><strong>competencies</strong> — ids resolved
+                        against <em>competency</em> files. This is the only
+                        place a task declares what it's actually measuring.
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span
+                        ><strong>resources</strong> — ids resolved against
+                        <em>resource</em> files. Reading material, not
+                        measurement.
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span
+                        ><strong>evidence</strong> and
+                        <strong>acceptanceCriteria</strong> — plain strings,
+                        not ids. Nothing else resolves them; they're
+                        instructions to the apprentice and a checklist for
+                        the mentor, written directly on the task.
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span
+                        ><strong>aiPolicy</strong> — a self-contained
+                        object, covered on its own page:
+                        <a href="/docs/creator-ai-policy" class="text-link hover:underline">Setting the AI policy for a task</a>.
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    What a competency file actually is
+                </h2>
+                <div class="not-prose rounded-lg border border-border/50 overflow-hidden dark:hidden"><Code code={competencyShape} lang="json" theme="github-light" /></div>
+                <div class="not-prose rounded-lg border border-border/50 overflow-hidden hidden dark:block"><Code code={competencyShape} lang="json" theme="github-dark" /></div>
+                <p class="text-muted-foreground leading-relaxed">
+                    Every competency carries the same five levels —
+                    Foundation, Apprentice, Practitioner, Journeyman, Mastery
+                    Evidence — each with its own description of what that
+                    level of ability looks like. A task doesn't pick a
+                    level; it just says "this task is evidence toward this
+                    competency," and levels accumulate from how many
+                    approved tasks reference it. See
+                    <a href="/docs/mentor-competency-growth" class="text-link hover:underline">Tracking competency growth</a>
+                    for exactly how that's computed today, and
+                    <a href="/docs/creator-designing-competencies" class="text-link hover:underline">Designing competencies and levels</a>
+                    for how to write level descriptions that actually hold up.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Shared by id, overridable per curriculum
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Resource and competency files live once, shared by
+                    every curriculum in a working copy — see
+                    <a href="/docs/creator-curriculum-structure" class="text-link hover:underline">Curriculum structure basics</a>.
+                    That sharing is resolved by id, not by convention: when
+                    a task in a multi-curriculum repository references
+                    <strong>"git"</strong>, the app looks first for a file
+                    with that id inside that curriculum's own folder, and
+                    only falls back to the shared root file if none exists
+                    there. Use that to give one curriculum a genuinely
+                    different take on a shared competency; don't use it to
+                    fork a copy you intend to keep identical — that's what
+                    the shared file is for.
+                </p>
+                <p class="text-muted-foreground leading-relaxed mt-4">
+                    A shared id is a promise: every curriculum in that
+                    repository that references <strong>"git"</strong> is
+                    claiming the same real-world capability, measured the
+                    same way. If two curricula's ideas of "git" genuinely
+                    diverge, give one of them its own id rather than
+                    quietly overriding the shared meaning.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    What a submission's evidence actually looks like
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    A task's <strong>evidence</strong> field is a set of
+                    expectations you write for the apprentice — what you
+                    want them to be able to point at. What they actually
+                    submit is simpler: an evidence note attached to the
+                    submission alongside their reflection. Write your
+                    <strong>evidence</strong> array as the checklist that
+                    note should satisfy, not as a form with separate fields
+                    for each item — today's submission flow is one honest
+                    note, not a multi-part evidence picker.
+                </p>
+                <p class="text-muted-foreground leading-relaxed">
+                    Keep <strong>evidence</strong> and
+                    <strong>acceptanceCriteria</strong> pointed at each
+                    other: every acceptance criterion should be checkable
+                    from something the evidence list actually asks the
+                    apprentice to produce. An acceptance criterion with no
+                    matching evidence expectation is a criterion your
+                    mentor can't actually verify.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Translatable, but not the ids
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Evidence expectations, acceptance criteria, and a
+                    competency's level descriptions are all translatable
+                    overlay fields. Competency and resource ids never are —
+                    see
+                    <a href="/docs/creator-locale-overlays" class="text-link hover:underline">Locale overlays</a>
+                    for the full allow-list and why identity fields stay
+                    locked.
+                </p>
+            </section>
+        </div>
+
+        <div class="mt-8 flex gap-4">
+            <a href="/docs" class="text-sm text-link hover:underline"
+                >← All Docs</a
+            >
+            <a href="/" class="text-sm text-muted-foreground hover:underline"
+                >Back to apprenti.dev</a
+            >
+        </div>
+    </div>
+</DocsLayout>

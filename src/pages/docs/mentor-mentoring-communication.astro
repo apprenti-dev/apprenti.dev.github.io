@@ -13,90 +13,39 @@ import DocsLayout from "../../layouts/docs.astro";
         <div class="prose dark:prose-invert max-w-none space-y-8">
             <section>
                 <p class="text-muted-foreground leading-relaxed">
-                    Beyond reviewing submissions, mentors and apprentices
-                    need to talk about the work itself — a stuck point, a
-                    piece of feedback, a request for a closer look at some
-                    code. apprenti.dev handles this the same way it handles
-                    everything else: no server, Git as the record, encrypted
-                    at the application level so privacy doesn't depend
-                    solely on the repository being private.
+                    Today, mentoring conversation happens through the
+                    review cycle itself, not through a separate messaging
+                    feature. This page covers what that actually looks
+                    like now, and — clearly separated — a fuller
+                    communication layer that's proposed but not yet built.
                 </p>
             </section>
 
             <section>
                 <h2 class="text-xl font-semibold mt-8 mb-3">
-                    How it stays serverless and private
+                    How you talk to your apprentice today
                 </h2>
                 <p class="text-muted-foreground leading-relaxed">
-                    Messages are written as immutable objects on a dedicated
-                    communication branch, kept separate from curriculum
-                    history. Nothing is transmitted, though,
-                    unless every one of these holds:
+                    When you request a revision on a submission, your
+                    comment is required and attaches to that task —
+                    your apprentice sees it, makes the change, and
+                    resubmits. That round trip, and its full history, is
+                    the whole communication channel the app provides
+                    today. See
+                    <a href="/docs/mentor-reviewing-submissions" class="text-link hover:underline">Reviewing submissions</a>
+                    for the mentor side of that, and
+                    <a href="/docs/apprentice-submitting-evidence" class="text-link hover:underline">Submitting evidence for review</a>
+                    for the apprentice side.
                 </p>
-                <ul class="space-y-1 text-muted-foreground mt-2">
-                    <li class="flex items-start gap-2">
-                        <span class="text-link mt-1">•</span>The
-                        repository's privacy has been <strong
-                            >positively verified</strong
-                        > as private (not just assumed) — public, internal,
-                        and "unknown" all count as <em>not</em> private
-                    </li>
-                    <li class="flex items-start gap-2">
-                        <span class="text-link mt-1">•</span>Your identity
-                        and membership are valid
-                    </li>
-                    <li class="flex items-start gap-2">
-                        <span class="text-link mt-1">•</span>The recipient's
-                        encryption key is available
-                    </li>
-                    <li class="flex items-start gap-2">
-                        <span class="text-link mt-1">•</span>The message's
-                        signature validates
-                    </li>
-                </ul>
                 <p class="text-muted-foreground leading-relaxed mt-4">
-                    If a repository's visibility ever changes to public
-                    mid-project, sync stops immediately: your local drafts
-                    and history stay available, but nothing more is pushed
-                    or pulled until it's private again.
+                    There's no free-standing thread, chat, or help-request
+                    button yet — if you and your apprentice need to talk
+                    about something that isn't tied to a specific
+                    submission, that conversation happens wherever you
+                    already talk outside the app. Nothing here is encrypted
+                    beyond whatever protection your Git host and its
+                    transport already provide.
                 </p>
-            </section>
-
-            <section>
-                <h2 class="text-xl font-semibold mt-8 mb-3">
-                    What you can do
-                </h2>
-                <ul class="space-y-1 text-muted-foreground mt-2">
-                    <li class="flex items-start gap-2">
-                        <span class="text-link mt-1">•</span><strong
-                            >Threads</strong
-                        > — grouped conversations, tied to a task, a commit, a
-                        branch, or a file when relevant
-                    </li>
-                    <li class="flex items-start gap-2">
-                        <span class="text-link mt-1">•</span><strong
-                            >Feedback</strong
-                        > — structured mentor feedback with an optional category
-                        (architecture, correctness, readability, testing, performance,
-                        security, learning) and severity
-                    </li>
-                    <li class="flex items-start gap-2">
-                        <span class="text-link mt-1">•</span><strong
-                            >Help requests</strong
-                        > — an apprentice can send <strong
-                            >I need help</strong
-                        > with a free-text description and automatically attach
-                        the current task, branch, and commit, so you get the context
-                        without them retyping it
-                    </li>
-                    <li class="flex items-start gap-2">
-                        <span class="text-link mt-1">•</span><strong
-                            >Ask Mentor about…</strong
-                        > actions surface throughout the app — about a task, a
-                        file, a selection of code, or a commit — so a question
-                        always arrives with the right context already attached
-                    </li>
-                </ul>
             </section>
 
             <section>
@@ -104,26 +53,63 @@ import DocsLayout from "../../layouts/docs.astro";
                     Formal code review stays where it belongs
                 </h2>
                 <p class="text-muted-foreground leading-relaxed">
-                    apprenti.dev does not reinvent Pull Requests or Merge
-                    Requests. <strong>Request code review</strong> opens a
-                    real PR on GitHub or a real MR on GitLab and links it
-                    into the conversation — the mentorship layer is for the
-                    surrounding conversation, not a competing review tool.
+                    This part is unrelated to the proposal below and
+                    isn't changing: apprenti.dev doesn't reinvent Pull
+                    Requests or Merge Requests. If you want a real code
+                    review, open one directly on GitHub or GitLab the way
+                    you always would — the app's review flow is about
+                    checking evidence against a task's acceptance
+                    criteria, not about replacing your Git host's own
+                    review tools.
                 </p>
             </section>
 
             <section>
                 <h2 class="text-xl font-semibold mt-8 mb-3">
-                    Working offline
+                    Proposed: a fuller mentoring & communication layer
                 </h2>
                 <p class="text-muted-foreground leading-relaxed">
-                    Reading history, drafting messages, and sending a help
-                    request all work with no network. A draft is only
-                    queued to sync once the required encryption material is
-                    in place; nothing is ever pushed before the repository's
-                    privacy is (re-)verified, including a second check
-                    immediately before the final push, in case something
-                    changed mid-sync.
+                    A richer, Git-native communication layer has a written
+                    design — encrypted messages committed as immutable
+                    objects on a dedicated branch, gated so nothing syncs
+                    unless the repository's privacy is actually verified
+                    (not just assumed) — but it isn't scheduled into the
+                    app's build roadmap yet and none of it exists in the
+                    app today. Worth knowing the direction anyway:
+                </p>
+                <ul class="space-y-1 text-muted-foreground mt-2">
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span
+                        ><strong>Threads</strong> — grouped conversations
+                        tied to a task, commit, branch, or file, open to
+                        either of you.
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span
+                        ><strong>Structured feedback</strong> — mentor-authored,
+                        with a category (architecture, correctness,
+                        readability, testing, performance, security,
+                        learning) and a severity, separate from a formal
+                        review decision.
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span
+                        ><strong>Help requests</strong> — apprentice-initiated,
+                        a free-text "I need help" that auto-attaches the
+                        current task, branch, and commit so you get context
+                        without them retyping it.
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span
+                        ><strong>"Ask Mentor about…"</strong> — apprentice-initiated
+                        questions surfaced with context already attached,
+                        from wherever they come up in the app.
+                    </li>
+                </ul>
+                <p class="text-muted-foreground leading-relaxed mt-4">
+                    Treat all of this as a proposal, not a preview — there's
+                    no committed date, and it could still change
+                    significantly before (or if) it's built.
                 </p>
             </section>
         </div>

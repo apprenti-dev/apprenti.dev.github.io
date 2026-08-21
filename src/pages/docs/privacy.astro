@@ -168,18 +168,22 @@ import DocsLayout from "../../layouts/docs.astro";
                     5. Mentor communication
                 </h2>
                 <p class="text-muted-foreground leading-relaxed">
-                    Messages between an apprentice and a mentor are stored as
-                    Git objects in the shared repository, the same way other
-                    apprenticeship data is — there is no chat server and no
-                    third party relaying messages. Because a private
-                    repository setting alone isn't a guarantee (visibility can
-                    change, or a fork can be shared publicly), message content
-                    is also protected with application-level encryption,
-                    independent of the repository's own access controls.
-                    Synchronizing communication is only attempted once the
-                    repository's privacy has been positively verified; if that
-                    can't be confirmed, or you're offline, messages stay local
-                    until it's safe to sync.
+                    Today, mentor and apprentice communication happens
+                    through review comments on a submission or revision
+                    request. Like everything else in apprenti.dev, that
+                    content is stored as an ordinary Git object in the
+                    shared repository — there is no chat server and no
+                    third party relaying it — with no additional,
+                    application-level encryption layered on top. Its
+                    confidentiality depends entirely on your repository's
+                    own visibility and access controls; see
+                    <a href="/docs/apprentice-private-forks" class="text-link hover:underline">Keeping your fork private</a>
+                    if you need that to actually be private rather than
+                    just assumed to be. A separate, encrypted messaging
+                    layer with its own privacy verification is a written
+                    proposal, not something built or shipping yet — see
+                    <a href="/docs/mentor-mentoring-communication" class="text-link hover:underline">Mentoring & communication</a>
+                    for what that would add if it's ever built.
                 </p>
             </section>
 

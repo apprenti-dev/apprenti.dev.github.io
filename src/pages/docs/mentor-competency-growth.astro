@@ -1,5 +1,20 @@
 ---
 import DocsLayout from "../../layouts/docs.astro";
+import { Code } from "astro:components";
+
+const competencyShape = `{
+  "schemaVersion": 1,
+  "id": "git",
+  "title": "Git",
+  "description": "Git data model, commits, branching, merging...",
+  "levels": [
+    { "level": 1, "name": "Foundation", "description": "..." },
+    { "level": 2, "name": "Apprentice", "description": "..." },
+    { "level": 3, "name": "Practitioner", "description": "..." },
+    { "level": 4, "name": "Journeyman", "description": "..." },
+    { "level": 5, "name": "Mastery Evidence", "description": "..." }
+  ]
+}`;
 ---
 
 <DocsLayout title="Tracking competency growth — apprenti.dev Docs">
@@ -13,78 +28,89 @@ import DocsLayout from "../../layouts/docs.astro";
         <div class="prose dark:prose-invert max-w-none space-y-8">
             <section>
                 <p class="text-muted-foreground leading-relaxed">
-                    Competencies in apprenti.dev are not a self-rated
-                    progress bar. They exist to answer one question
-                    defensibly: <em
+                    Competencies exist to answer one question defensibly:
+                    <em
                         >what can this apprentice actually do, and what's the
                         evidence?</em
-                    >
-                </p>
-            </section>
-
-            <section>
-                <h2 class="text-xl font-semibold mt-8 mb-3">Levels</h2>
-                <p class="text-muted-foreground leading-relaxed">
-                    Every competency has five levels:
-                </p>
-                <ul class="space-y-1 text-muted-foreground mt-2">
-                    <li class="flex items-start gap-2">
-                        <span class="text-link mt-1">•</span>Foundation
-                    </li>
-                    <li class="flex items-start gap-2">
-                        <span class="text-link mt-1">•</span>Apprentice
-                    </li>
-                    <li class="flex items-start gap-2">
-                        <span class="text-link mt-1">•</span>Practitioner
-                    </li>
-                    <li class="flex items-start gap-2">
-                        <span class="text-link mt-1">•</span>Journeyman
-                    </li>
-                    <li class="flex items-start gap-2">
-                        <span class="text-link mt-1">•</span>Mastery Evidence
-                    </li>
-                </ul>
-            </section>
-
-            <section>
-                <h2 class="text-xl font-semibold mt-8 mb-3">
-                    Where evidence comes from
-                </h2>
-                <p class="text-muted-foreground leading-relaxed">
-                    Only <strong>approved</strong> tasks and submissions
-                    count as evidence toward a competency. Work that's still
-                    in progress, submitted-but-not-yet-reviewed, or sent
-                    back for revision does not contribute — an apprentice
-                    cannot self-award progress, and neither can an
-                    unreviewed submission.
+                    > This page describes what the app actually computes
+                    today, not the fuller design it's still growing into —
+                    see <a href="#roadmap" class="text-link hover:underline">what's coming</a>
+                    for that.
                 </p>
             </section>
 
             <section>
                 <h2 class="text-xl font-semibold mt-8 mb-3">
-                    What you can do as a mentor
+                    A competency is a five-level ladder
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Every competency a curriculum defines carries the same
+                    five named levels, each with its own description:
+                    Foundation, Apprentice, Practitioner, Journeyman, and
+                    Mastery Evidence.
+                </p>
+                <div class="not-prose rounded-lg border border-border/50 overflow-hidden dark:hidden"><Code code={competencyShape} lang="json" theme="github-light" /></div>
+                <div class="not-prose rounded-lg border border-border/50 overflow-hidden hidden dark:block"><Code code={competencyShape} lang="json" theme="github-dark" /></div>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    What the app computes today
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Only <strong>approved</strong> tasks and submissions count
+                    toward a competency — work still in progress,
+                    submitted-but-not-yet-reviewed, or sent back for revision
+                    contributes nothing. An apprentice cannot self-award
+                    progress, and neither can an unreviewed submission.
+                </p>
+                <p class="text-muted-foreground leading-relaxed mt-4">
+                    From there, today's rule is deliberately simple: for
+                    every task an apprentice has had <strong>approved</strong>,
+                    the app looks at which competencies that task declares
+                    and counts it once toward each. A competency reaches
+                    <strong>Apprentice</strong> once at least one approved
+                    task counts toward it, and <strong>Practitioner</strong>
+                    once at least three do. That's the whole rule — Foundation,
+                    Journeyman, and Mastery Evidence are written as
+                    descriptions of what real growth looks like, for a
+                    mentor to judge by eye, but the app doesn't assign them
+                    automatically yet.
+                </p>
+                <p class="text-muted-foreground leading-relaxed mt-4">
+                    This claim is <strong>computed fresh every time</strong>,
+                    not stored anywhere as its own record. There's no
+                    separate competency ledger file to fall out of sync —
+                    the claim is only ever a live read of whichever
+                    submissions and reviews are actually approved right now
+                    in this repository.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    What you can do as a mentor, today
                 </h2>
                 <ul class="space-y-1 text-muted-foreground mt-2">
                     <li class="flex items-start gap-2">
-                        <span class="text-link mt-1">•</span>Open the
-                        evidence list behind any competency and trace every
-                        claim back to a specific approved task
+                        <span class="text-link mt-1">•</span>See which
+                        competencies a task targets, right on the task
+                        itself, before you review it.
                     </li>
                     <li class="flex items-start gap-2">
-                        <span class="text-link mt-1">•</span>Assign or
-                        change a competency level yourself, with the change
-                        recorded durably (and its history preserved) in Git
+                        <span class="text-link mt-1">•</span>Trust that every
+                        task counted toward Apprentice or Practitioner
+                        traces back to a submission you (or a prior mentor)
+                        actually approved — see
+                        <a href="/docs/mentor-reviewing-submissions" class="text-link hover:underline">Reviewing submissions</a>.
                     </li>
                     <li class="flex items-start gap-2">
-                        <span class="text-link mt-1">•</span>Review an
-                        AI-suggested level if one is offered — it is always
-                        clearly labeled non-authoritative and requires your
-                        approval before it means anything
-                    </li>
-                    <li class="flex items-start gap-2">
-                        <span class="text-link mt-1">•</span>Use gap
-                        detection and suggested next tasks to steer what an
-                        apprentice should work on next
+                        <span class="text-link mt-1">•</span>Use a
+                        competency's own level descriptions as your own
+                        rubric when you want to say more than "Apprentice"
+                        or "Practitioner" — that judgment is currently
+                        yours to make and record in your review comments,
+                        not something the app tracks for you yet.
                     </li>
                 </ul>
             </section>
@@ -94,10 +120,49 @@ import DocsLayout from "../../layouts/docs.astro";
                     The guarantee
                 </h2>
                 <p class="text-muted-foreground leading-relaxed">
-                    Every competency claim a mentor or apprentice can see
-                    must trace back to approved evidence that a mentor can
-                    open and inspect. If it can't, it isn't real progress
-                    yet — it's a suggestion.
+                    Every competency claim you can see traces back to
+                    approved evidence you can open and inspect. If it can't,
+                    it isn't real progress yet — it's a suggestion.
+                </p>
+            </section>
+
+            <section id="roadmap">
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    What's coming
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    A fuller competency engine is planned but not yet
+                    built. It's worth knowing the direction, so you don't
+                    mistake today's simple heuristic for the finished
+                    design:
+                </p>
+                <ul class="space-y-1 text-muted-foreground mt-2">
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>A competency
+                        map you can open and drill into, with the full
+                        evidence list behind every level.
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>Assigning or
+                        changing a competency level yourself, with the
+                        change recorded durably in Git.
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>An
+                        AI-suggested level, always clearly labeled
+                        non-authoritative and requiring your approval
+                        before it means anything.
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>Gap detection
+                        and suggested next tasks, to steer what an
+                        apprentice should work on next.
+                    </li>
+                </ul>
+                <p class="text-muted-foreground leading-relaxed mt-4">
+                    None of this changes the guarantee above — it only adds
+                    more ways to see and act on evidence that's already
+                    there.
                 </p>
             </section>
         </div>

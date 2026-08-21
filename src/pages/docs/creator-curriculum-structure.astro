@@ -110,6 +110,20 @@ const multiCurriculumTree = `/
                     library. Duplicating the same content in
                     both places is a bug, not a feature.
                 </p>
+                <p class="text-muted-foreground leading-relaxed mt-4">
+                    This also changes where an apprentice's or mentor's own
+                    personal-data folder lives. For a repository with a
+                    single root manifest, it's the folder you'd expect —
+                    the apprentice's own folder, the mentor's own folder.
+                    For a nested curriculum inside a multi-curriculum
+                    repository, both get an extra segment identifying
+                    which curriculum the data belongs to, so the same
+                    apprentice working through two curricula in one fork
+                    doesn't mix their task state between them. Their
+                    profile is the one exception — it lives once, at the
+                    person level, shared across every curriculum they work
+                    through in that fork, not duplicated per curriculum.
+                </p>
             </section>
 
             <section>

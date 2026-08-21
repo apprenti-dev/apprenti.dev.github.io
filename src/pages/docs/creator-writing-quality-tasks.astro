@@ -1,0 +1,154 @@
+---
+import DocsLayout from "../../layouts/docs.astro";
+import { Code } from "astro:components";
+
+const vagueCriteria = `"acceptanceCriteria": [
+  "Code is clean and well organized",
+  "Tests pass"
+]`;
+const checkableCriteria = `"acceptanceCriteria": [
+  "No function in the submitted diff exceeds 40 lines",
+  "'npm test' passes locally with zero failing tests, shown in the evidence note",
+  "At least one test added in this task fails against the pre-task code"
+]`;
+---
+
+<DocsLayout title="Writing tasks that produce real evidence — apprenti.dev Docs">
+    <div class="space-y-8">
+        <div>
+            <h1 class="text-3xl md:text-4xl font-bold">
+                Writing tasks that produce real evidence
+            </h1>
+        </div>
+
+        <div class="prose dark:prose-invert max-w-none space-y-8">
+            <section>
+                <p class="text-muted-foreground leading-relaxed">
+                    The last of three pages on creating quality content for
+                    learners. You know what capability you're measuring
+                    (<a href="/docs/creator-designing-competencies" class="text-link hover:underline">Designing competencies and levels</a>)
+                    and how a task's fields connect to it
+                    (<a href="/docs/creator-competencies-and-evidence" class="text-link hover:underline">How competencies and evidence connect</a>).
+                    This page is about writing the one task in front of
+                    you so it actually measures that, for whichever mentor
+                    happens to review it.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    "I did it" is not evidence
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    That's the line apprentices see in the app, and it's
+                    the standard to author against too. Every
+                    <strong>evidence</strong> expectation you write should
+                    describe something a mentor can actually open — a
+                    commit, a specific file, a test run, a resolved
+                    conflict — never a claim the apprentice makes about
+                    their own work. If the only way to check an evidence
+                    expectation is to ask the apprentice and take their
+                    word for it, rewrite it.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Acceptance criteria should be checkable, not judged
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    A criterion your mentor has to <em>form an opinion</em>
+                    about is a criterion two different mentors will decide
+                    differently on:
+                </p>
+                <div class="not-prose rounded-lg border border-border/50 overflow-hidden dark:hidden"><Code code={vagueCriteria} lang="json" theme="github-light" /></div>
+                <div class="not-prose rounded-lg border border-border/50 overflow-hidden hidden dark:block"><Code code={vagueCriteria} lang="json" theme="github-dark" /></div>
+                <p class="text-muted-foreground leading-relaxed mt-2 mb-2">
+                    versus:
+                </p>
+                <div class="not-prose rounded-lg border border-border/50 overflow-hidden dark:hidden"><Code code={checkableCriteria} lang="json" theme="github-light" /></div>
+                <div class="not-prose rounded-lg border border-border/50 overflow-hidden hidden dark:block"><Code code={checkableCriteria} lang="json" theme="github-dark" /></div>
+                <p class="text-muted-foreground leading-relaxed mt-4">
+                    Ask, for every criterion you write: could two mentors
+                    reading the same submission disagree about whether it's
+                    met? If yes, it isn't a criterion yet — it's a
+                    reminder to write one. And keep every criterion paired
+                    with something in <strong>evidence</strong> that would
+                    actually let a mentor check it; a criterion nothing in
+                    the evidence list points at is unverifiable by
+                    construction.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Ask for process, not just a final answer
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    A task whose only evidence is a finished file or a
+                    final answer is the easiest kind to satisfy with a
+                    single pasted AI response and zero understanding — and
+                    the hardest for a mentor to tell apart from genuine
+                    work after the fact. Ask for something that only
+                    exists if the work actually happened over time: commit
+                    history showing incremental progress rather than one
+                    commit, a note about a specific decision or conflict
+                    encountered partway through, a reflection that answers
+                    what was tried and what's still unclear rather than
+                    just what the final state is. None of this requires
+                    banning AI — pair it with a deliberate choice on
+                    <a href="/docs/creator-ai-policy" class="text-link hover:underline">the task's AI policy</a>;
+                    it just means the evidence you ask for should be hard
+                    to fake even when AI assistance was genuinely used and
+                    disclosed.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Calibrate difficulty to its place in the path
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    A term's <strong>task order</strong> is the academic
+                    path an apprentice actually walks — see
+                    <a href="/docs/creator-curriculum-structure" class="text-link hover:underline">Curriculum structure basics</a>.
+                    Use that order deliberately: each task should ask for
+                    a little more independence or ambiguity than the one
+                    before it, not repeat the same difficulty under a new
+                    name or jump straight from guided to unguided. A term
+                    that's flat until one disproportionately hard task at
+                    the end teaches an apprentice to dread endings, not to
+                    build skill steadily.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    The app's minimums are a floor, not a target
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Submission is blocked below a 20-character reflection
+                    and an 8-character evidence note — see
+                    <a href="/docs/apprentice-submitting-evidence" class="text-link hover:underline">Submitting evidence for review</a>.
+                    That floor exists to stop an empty submission, not to
+                    define what a good one looks like. Write task
+                    instructions that make the bar for a substantive
+                    reflection obvious for that specific task — what
+                    question you actually want answered — rather than
+                    relying on apprentices to infer quality from a
+                    character-count minimum that would technically accept
+                    "did it, works fine."
+                </p>
+            </section>
+        </div>
+
+        <div class="mt-8 flex gap-4">
+            <a href="/docs" class="text-sm text-link hover:underline"
+                >← All Docs</a
+            >
+            <a href="/" class="text-sm text-muted-foreground hover:underline"
+                >Back to apprenti.dev</a
+            >
+        </div>
+    </div>
+</DocsLayout>

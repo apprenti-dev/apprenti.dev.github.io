@@ -1,0 +1,67 @@
+name: Curriculum listing request
+description: Ask to have your curriculum repository listed in the apprenti.dev curricula catalog.
+title: "[Curriculum listing] "
+labels:
+  - curriculum-listing
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for building a curriculum for apprenti.dev. Before submitting, please read the
+        listing rules on the [curricula catalog page](https://apprenti.dev/curricula#listing-rules).
+        A request that doesn't meet them will be closed and you're welcome to reopen once it does.
+
+  - type: input
+    id: repo-url
+    attributes:
+      label: Repository URL
+      description: The full GitHub or GitLab URL of your curriculum repository.
+      placeholder: https://github.com/your-org/your-curriculum
+    validations:
+      required: true
+
+  - type: input
+    id: curriculum-name
+    attributes:
+      label: Curriculum name
+      description: The "name" field from your curriculum.json (or each one, if your repo holds more than one).
+      placeholder: "Example: My Org Frontend Apprenticeship"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Short description
+      description: One or two sentences on what this curriculum teaches and who it's for.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: rules
+    attributes:
+      label: Listing rules
+      description: All of these must be true. We will only list public repositories.
+      options:
+        - label: This repository is public — apprenti.dev will only list public repositories.
+          required: true
+        - label: It contains a valid curriculum.json (or is listed in a root curricula.json for a multi-curriculum repo) that validates against the apprenti.dev curriculum schema.
+          required: true
+        - label: It does not contain any learners/ or mentors/ folders, or any other personal apprentice/mentor data — a listed curriculum is shareable content only.
+          required: true
+        - label: It states a license or usage terms, so others know whether and how they can fork it.
+          required: true
+        - label: It does not use apprenti.dev's name or branding in a way that implies official endorsement beyond being listed in this catalog.
+          required: true
+
+  - type: textarea
+    id: references-note
+    attributes:
+      label: References (optional)
+      description: Not required, but if your curriculum's resources are openly accessible (no paywall) rather than tied to a specific commercial product, mention that here — it's the same standard the reference curricula follow.
+
+  - type: markdown
+    attributes:
+      value: |
+        Submitting this issue doesn't guarantee a listing. The apprenti.dev maintainers review each
+        request and may ask follow-up questions before adding it to the catalog.

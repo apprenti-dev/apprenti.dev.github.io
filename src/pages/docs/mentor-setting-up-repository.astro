@@ -58,16 +58,15 @@ import DocsLayout from "../../layouts/docs.astro";
                 </p>
                 <ul class="space-y-1 text-muted-foreground mt-2">
                     <li class="flex items-start gap-2">
-                        <span class="text-link mt-1">•</span><code
-                            >learners/&lt;id&gt;/</code
-                        > — belongs to the apprentice — profile, task state, reflection,
-                        evidence, notes, work log, submissions
+                        <span class="text-link mt-1">•</span>The
+                        apprentice's own personal folder — profile, task
+                        state, reflection, evidence, notes, work log,
+                        submissions.
                     </li>
                     <li class="flex items-start gap-2">
-                        <span class="text-link mt-1">•</span><code
-                            >mentors/&lt;id&gt;/</code
-                        > — belongs to the mentor — reviews, and eventually mentor
-                        notes
+                        <span class="text-link mt-1">•</span>The mentor's
+                        own personal folder — reviews, and eventually
+                        mentor notes.
                     </li>
                 </ul>
                 <p class="text-muted-foreground leading-relaxed mt-4">
@@ -75,6 +74,18 @@ import DocsLayout from "../../layouts/docs.astro";
                     curriculum content itself, resources, competencies,
                     schemas, and the curriculum's own docs folder — is
                     shareable curriculum content, not personal data.
+                </p>
+                <p class="text-muted-foreground leading-relaxed mt-4">
+                    "Personal" here means <em>ownership</em> — the app never
+                    writes an apprentice's data into a mentor's folder or
+                    the reverse. It does not by itself mean the repository
+                    is confidential: if you're on GitHub and got this
+                    repository by forking a public one, that fork — and
+                    your personal folder inside it — is public too, by a
+                    GitHub platform rule apprenti.dev has no control over.
+                    See
+                    <a href="/docs/apprentice-private-forks" class="text-link hover:underline">Keeping your fork private</a>
+                    if that's not what you want.
                 </p>
                 <p class="text-muted-foreground leading-relaxed mt-4">
                     The app never publishes a fork for you, and it never

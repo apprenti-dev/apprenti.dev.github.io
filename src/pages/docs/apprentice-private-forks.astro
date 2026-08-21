@@ -1,0 +1,115 @@
+---
+import DocsLayout from "../../layouts/docs.astro";
+import { Code } from "astro:components";
+
+const githubSteps = `git clone https://github.com/apprenti-dev/software-engineering-base.git
+cd software-engineering-base
+
+# Point the clone at your new EMPTY private repo instead of the original
+git remote rename origin upstream
+git remote add origin https://github.com/your-username/your-private-fork.git
+git push -u origin main
+
+# Later, to pull curriculum updates:
+git fetch upstream
+git merge upstream/main`;
+---
+
+<DocsLayout title="Keeping your fork private — apprenti.dev Docs">
+    <div class="space-y-8">
+        <div>
+            <h1 class="text-3xl md:text-4xl font-bold">
+                Keeping your fork private
+            </h1>
+        </div>
+
+        <div class="prose dark:prose-invert max-w-none space-y-8">
+            <section>
+                <p class="text-muted-foreground leading-relaxed">
+                    apprenti.dev's own personal-data folders (an apprentice's
+                    reflections and submissions, a mentor's reviews) are only
+                    as private as the repository they live in. This page is
+                    for anyone — apprentice, mentor, or content creator —
+                    who wants that repository to actually be private, on
+                    either GitHub or GitLab.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    GitHub: a fork of a public repository stays public
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    This is a GitHub platform rule, not something apprenti.dev
+                    controls or can work around: every fork of a public
+                    repository is itself public, and that can't be changed
+                    afterward — not by you, not by an organization owner. If
+                    you use GitHub's <strong>Fork</strong> button on a public
+                    curriculum repository, the copy you get is public too,
+                    and so is everything you commit into it afterward,
+                    including your personal folder.
+                </p>
+                <p class="text-muted-foreground leading-relaxed">
+                    The practical workaround is to skip GitHub's Fork feature
+                    entirely and create a private repository yourself:
+                </p>
+                <ol class="space-y-2 text-muted-foreground mt-2 list-decimal pl-5">
+                    <li>Clone the public curriculum repository to your device.</li>
+                    <li>On GitHub, create a new repository and set its visibility to <strong>Private</strong> — use <strong>New repository</strong>, not Fork, and leave it empty (no README, no license file).</li>
+                    <li>Point your local clone at that new private repository instead of the original, and push everything to it.</li>
+                    <li>You can still pull future curriculum updates from the original — just keep it as a second remote.</li>
+                </ol>
+                <div class="not-prose rounded-lg border border-border/50 overflow-hidden dark:hidden"><Code code={githubSteps} lang="bash" theme="github-light" /></div>
+                <div class="not-prose rounded-lg border border-border/50 overflow-hidden hidden dark:block"><Code code={githubSteps} lang="bash" theme="github-dark" /></div>
+                <p class="text-muted-foreground leading-relaxed">
+                    This isn't a GitHub "fork" in the platform sense anymore
+                    — no fork-network badge, no built-in pull-request link
+                    back to the original — but apprenti.dev doesn't need
+                    either of those. The app only needs a Git URL to clone
+                    and sync with; it works identically either way.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    GitLab: you can choose your fork's visibility
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    GitLab doesn't have this restriction. When you fork a
+                    project on GitLab, the fork-creation screen includes its
+                    own <strong>Visibility level</strong> setting — set it
+                    to <strong>Private</strong> right there, and your fork
+                    (and everything you add to it) stays private from the
+                    start. No workaround needed; GitLab's own Fork feature
+                    already does what the GitHub workaround above achieves
+                    manually.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Either way, apprenti.dev doesn't know or care
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Whether your working copy is a real GitLab fork, a
+                    manually created private GitHub repository, or a fully
+                    local folder with no remote at all, the app opens it the
+                    same way — <strong>Clone repository</strong> with the
+                    URL, or <strong>Open local repository</strong> for a
+                    folder already on your device. Visibility is entirely a
+                    decision you make on the hosting platform, before you
+                    ever open the app.
+                </p>
+            </section>
+        </div>
+
+        <div class="mt-8 flex gap-4">
+            <a href="/docs" class="text-sm text-link hover:underline"
+                >← All Docs</a
+            >
+            <a href="/" class="text-sm text-muted-foreground hover:underline"
+                >Back to apprenti.dev</a
+            >
+        </div>
+    </div>
+</DocsLayout>

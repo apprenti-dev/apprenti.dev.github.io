@@ -1,0 +1,275 @@
+---
+import DocsLayout from "../../layouts/docs.astro";
+import { Code } from "astro:components";
+
+const catalogExample = `{
+  "schemaVersion": 1,
+  "source": "google_drive",
+  "models": [
+    {
+      "id": "llama-3.2-1b-instruct-q4",
+      "displayName": "Llama 3.2 1B Instruct Q4",
+      "driveFileId": "REPLACE_WHEN_UPLOADED",
+      "fileName": "Llama-3.2-1B-Instruct-Q4_K_M.gguf",
+      "sha256": "",
+      "sizeBytes": 0,
+      "quantization": "Q4_K_M",
+      "contextWindow": 4096,
+      "recommended": true
+    }
+  ]
+}`;
+
+const runCommand = `.\\New-GgufCatalog.ps1 -Path D:\\Drive\\apprenti-gguf`;
+---
+
+<DocsLayout title="Hosting local AI models — apprenti.dev Docs">
+    <div class="space-y-8">
+        <div>
+            <h1 class="text-3xl md:text-4xl font-bold">
+                Hosting local AI models
+            </h1>
+        </div>
+
+        <div class="prose dark:prose-invert max-w-none space-y-8">
+            <section>
+                <p class="text-muted-foreground leading-relaxed">
+                    apprenti.dev's AI features can run entirely offline, on a
+                    local model, with no cloud provider and no per-token
+                    cost. This page is for whoever runs a curriculum fork and
+                    wants to offer that to their apprentices: how model
+                    hosting works, how to build the catalog the app reads,
+                    and which models are a reasonable fit on a phone versus a
+                    desktop.
+                </p>
+                <p class="text-muted-foreground leading-relaxed">
+                    Local model weights are never stored in Git — not in
+                    this repository, not in a curriculum fork. They live on
+                    Google Drive, and the app downloads and verifies them
+                    directly onto the apprentice's device.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    How hosting works
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    A small JSON catalog tells the app which models exist and
+                    where to fetch each one. The app ships with a single
+                    bundled fallback entry, but you can point it at your own
+                    catalog instead — Settings → AI lets an apprentice enter
+                    a catalog's Google Drive file id, and the app fetches
+                    that file directly by id. It never lists or browses your
+                    Drive folder, so nothing else in that folder is exposed.
+                </p>
+                <div class="not-prose rounded-lg border border-border/50 overflow-hidden dark:hidden"><Code code={catalogExample} lang="json" theme="github-light" /></div>
+                <div class="not-prose rounded-lg border border-border/50 overflow-hidden hidden dark:block"><Code code={catalogExample} lang="json" theme="github-dark" /></div>
+                <p class="text-muted-foreground leading-relaxed">
+                    <strong>driveFileId</strong> is the id segment from a
+                    Drive share link — the part between
+                    <strong>/file/d/</strong> and <strong>/view</strong> in
+                    the URL you get from Drive's Share button. A row with an
+                    empty id still shows up in the app's model list, just
+                    disabled until you fill it in.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Use apprenti.dev's own hosted catalog
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    You don't have to host anything yourself to try local
+                    models — apprenti.dev publishes its own catalog. In the
+                    app, go to <strong>Settings → AI → Local models</strong>
+                    and paste this catalog file id:
+                </p>
+                <div class="not-prose rounded-lg border border-border/50 bg-muted/40 px-4 py-3 text-sm mb-4">
+                    <span class="text-muted-foreground">Catalog file id:</span>
+                    <code class="ml-1">147raTcMO52l3Jzslewm_-mSYvWHwkiVm</code>
+                </div>
+                <p class="text-muted-foreground leading-relaxed">
+                    That's the same id whether you copy it from the file's
+                    share link or type it in directly — the app only needs
+                    the id, not the full link. If you'd rather browse what's
+                    there first, the models live in
+                    <a href="https://drive.google.com/drive/folders/1bHXCTxjhrm_JZf01cyXT_x0Ral4Tq3Jq?usp=drive_link" target="_blank" rel="noopener noreferrer" class="text-link hover:underline">this public Drive folder</a>
+                    — browsing the folder is just for humans; the app itself
+                    never lists it, only the catalog file by id.
+                </p>
+                <p class="text-muted-foreground leading-relaxed">
+                    This is a convenience, not a requirement — everything
+                    below explains how to host your own catalog instead, for
+                    a curriculum fork that wants different models or full
+                    control over where the weights come from.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Setting up the Drive folder
+                </h2>
+                <ol class="space-y-2 text-muted-foreground mt-2 list-decimal pl-5">
+                    <li>Put your GGUF files and the catalog file together in one Drive folder — a Google Drive desktop sync folder works well for this.</li>
+                    <li>Share each GGUF file (or the whole folder) as <strong>Anyone with the link → Viewer</strong>.</li>
+                    <li>Share the catalog file itself the same way, and copy its file id into Settings → AI on your own device to confirm it resolves.</li>
+                    <li>Hand that same catalog file id to your apprentices.</li>
+                </ol>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Building the catalog
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Writing that catalog file by hand means hashing every
+                    file yourself and keeping sizes in sync whenever you
+                    add a model. A small PowerShell script does that for
+                    you:
+                </p>
+                <div class="not-prose flex justify-center my-4">
+                    <a
+                        href="/downloads/New-GgufCatalog.ps1"
+                        class="inline-flex items-center justify-center h-10 px-6 rounded-md bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors"
+                    >
+                        Download New-GgufCatalog.ps1
+                    </a>
+                </div>
+                <p class="text-muted-foreground leading-relaxed">
+                    Run it against the folder that holds your GGUF files:
+                </p>
+                <div class="not-prose rounded-lg border border-border/50 overflow-hidden dark:hidden"><Code code={runCommand} lang="powershell" theme="github-light" /></div>
+                <div class="not-prose rounded-lg border border-border/50 overflow-hidden hidden dark:block"><Code code={runCommand} lang="powershell" theme="github-dark" /></div>
+                <p class="text-muted-foreground leading-relaxed">
+                    It scans for GGUF files, hashes each one (SHA-256),
+                    fills in file size, and writes the catalog file next to
+                    the weights — in the schema the app expects. Re-running
+                    it after adding more models merges in the Drive file
+                    ids and context-window values you already filled in, so
+                    you never lose that work. The one thing it can't do for
+                    you is upload the files and paste each Drive id in —
+                    that's still a manual step, done once per file.
+                </p>
+                <p class="text-muted-foreground leading-relaxed">
+                    Requires PowerShell 5.1 or later — already on every
+                    Windows machine, and available on macOS and Linux too
+                    if you'd rather run it there.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    What an apprentice's device actually does
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Once a model is selected, the app downloads it directly
+                    from Drive, streams it to a temporary file, and only
+                    renames it into place once the SHA-256 you provided
+                    actually matches — so a corrupted or partial download
+                    never silently becomes "the model." Downloads can be
+                    cancelled, retried, or deleted at any point.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Which models to offer
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    apprenti.dev doesn't restrict which GGUF model you host
+                    — any llama.cpp-compatible model works. The practical
+                    limit is the apprentice's own device memory, not
+                    anything the app enforces. A reasonable spread, smallest
+                    to largest:
+                </p>
+                <ul class="space-y-3 text-muted-foreground mt-2">
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>
+                        <span>
+                            <strong>Any phone, including older or lower-memory ones</strong> —
+                            <a href="https://huggingface.co/bartowski/Llama-3.2-1B-Instruct-GGUF" target="_blank" rel="noopener noreferrer" class="text-link hover:underline">Llama 3.2 1B Instruct (GGUF)</a>.
+                            The smallest reasonable default; a good first
+                            model to offer since almost every device can run
+                            it.
+                        </span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>
+                        <span>
+                            <strong>Newer phones, or a light desktop</strong> —
+                            <a href="https://huggingface.co/Qwen/Qwen2.5-3B-Instruct-GGUF" target="_blank" rel="noopener noreferrer" class="text-link hover:underline">Qwen2.5 3B Instruct (GGUF)</a>
+                            or
+                            <a href="https://huggingface.co/google/gemma-2-2b-it-GGUF" target="_blank" rel="noopener noreferrer" class="text-link hover:underline">Gemma 2 2B Instruct (GGUF)</a>.
+                            Noticeably better reasoning than the 1B tier for
+                            a modest size increase. Gemma's repository is
+                            gated — you'll need your own Hugging Face
+                            account and to accept Google's license there
+                            before you can download it and re-host it on
+                            Drive; apprentices themselves never touch
+                            Hugging Face.
+                        </span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-link mt-1">•</span>
+                        <span>
+                            <strong>Desktop (Windows, Linux, or macOS with 8&nbsp;GB+ RAM)</strong> —
+                            <a href="https://huggingface.co/bartowski/Phi-3.5-mini-instruct-GGUF" target="_blank" rel="noopener noreferrer" class="text-link hover:underline">Phi-3.5-mini Instruct (GGUF)</a>
+                            or
+                            <a href="https://huggingface.co/bartowski/Mistral-7B-Instruct-v0.3-GGUF" target="_blank" rel="noopener noreferrer" class="text-link hover:underline">Mistral 7B Instruct v0.3 (GGUF)</a>
+                            for the most capable option in this set — plan
+                            for a few gigabytes of storage per model.
+                        </span>
+                    </li>
+                </ul>
+                <p class="text-muted-foreground leading-relaxed mt-4">
+                    Each model page lists several quantizations (file size
+                    versus quality trade-off). <strong>Q4_K_M</strong> is a
+                    reasonable default for most devices; for phones with
+                    limited storage, check the file size on the model page
+                    before choosing and consider a smaller quantization.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Performance differs by platform
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    The app tries GPU acceleration first on macOS and Linux.
+                    On Windows, it currently loads local models on CPU only
+                    — a known issue with GPU context creation on that
+                    platform — so the same model will feel slower on
+                    Windows than on a similarly specced Mac or Linux
+                    machine. If a model fails to load at all, the app
+                    automatically retries with a smaller context window
+                    before giving up, so a device running low on memory
+                    degrades gracefully rather than simply failing.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mt-8 mb-3">
+                    Keep in mind
+                </h2>
+                <p class="text-muted-foreground leading-relaxed">
+                    Never commit a GGUF file to this repository or to a
+                    curriculum fork — they belong on Drive, not in Git
+                    history. Local models are one option
+                    among several; apprentices can just as easily use a
+                    cloud provider instead, and nothing about hosting local
+                    models is required to use apprenti.dev at all.
+                </p>
+            </section>
+        </div>
+
+        <div class="mt-8 flex gap-4">
+            <a href="/docs" class="text-sm text-link hover:underline"
+                >← All Docs</a
+            >
+            <a href="/" class="text-sm text-muted-foreground hover:underline"
+                >Back to apprenti.dev</a
+            >
+        </div>
+    </div>
+</DocsLayout>

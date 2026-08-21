@@ -1,9 +1,12 @@
-// Zips each tool's folder under skills/ into public/downloads/apprenti-skill-<tool>.zip.
+// Builds everything under public/downloads/:
+// - Zips each tool's folder under skills/ into apprenti-skill-<tool>.zip.
+// - Copies tools/local-llm/New-GgufCatalog.ps1 as a plain file.
 // Runs automatically before `astro dev`/`astro build` (see package.json scripts).
 // Source of truth for the *content* of these packages is the apprentiapp repo's
-// skills/ directory — see skills/README.md in this repo for the sync process.
+// skills/ and tools/local-llm/ directories — see skills/README.md for the sync
+// process (the same manual-copy approach applies to tools/local-llm/).
 
-import { createWriteStream, existsSync, mkdirSync, readdirSync, statSync } from "node:fs";
+import { copyFileSync, createWriteStream, existsSync, mkdirSync, readdirSync, statSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { ZipArchive } from "archiver";
@@ -47,4 +50,12 @@ console.log(`Building skill packages from ${skillsDir}...`);
 for (const tool of tools) {
   await zipTool(tool);
 }
+
+const ggufScript = join(repoRoot, "tools", "local-llm", "New-GgufCatalog.ps1");
+if (existsSync(ggufScript)) {
+  const dest = join(outDir, "New-GgufCatalog.ps1");
+  copyFileSync(ggufScript, dest);
+  console.log(`  New-GgufCatalog.ps1 (copied from tools/local-llm/)`);
+}
+
 console.log("Done.");

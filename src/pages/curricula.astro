@@ -1,8 +1,30 @@
 ---
 import Layout from '../layouts/main.astro';
-import { Compass, UserCheck, PenTool, GitFork, FolderGit2, HardDrive } from "lucide-react";
+import { Compass, UserCheck, PenTool, GitFork, FolderGit2, HardDrive, ShieldCheck, FileCheck2, Lock, ScrollText, BadgeCheck } from "lucide-react";
 
-const CURRICULUM_REPO = "https://github.com/apprenti-dev/software-engineering-base";
+const REPO_ROOT = "https://github.com/apprenti-dev/software-engineering-base";
+const ISSUE_URL = "https://github.com/apprenti-dev/apprenti.dev.github.io/issues/new?template=curriculum-listing-request.yml";
+
+const curricula = [
+	{
+		name: "Software Engineering Apprenticeship",
+		badge: "Reference curriculum",
+		description:
+			"The first official apprenti.dev path — 54 tasks across four academic years plus summer practice, covering software engineering from first principles through independent, mentor-reviewed work.",
+		languages: ["Python", "C", "JavaScript/TypeScript", "C#", "Go", "SQL", "Dart"],
+		platforms: ["PostgreSQL", "MongoDB", "RabbitMQ", "Docker", "Git"],
+		path: "curricula/software-engineering",
+	},
+	{
+		name: "Data Analytics and AI Apprenticeship",
+		badge: "v0.1 — growing",
+		description:
+			"Year 1 (both terms plus summer) and Year 2 Term 1 so far — 19 tasks moving from analytics and inference through first models to LLM and retrieval work, each evaluated on held-out cases, not vibes. Later years aren't authored yet.",
+		languages: ["Python", "SQL"],
+		platforms: ["pandas", "PostgreSQL", "SQLite", "scikit-learn", "Git"],
+		path: "curricula/data-analytics-ai",
+	},
+];
 ---
 
 <Layout title="Curricula Catalog — apprenti.dev">
@@ -24,40 +46,74 @@ const CURRICULUM_REPO = "https://github.com/apprenti-dev/software-engineering-ba
 					</p>
 				</div>
 
-				<!-- Catalog card -->
-				<div class="mb-16 rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm shadow-lg shadow-apprenti-violet/5 p-8">
-					<div class="flex flex-wrap items-center gap-3 mb-3">
-						<h2 class="text-2xl font-bold">Software Engineering apprenticeship</h2>
-						<span class="inline-flex items-center rounded-full border border-apprenti-violet/30 bg-apprenti-violet/10 px-3 py-1 text-xs font-semibold text-apprenti-violet-on-dark">
-							Reference curriculum
-						</span>
-					</div>
-					<p class="text-muted-foreground leading-relaxed mb-4">
-						The first official apprenti.dev path — 54 tasks across 11 terms,
-						covering the practice of software engineering from first
-						principles through independent work. It's the curriculum every
-						fork starts from, and the reference implementation for the
-						curriculum format itself.
+				<!-- Reference repository framing -->
+				<div class="mb-10 rounded-2xl border border-border/50 bg-muted/30 p-6">
+					<p class="text-muted-foreground leading-relaxed">
+						apprenti.dev's reference repository is one Git repository that
+						holds more than one curriculum side by side, each its own
+						subfolder with its own manifest. Shared resources and
+						competencies live once at the repository root, so both
+						curricula below draw from the same open library.
 					</p>
-					<div class="flex flex-wrap items-center gap-4">
+					<div class="flex flex-wrap items-center gap-3 mt-4">
 						<a
-							href={CURRICULUM_REPO}
+							href={REPO_ROOT}
 							target="_blank"
 							rel="noopener noreferrer"
-							class="inline-flex items-center justify-center h-10 px-5 rounded-md bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors"
+							class="inline-flex items-center justify-center h-9 px-4 rounded-md bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
 						>
-							View on GitHub →
+							View the repository →
 						</a>
-						<code class="text-sm text-muted-foreground">apprenti-dev/software-engineering-base</code>
+						<span class="text-sm text-muted-foreground">apprenti-dev/software-engineering-base</span>
 					</div>
+				</div>
+
+				<!-- Catalog cards -->
+				<div class="grid grid-cols-1 gap-6 mb-10">
+					{curricula.map((c) => (
+						<div class="rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm shadow-lg shadow-apprenti-violet/5 p-8">
+							<div class="flex flex-wrap items-center gap-3 mb-3">
+								<h2 class="text-2xl font-bold">{c.name}</h2>
+								<span class="inline-flex items-center rounded-full border border-apprenti-violet/30 bg-apprenti-violet/10 px-3 py-1 text-xs font-semibold text-apprenti-violet-on-dark">
+									{c.badge}
+								</span>
+							</div>
+							<p class="text-muted-foreground leading-relaxed mb-4">
+								{c.description}
+							</p>
+							<div class="flex flex-wrap gap-2 mb-4">
+								{c.languages.map((lang) => (
+									<span class="inline-flex items-center rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
+										{lang}
+									</span>
+								))}
+								{c.platforms.map((platform) => (
+									<span class="inline-flex items-center rounded-full border border-apprenti-cyan/30 bg-apprenti-cyan/10 px-3 py-1 text-xs font-medium text-apprenti-cyan">
+										{platform}
+									</span>
+								))}
+							</div>
+							<div class="flex flex-wrap items-center gap-4">
+								<a
+									href={`${REPO_ROOT}/tree/main/${c.path}`}
+									target="_blank"
+									rel="noopener noreferrer"
+									class="inline-flex items-center justify-center h-10 px-5 rounded-md bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors"
+								>
+									View on GitHub →
+								</a>
+								<code class="text-sm text-muted-foreground">{c.path}</code>
+							</div>
+						</div>
+					))}
 				</div>
 
 				<p class="text-center text-sm text-muted-foreground mb-20 max-w-2xl mx-auto">
 					More curricula will appear here as mentors and content creators
 					author and publish their own — see
 					<a href="/docs/creator-publishing-forking" class="text-link hover:underline">Publishing &amp; forking a curriculum</a>
-					in the docs. There's no submission process yet; a curriculum exists
-					the moment its repository does.
+					in the docs, and the listing rules below if you'd like yours added
+					to this page.
 				</p>
 
 				<!-- Opening a curriculum -->
@@ -75,12 +131,12 @@ const CURRICULUM_REPO = "https://github.com/apprenti-dev/software-engineering-ba
 							</div>
 							<h3 class="font-semibold mb-2">Clone repository</h3>
 							<p class="text-sm text-muted-foreground leading-relaxed">
-								Paste a GitHub or GitLab HTTPS URL — your fork, or the
-								reference curriculum above. Public repositories clone
-								without a token; private ones (and pushing your own work)
-								need a personal access token with read/write access to
-								repository contents, stored only in this device's secure
-								storage.
+								Paste a GitHub or GitLab HTTPS URL — your fork of one of the
+								curricula above, or any other curriculum repository. Public
+								repositories clone without a token; private ones (and
+								pushing your own work) need a personal access token with
+								read/write access to repository contents, stored only in
+								this device's secure storage.
 							</p>
 						</div>
 						<div class="rounded-2xl border border-border/50 bg-card/50 p-6">
@@ -99,11 +155,16 @@ const CURRICULUM_REPO = "https://github.com/apprenti-dev/software-engineering-ba
 				</div>
 
 				<!-- Forking for your role -->
-				<div>
+				<div class="mb-20">
 					<h2 class="text-2xl md:text-3xl font-bold mb-3 text-center">Forking for your role</h2>
-					<p class="text-muted-foreground text-center max-w-2xl mx-auto mb-10">
+					<p class="text-muted-foreground text-center max-w-2xl mx-auto mb-4">
 						A curriculum repository is shared; a fork is where your personal
 						work lives. The mechanics differ slightly by role.
+					</p>
+					<p class="text-muted-foreground text-center max-w-2xl mx-auto mb-10 text-sm">
+						On GitHub, a fork of a public repository is always public too —
+						see <a href="/docs/apprentice-private-forks" class="text-link hover:underline">keeping your fork private</a>
+						if you'd rather it wasn't (GitLab lets you choose at fork time).
 					</p>
 					<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 						<div class="rounded-2xl border border-border/50 bg-card/50 p-6">
@@ -136,7 +197,7 @@ const CURRICULUM_REPO = "https://github.com/apprenti-dev/software-engineering-ba
 							</div>
 							<h3 class="font-semibold mb-3">Content Creators</h3>
 							<ol class="text-sm text-muted-foreground leading-relaxed space-y-2 list-decimal pl-4">
-								<li>Fork the curriculum repo as a structural reference, or start from an empty repository with a single curriculum manifest file.</li>
+								<li>Fork a curriculum repo as a structural reference, or start from an empty repository with a single curriculum manifest file.</li>
 								<li>Author tasks and modules by hand (JSON + Markdown) or visually with <strong class="text-foreground">apprenti creator</strong>.</li>
 								<li>Push to your own repository — there's no publish button. Sharing a curriculum is just sharing a Git repository.</li>
 							</ol>
@@ -145,23 +206,69 @@ const CURRICULUM_REPO = "https://github.com/apprenti-dev/software-engineering-ba
 					</div>
 				</div>
 
+				<!-- Listing rules -->
+				<div id="listing-rules" class="mb-20 pt-4">
+					<h2 class="text-2xl md:text-3xl font-bold mb-3 text-center">Want your curriculum listed here?</h2>
+					<p class="text-muted-foreground text-center max-w-2xl mx-auto mb-10">
+						Anyone can author and publish a curriculum — that's the point of
+						it being just a Git repository. Getting it added to this page is
+						a separate, deliberate step: open an issue on the apprenti.dev
+						website repository and we'll review it against these rules.
+					</p>
+					<ul class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto mb-10">
+						<li class="flex items-start gap-3 rounded-xl border border-border/50 bg-card/50 p-4">
+							<Lock class="h-5 w-5 text-apprenti-violet-on-dark shrink-0 mt-0.5" />
+							<span class="text-sm text-muted-foreground"><strong class="text-foreground">Public repository only.</strong> We will not list a private repository, regardless of how it's shared with us.</span>
+						</li>
+						<li class="flex items-start gap-3 rounded-xl border border-border/50 bg-card/50 p-4">
+							<FileCheck2 class="h-5 w-5 text-apprenti-violet-on-dark shrink-0 mt-0.5" />
+							<span class="text-sm text-muted-foreground"><strong class="text-foreground">Valid curriculum format.</strong> A real, schema-valid curriculum manifest (or a top-level list of manifests for more than one) — see <a href="/docs/creator-curriculum-structure" class="text-link hover:underline">Curriculum structure basics</a>.</span>
+						</li>
+						<li class="flex items-start gap-3 rounded-xl border border-border/50 bg-card/50 p-4">
+							<ShieldCheck class="h-5 w-5 text-apprenti-violet-on-dark shrink-0 mt-0.5" />
+							<span class="text-sm text-muted-foreground"><strong class="text-foreground">No personal data.</strong> No apprentice or mentor personal-data folders — a listed curriculum is shareable content only, never someone's private fork.</span>
+						</li>
+						<li class="flex items-start gap-3 rounded-xl border border-border/50 bg-card/50 p-4">
+							<ScrollText class="h-5 w-5 text-apprenti-violet-on-dark shrink-0 mt-0.5" />
+							<span class="text-sm text-muted-foreground"><strong class="text-foreground">A stated license.</strong> Say what license or usage terms apply, so others know whether and how they can fork it.</span>
+						</li>
+						<li class="flex items-start gap-3 rounded-xl border border-border/50 bg-card/50 p-4 md:col-span-2">
+							<BadgeCheck class="h-5 w-5 text-apprenti-violet-on-dark shrink-0 mt-0.5" />
+							<span class="text-sm text-muted-foreground"><strong class="text-foreground">No misleading branding.</strong> Don't present a listing as official endorsement beyond appearing in this catalog. Open, free references over paywalled or single-vendor ones are encouraged but not required — the same standard our own reference curricula follow.</span>
+						</li>
+					</ul>
+					<div class="text-center">
+						<a
+							href={ISSUE_URL}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="inline-flex items-center justify-center h-10 px-6 rounded-md bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors"
+						>
+							Open a listing request →
+						</a>
+						<p class="text-xs text-muted-foreground mt-3">
+							Submitting a request doesn't guarantee a listing — we review each one.
+						</p>
+					</div>
+				</div>
+
 				<!-- CTA -->
-				<div class="text-center mt-20 pt-12 border-t">
+				<div class="text-center pt-12 border-t">
 					<div class="inline-flex items-center gap-2 rounded-full border border-apprenti-cyan/30 bg-apprenti-cyan/10 px-4 py-1.5 text-sm font-semibold text-apprenti-cyan mb-6">
 						<GitFork class="h-4 w-4" />
 						Free forever — fork anything, anytime
 					</div>
 					<h2 class="text-2xl md:text-3xl font-bold mb-4">Ready to open a curriculum?</h2>
 					<p class="text-muted-foreground mb-6 max-w-xl mx-auto">
-						Read the full docs for your role, or head straight to the reference
-						curriculum on GitHub.
+						Read the full docs for your role, or head straight to the
+						reference repository on GitHub.
 					</p>
 					<div class="flex flex-col sm:flex-row gap-4 justify-center">
 						<a href="/docs" class="inline-flex items-center justify-center h-10 px-6 rounded-md bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors">
 							Read the docs
 						</a>
-						<a href={CURRICULUM_REPO} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center h-10 px-6 rounded-md border bg-background hover:bg-accent hover:text-accent-foreground transition-colors">
-							View the curriculum repo
+						<a href={REPO_ROOT} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center h-10 px-6 rounded-md border bg-background hover:bg-accent hover:text-accent-foreground transition-colors">
+							View the repository
 						</a>
 					</div>
 				</div>
